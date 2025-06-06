@@ -3,14 +3,5 @@
   "devCommand": "bun run dev",
   "installCommand": "bun install",
   "framework": "nextjs",
-  "functions": {
-    "app/**/*.ts": {
-      "runtime": "nodejs18.x"
-    },
-    "app/**/*.tsx": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "crons": [],
   "regions": ["iad1"]
 }
