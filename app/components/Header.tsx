@@ -41,7 +41,7 @@ const MOBILE_MENU_ANIMATION = {
  */
 interface NavLinkProps {
   readonly link: NavigationLink;
-  readonly onClick?: () => void;
+  readonly onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   readonly isMobile?: boolean;
 }
 
@@ -54,7 +54,7 @@ const NavLink = ({ link, onClick, isMobile = false }: NavLinkProps) => {
     <Link
       href={link.href}
       className={baseClasses}
-      onClick={onClick}
+      {...(onClick && { onClick })}
       aria-label={`Navigate to ${link.label}`}
     >
       {link.label}
@@ -184,6 +184,10 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   }, []);
 
+  const handleMobileLinkClick = useCallback(() => {
+    closeMobileMenu();
+  }, [closeMobileMenu]);
+
   return (
     <header className="bg-white shadow-md py-4 sticky top-0 z-50">
       <div className="container mx-auto px-4">
@@ -237,7 +241,7 @@ export default function Header() {
                   <NavLink
                     key={link.href}
                     link={link}
-                    onClick={closeMobileMenu}
+                    onClick={handleMobileLinkClick}
                     isMobile
                   />
                 ))}
