@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bridgen Training Institute - Official Website
+
+Welcome to the official website repository for **Bridgen Training Institute**, a premier education center specializing in Interior Design, Architectural Visualization, and Computer Aided Design (CAD) training.
+
+## About Bridgen
+
+Founded in 2015, Bridgen is a leading training institute based in Kozhikode, Kerala, India. We specialize in:
+
+- **Interior Design** courses
+- **Architectural Visualization** training
+- **CAD Drafting** programs
+- **Job Placement Assistance** with 99% placement rate
+- **Industry-ready Professional Development**
+
+Our unique hands-on, experiential approach bridges the gap between academic knowledge and practical skills, preparing students for successful careers in India and abroad, including the Gulf region.
+
+## Project Features
+
+This Next.js website includes:
+
+- 🏠 **Homepage** with hero section and course overview
+- 📚 **About Bridgen** - Institute information and history
+- 🎓 **Courses** - Detailed course offerings and curriculum
+- 💼 **Freelance CAD Jobs** - Job opportunities for graduates
+- 🏆 **Student Placement Success** - Success stories and testimonials
+- 🎨 **Student Projects Portfolio** - Showcase of student work
+- 📞 **Contact** - Location and contact information
+- 🔍 **SEO Optimized** with structured data and meta tags
+
+## Tech Stack
+
+- **Framework**: Next.js 15.3.1 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Runtime**: Bun
+- **UI**: React 19
 
 ## Getting Started
 
-First, run the development server:
+First, install dependencies:
 
 ```bash
+bun install
+```
+
+Then, run the development server:
+
+```bash
+bun dev
+# or
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+bun dev        # Start development server
+bun build      # Build for production
+bun start      # Start production server
+bun lint       # Run ESLint
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+bridgentraining/
+├── app/
+│   ├── about-bridgen/          # About page
+│   ├── components/             # Reusable UI components
+│   ├── contact-bridgen/        # Contact page
+│   ├── courses/                # Courses page
+│   ├── freelance-cad-jobs/     # Job listings
+│   ├── student-placement-success/  # Success stories
+│   └── student-projects-portfolio/ # Portfolio showcase
+├── public/
+│   └── images/                 # Static assets
+├── types/                      # TypeScript type definitions
+├── utils/                      # Utility functions
+└── package.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact Information
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Bridgen Training Institute**
 
-## Deploy on Vercel
+- **Address**: Thayyil Arcade, V Panoli Road, near Baby Memorial Hospital, Thiruthiyad, Kozhikode, Kerala 673004
+- **Hours**: 9:30 AM - 5:00 PM (Monday - Saturday)
+- **Website**: [bridgentraining.com](https://bridgentraining.com)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is a private project for Bridgen Training Institute. For any updates or modifications, please contact the development team.
+
+## Deployment
+
+The website is deployed on Vercel. For deployment updates:
+
+```bash
+bun build
+```
+
+The site automatically deploys from the main branch.
+
+---
+
+**Bridge to Next Generation** - Bridgen Training Institute © 2015-2024
