@@ -72,18 +72,18 @@ I'm excited to start my success story with Bridgen Training!`;
   };
 
   return (
-    <div className="fixed right-4 md:right-4 bottom-10 md:bottom-10 z-50 flex flex-col gap-3">
+    <div className="fixed right-4 md:right-6 lg:right-8 bottom-4 md:bottom-6 lg:bottom-8 z-50 flex flex-col gap-3">
       {/* WhatsApp Button */}
       <Link
         href="https://wa.me/+919061002200?text=Hello%20Bridgen%20Team%2C%0A%0AI'm%20interested%20in%20exploring%20career%20opportunities%20in%20design.%20I'd%20like%20to%20know%20more%20about%20your%20professional%20training%20programs%20and%20placement%20success.%20%0A%0ALooking%20forward%20to%20your%20response.%0A%0AThank%20you!"
-        className="flex items-center justify-center bg-white hover:bg-gray-100 p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 border border-gray-200"
+        className="flex items-center justify-center bg-[var(--green)] hover:bg-[#128C7E] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
         title="Chat on WhatsApp"
         target="_blank"
         rel="noopener noreferrer"
       >
         <svg
-          className="w-6 h-6"
-          fill="var(--green)"
+          className="w-6 h-6 md:w-7 md:h-7"
+          fill="currentColor"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -94,11 +94,11 @@ I'm excited to start my success story with Bridgen Training!`;
       {/* Enquiry Button */}
       <button
         onClick={() => setIsFormOpen(!isFormOpen)}
-        className="flex items-center justify-center bg-[var(--navy-blue)] hover:bg-[#00264d] text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+        className="flex items-center justify-center bg-[var(--navy-blue)] hover:bg-[#00264d] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
         title="Quick Enquiry"
       >
         <svg
-          className="w-6 h-6"
+          className="w-6 h-6 md:w-7 md:h-7"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -115,17 +115,17 @@ I'm excited to start my success story with Bridgen Training!`;
 
       {/* Enquiry Form */}
       {isFormOpen && (
-        <div className="absolute right-0 md:right-0 bottom-16 md:bottom-auto md:mt-16 w-[calc(100vw-2rem)] md:w-80 max-w-sm bg-white rounded-lg shadow-xl p-4 border border-gray-200 z-10">
+        <div className="absolute right-0 bottom-16 md:bottom-20 lg:bottom-24 w-[calc(100vw-2rem)] md:w-96 lg:w-[420px] max-w-sm bg-white rounded-lg shadow-xl p-4 md:p-6 border border-gray-200 z-10">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-semibold text-[var(--navy-blue)]">
+            <h3 className="text-lg md:text-xl font-semibold text-[var(--navy-blue)]">
               Quick Enquiry
             </h3>
             <button
               onClick={() => setIsFormOpen(false)}
-              className="text-gray-500 hover:text-gray-700"
+              className="text-gray-500 hover:text-gray-700 p-1"
             >
               <svg
-                className="w-5 h-5"
+                className="w-5 h-5 md:w-6 md:h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -145,7 +145,7 @@ I'm excited to start my success story with Bridgen Training!`;
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm md:text-base font-medium text-gray-700 mb-1"
               >
                 Name
               </label>
@@ -153,7 +153,7 @@ I'm excited to start my success story with Bridgen Training!`;
                 type="text"
                 id="name"
                 name="name"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900"
+                className="w-full px-3 py-2 md:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900 text-sm md:text-base"
                 required
                 value={formData.name}
                 onChange={handleInputChange}
@@ -163,7 +163,7 @@ I'm excited to start my success story with Bridgen Training!`;
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm md:text-base font-medium text-gray-700 mb-1"
               >
                 Email
               </label>
@@ -171,7 +171,7 @@ I'm excited to start my success story with Bridgen Training!`;
                 type="email"
                 id="email"
                 name="email"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900"
+                className="w-full px-3 py-2 md:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900 text-sm md:text-base"
                 required
                 value={formData.email}
                 onChange={handleInputChange}
@@ -181,7 +181,7 @@ I'm excited to start my success story with Bridgen Training!`;
             <div>
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm md:text-base font-medium text-gray-700 mb-1"
               >
                 Phone
               </label>
@@ -189,7 +189,7 @@ I'm excited to start my success story with Bridgen Training!`;
                 type="tel"
                 id="phone"
                 name="phone"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900"
+                className="w-full px-3 py-2 md:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900 text-sm md:text-base"
                 required
                 value={formData.phone}
                 onChange={handleInputChange}
@@ -199,14 +199,14 @@ I'm excited to start my success story with Bridgen Training!`;
             <div>
               <label
                 htmlFor="course"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm md:text-base font-medium text-gray-700 mb-1"
               >
                 Course Interest
               </label>
               <select
                 id="course"
                 name="course"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900"
+                className="w-full px-3 py-2 md:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900 text-sm md:text-base"
                 required
                 value={formData.course}
                 onChange={handleInputChange}
@@ -223,7 +223,7 @@ I'm excited to start my success story with Bridgen Training!`;
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm md:text-base font-medium text-gray-700 mb-1"
               >
                 Message (Optional)
               </label>
@@ -231,14 +231,14 @@ I'm excited to start my success story with Bridgen Training!`;
                 id="message"
                 name="message"
                 rows={3}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900"
+                className="w-full px-3 py-2 md:py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-[var(--navy-blue)] focus:border-[var(--navy-blue)] text-gray-900 text-sm md:text-base"
                 value={formData.message}
                 onChange={handleInputChange}
               ></textarea>
             </div>
 
             <div className="flex flex-col space-y-2">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm md:text-base font-medium text-gray-700 mb-1">
                 Choose Contact Method
               </label>
               <div className="flex items-center space-x-4">
@@ -250,11 +250,11 @@ I'm excited to start my success story with Bridgen Training!`;
                     value="whatsapp"
                     checked={submitMethod === "whatsapp"}
                     onChange={handleSubmitMethodChange}
-                    className="h-4 w-4 text-[var(--navy-blue)] focus:ring-[var(--navy-blue)]"
+                    className="h-4 w-4 md:h-5 md:w-5 text-[var(--navy-blue)] focus:ring-[var(--navy-blue)]"
                   />
                   <label
                     htmlFor="whatsapp-quick"
-                    className="ml-2 text-gray-700 text-sm"
+                    className="ml-2 text-gray-700 text-sm md:text-base"
                   >
                     WhatsApp
                   </label>
@@ -267,11 +267,11 @@ I'm excited to start my success story with Bridgen Training!`;
                     value="email"
                     checked={submitMethod === "email"}
                     onChange={handleSubmitMethodChange}
-                    className="h-4 w-4 text-[var(--navy-blue)] focus:ring-[var(--navy-blue)]"
+                    className="h-4 w-4 md:h-5 md:w-5 text-[var(--navy-blue)] focus:ring-[var(--navy-blue)]"
                   />
                   <label
                     htmlFor="email-quick"
-                    className="ml-2 text-gray-700 text-sm"
+                    className="ml-2 text-gray-700 text-sm md:text-base"
                   >
                     Email
                   </label>
@@ -281,7 +281,7 @@ I'm excited to start my success story with Bridgen Training!`;
 
             <button
               type="submit"
-              className="w-full bg-[var(--navy-blue)] hover:bg-[#00264d] text-white font-medium py-2 px-4 rounded-md transition-colors duration-300"
+              className="w-full bg-[var(--navy-blue)] hover:bg-[#00264d] text-white font-medium py-2.5 md:py-3 px-4 rounded-md transition-colors duration-300 text-sm md:text-base"
             >
               {submitMethod === "whatsapp"
                 ? "Send via WhatsApp"
