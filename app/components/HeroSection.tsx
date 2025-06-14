@@ -1,29 +1,72 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-gradient-to-r from-[var(--navy-blue)] to-[#1a365d] text-white">
-      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-200 via-blue-400 to-blue-600"></div>
+    <section className="relative bg-gradient-to-r from-[var(--navy-blue)] to-[#1a365d] text-white overflow-hidden min-h-[80vh] flex items-center">
+      {/* Animated background pattern */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center animate-pulse"></div>
+      </div>
 
-      <div className="container mx-auto px-4 py-20 md:py-24 lg:py-32 relative z-10">
-        <div className="max-w-3xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+      <div className="container mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-24 relative z-10">
+        <div className="max-w-3xl mx-auto">
+          {/* Logo and Tagline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6 sm:mb-8"
+          >
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
+              <Image
+                src="/images/bridgen_logo_highres.png"
+                alt="Bridgen Logo"
+                width={60}
+                height={60}
+                className="h-12 w-12 sm:h-16 sm:w-16"
+              />
+              <span className="text-xl sm:text-2xl font-medium text-[var(--light-blue)] text-center sm:text-left">
+                Bridge to Next Generation
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-center sm:text-left leading-tight"
+          >
             Launch Your Career in Interior Design & Computer aided designs
-          </h1>
+          </motion.h1>
 
-          <p className="text-xl md:text-2xl mb-8 text-gray-200">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-200 text-center sm:text-left"
+          >
             Expert-led training to transform your creative potential into
             industry-ready skills.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start"
+          >
             <Link
               href="https://wa.me/+919061002200?text=Hello%20Bridgen%20Team%2C%0A%0AI'm%20interested%20in%20exploring%20career%20opportunities%20in%20design.%20I'd%20like%20to%20know%20more%20about%20your%20professional%20training%20programs%20and%20placement%20success.%20%0A%0ALooking%20forward%20to%20your%20response.%0A%0AThank%20you!"
-              className="inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+              className="btn-accent w-full sm:w-auto text-center"
             >
               <svg
-                className="w-5 h-5 mr-2"
+                className="w-5 h-5 mr-2 inline-block"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,11 +78,11 @@ export default function HeroSection() {
 
             <Link
               href="/interior-design-courses"
-              className="inline-flex items-center justify-center bg-white hover:bg-gray-100 text-[var(--navy-blue)] font-medium py-3 px-6 rounded-lg transition-colors"
+              className="btn-secondary w-full sm:w-auto text-center"
             >
               Explore Courses
               <svg
-                className="w-5 h-5 ml-2"
+                className="w-5 h-5 ml-2 inline-block"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -53,7 +96,7 @@ export default function HeroSection() {
                 />
               </svg>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

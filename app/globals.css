@@ -10,6 +10,9 @@
   --green: #2a9d8f;
   --light-blue: #4cc9f0;
   --grey: #3d4247;
+  --orange: #f97316;
+  --orange-light: #fb923c;
+  --orange-dark: #ea580c;
 }
 
 @theme inline {
@@ -30,4 +33,36 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+
+/* Custom animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Custom button styles */
+@layer components {
+  .btn-primary {
+    @apply bg-[var(--orange)] hover:bg-[var(--orange-dark)] text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-100 text-[var(--navy-blue)] font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 border border-[var(--navy-blue)];
+  }
+
+  .btn-accent {
+    @apply bg-[var(--green)] hover:bg-[var(--green)] text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1;
+  }
 }

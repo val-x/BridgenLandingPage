@@ -12,6 +12,7 @@
 import { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 // Import types and constants for better maintainability
 import type { NavigationLink } from "@/types";
@@ -198,16 +199,29 @@ export default function Header() {
             className="flex items-center group"
             aria-label={`${COMPANY_INFO.NAME} - ${COMPANY_INFO.TAGLINE}`}
           >
-            <motion.span
-              className="text-2xl font-bold text-[var(--navy-blue)]"
-              whileHover={{ scale: HEADER_ANIMATION.HOVER_SCALE }}
-              transition={{ duration: HEADER_ANIMATION.TRANSITION_DURATION }}
-            >
-              {COMPANY_INFO.NAME}
-            </motion.span>
-            <span className="text-sm text-[var(--grey)] ml-2 transform transition-transform group-hover:translate-x-1">
-              {COMPANY_INFO.TAGLINE}
-            </span>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/bridgen_logo_highres.png"
+                alt="Bridgen Logo"
+                width={40}
+                height={40}
+                className="h-auto w-auto"
+              />
+              <div className="flex flex-col">
+                <motion.span
+                  className="text-2xl font-bold text-[var(--navy-blue)]"
+                  whileHover={{ scale: HEADER_ANIMATION.HOVER_SCALE }}
+                  transition={{
+                    duration: HEADER_ANIMATION.TRANSITION_DURATION,
+                  }}
+                >
+                  {COMPANY_INFO.NAME}
+                </motion.span>
+                <span className="text-sm text-[var(--light-blue)] font-medium">
+                  {COMPANY_INFO.TAGLINE}
+                </span>
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
