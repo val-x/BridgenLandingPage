@@ -49,7 +49,7 @@ interface NavLinkProps {
 const NavLink = ({ link, onClick, isMobile = false }: NavLinkProps) => {
   const baseClasses = isMobile
     ? "px-4 py-2 text-[var(--navy-blue)] hover:text-[var(--red)] hover:bg-gray-50 rounded-md transition-colors duration-200"
-    : "relative px-4 py-2 font-medium text-[var(--navy-blue)] hover:text-[var(--red)] transition-colors duration-200 group";
+    : "relative px-4 py-2 text-base font-medium text-[var(--navy-blue)] hover:text-[var(--red)] transition-colors duration-200 group";
 
   return (
     <Link
@@ -86,7 +86,7 @@ const WhatsAppButton = ({ isMobile = false, onClick }: WhatsAppButtonProps) => {
 
   const baseClasses = isMobile
     ? "flex items-center justify-center bg-[var(--green)] hover:bg-[var(--green)]/90 text-white px-4 py-2 rounded-full mt-2 transition-colors duration-200"
-    : "ml-4 flex items-center bg-[var(--green)] hover:bg-[var(--green)]/90 text-white px-5 py-2 rounded-full transition-colors duration-200 shadow-md";
+    : "ml-4 flex items-center bg-[var(--green)] hover:bg-[var(--green)]/90 text-white px-5 py-2 rounded-full transition-colors duration-200 shadow-md text-base";
 
   return (
     <button
@@ -190,7 +190,7 @@ export default function Header() {
   }, [closeMobileMenu]);
 
   return (
-    <header className="bg-white shadow-md py-4 sticky top-0 z-50">
+    <header className="bg-white shadow-md py-3 xl:py-4 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           {/* Logo Section */}
@@ -199,17 +199,17 @@ export default function Header() {
             className="flex items-center group"
             aria-label={`${COMPANY_INFO.NAME} - ${COMPANY_INFO.TAGLINE}`}
           >
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 xl:gap-3">
               <Image
                 src="/images/bridgen_logo_highres.png"
                 alt="Bridgen Logo"
                 width={40}
                 height={40}
-                className="h-auto w-auto"
+                className="h-8 w-8 xl:h-10 xl:w-10"
               />
               <div className="flex flex-col">
                 <motion.span
-                  className="text-2xl font-bold text-[var(--navy-blue)]"
+                  className="text-xl xl:text-2xl font-bold text-[var(--navy-blue)]"
                   whileHover={{ scale: HEADER_ANIMATION.HOVER_SCALE }}
                   transition={{
                     duration: HEADER_ANIMATION.TRANSITION_DURATION,
@@ -217,7 +217,7 @@ export default function Header() {
                 >
                   {COMPANY_INFO.NAME}
                 </motion.span>
-                <span className="text-sm text-[var(--light-blue)] font-medium">
+                <span className="text-xs xl:text-sm text-[var(--light-blue)] font-medium">
                   {COMPANY_INFO.TAGLINE}
                 </span>
               </div>
@@ -226,7 +226,7 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav
-            className="hidden lg:flex items-center space-x-1"
+            className="hidden xl:flex items-center space-x-4"
             role="navigation"
           >
             {NAVIGATION_LINKS.map((link) => (
@@ -236,7 +236,7 @@ export default function Header() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <MenuToggle isOpen={isMobileMenuOpen} onToggle={toggleMobileMenu} />
           </div>
         </div>
@@ -246,7 +246,7 @@ export default function Header() {
           {isMobileMenuOpen && (
             <motion.nav
               {...MOBILE_MENU_ANIMATION}
-              className="lg:hidden mt-4"
+              className="xl:hidden mt-4"
               role="navigation"
               aria-label="Mobile navigation"
             >
