@@ -76,7 +76,7 @@ I'm excited to start my success story with Bridgen Training!`;
       {/* WhatsApp Button */}
       <Link
         href="https://wa.me/+919061002200?text=Hello%20Bridgen%20Team%2C%0A%0AI'm%20interested%20in%20exploring%20career%20opportunities%20in%20design.%20I'd%20like%20to%20know%20more%20about%20your%20professional%20training%20programs%20and%20placement%20success.%20%0A%0ALooking%20forward%20to%20your%20response.%0A%0AThank%20you!"
-        className="flex items-center justify-center bg-[var(--green)] hover:bg-[#128C7E] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+        className="flex items-center justify-center bg-[var(--green)] hover:bg-[#228b7a] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
         title="Chat on WhatsApp"
         target="_blank"
         rel="noopener noreferrer"
@@ -91,10 +91,32 @@ I'm excited to start my success story with Bridgen Training!`;
         </svg>
       </Link>
 
+      {/* Call Button */}
+      <Link
+        href="tel:+919061002200"
+        className="flex items-center justify-center bg-[var(--green)] hover:bg-[#228b7a] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+        title="Call Us"
+      >
+        <svg
+          className="w-6 h-6 md:w-7 md:h-7"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+          />
+        </svg>
+      </Link>
+
       {/* Enquiry Button */}
       <button
         onClick={() => setIsFormOpen(!isFormOpen)}
-        className="flex items-center justify-center bg-[var(--navy-blue)] hover:bg-[#00264d] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+        className="flex items-center justify-center bg-[var(--green)] hover:bg-[#228b7a] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
         title="Quick Enquiry"
       >
         <svg

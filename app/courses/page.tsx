@@ -411,13 +411,19 @@ export default function CoursesPage() {
 
       <Header />
       <main>
-        <section className="py-12 bg-[var(--navy-blue)] text-white">
+        <section
+          className="py-12 text-white"
+          style={{ backgroundColor: "var(--navy-blue)" }}
+        >
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 Our Courses
               </h1>
-              <div className="w-20 h-1 bg-[var(--green)] mx-auto mb-6"></div>
+              <div
+                className="w-20 h-1 mx-auto mb-6"
+                style={{ backgroundColor: "var(--green)" }}
+              ></div>
               <p className="text-lg text-gray-300">
                 Comprehensive design and technical training courses to boost
                 your career in interior design and architectural visualization
@@ -435,17 +441,24 @@ export default function CoursesPage() {
                 className="mb-16 p-8 bg-white rounded-lg shadow-lg"
               >
                 <div className="flex flex-col md:flex-row md:items-center mb-8">
-                  <div className="bg-[var(--navy-blue)] text-white p-6 rounded-lg flex items-center justify-center mb-6 md:mb-0 md:mr-8">
+                  <div
+                    className="text-white p-6 rounded-lg flex items-center justify-center mb-6 md:mb-0 md:mr-8"
+                    style={{ backgroundColor: "var(--navy-blue)" }}
+                  >
                     {course.icon}
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold text-[var(--navy-blue)]">
+                    <h2
+                      className="text-3xl font-bold"
+                      style={{ color: "var(--navy-blue)" }}
+                    >
                       {course.title}
                     </h2>
                     <div className="flex flex-wrap items-center mt-3">
                       <div className="mr-8 mb-3 flex items-center">
                         <svg
-                          className="w-5 h-5 text-[var(--green)] mr-2"
+                          className="w-5 h-5 mr-2"
+                          style={{ color: "var(--green)" }}
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -460,7 +473,8 @@ export default function CoursesPage() {
                       </div>
                       <div className="mb-3 flex items-center">
                         <svg
-                          className="w-5 h-5 text-[var(--green)] mr-2"
+                          className="w-5 h-5 mr-2"
+                          style={{ color: "var(--green)" }}
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
@@ -486,13 +500,19 @@ export default function CoursesPage() {
                 {/* Display modules if they exist (for Interior Architecture course) */}
                 {course.id === "interior-architecture" && course.modules && (
                   <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                    <h3
+                      className="text-xl font-semibold mb-4"
+                      style={{ color: "var(--navy-blue)" }}
+                    >
                       Course Modules
                     </h3>
                     <div className="space-y-4">
                       {course.modules.map((module, idx) => (
                         <div key={idx} className="bg-gray-50 p-4 rounded-md">
-                          <h4 className="font-medium text-[var(--navy-blue)]">
+                          <h4
+                            className="font-medium"
+                            style={{ color: "var(--navy-blue)" }}
+                          >
                             {module.name}
                           </h4>
                           <p className="text-sm text-gray-600 mt-1 mb-2">
@@ -502,7 +522,8 @@ export default function CoursesPage() {
                             {module.topics.map((topic, i) => (
                               <li key={i} className="flex items-start">
                                 <svg
-                                  className="w-4 h-4 text-[var(--green)] mr-1 mt-0.5 flex-shrink-0"
+                                  className="w-4 h-4 mr-1 mt-0.5 flex-shrink-0"
+                                  style={{ color: "var(--green)" }}
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -526,14 +547,18 @@ export default function CoursesPage() {
                 {/* If course has highlights, display them */}
                 {course.highlights && (
                   <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                    <h3
+                      className="text-xl font-semibold mb-4"
+                      style={{ color: "var(--navy-blue)" }}
+                    >
                       Program Highlights
                     </h3>
                     <ul className="space-y-2">
                       {course.highlights.map((highlight, idx) => (
                         <li key={idx} className="flex items-start">
                           <svg
-                            className="w-5 h-5 text-[var(--red)] mr-2 mt-1 flex-shrink-0"
+                            className="w-5 h-5 mr-2 mt-1 flex-shrink-0"
+                            style={{ color: "var(--red)" }}
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -553,14 +578,18 @@ export default function CoursesPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                   <div>
-                    <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                    <h3
+                      className="text-xl font-semibold mb-4"
+                      style={{ color: "var(--navy-blue)" }}
+                    >
                       What You'll Learn
                     </h3>
                     <ul className="space-y-3">
                       {course.topics.map((topic, index) => (
                         <li key={index} className="flex">
                           <svg
-                            className="w-5 h-5 text-[var(--green)] mr-3 mt-1 flex-shrink-0"
+                            className="w-5 h-5 mr-3 mt-1 flex-shrink-0"
+                            style={{ color: "var(--green)" }}
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -577,14 +606,18 @@ export default function CoursesPage() {
                     </ul>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                    <h3
+                      className="text-xl font-semibold mb-4"
+                      style={{ color: "var(--navy-blue)" }}
+                    >
                       Course Outcomes
                     </h3>
                     <ul className="space-y-3">
                       {course.outcomes.map((outcome, index) => (
                         <li key={index} className="flex">
                           <svg
-                            className="w-5 h-5 text-[var(--red)] mr-3 mt-1 flex-shrink-0"
+                            className="w-5 h-5 mr-3 mt-1 flex-shrink-0"
+                            style={{ color: "var(--red)" }}
                             fill="currentColor"
                             viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg"
@@ -605,7 +638,10 @@ export default function CoursesPage() {
                 {/* Career Options Section */}
                 {course.careerOptions && (
                   <div className="mb-8">
-                    <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                    <h3
+                      className="text-xl font-semibold mb-4"
+                      style={{ color: "var(--navy-blue)" }}
+                    >
                       Career Opportunities
                     </h3>
                     <div className="bg-gray-50 p-5 rounded-lg">
@@ -624,7 +660,10 @@ export default function CoursesPage() {
                 )}
 
                 <div className="bg-gray-50 p-6 rounded-lg">
-                  <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-3">
+                  <h3
+                    className="text-xl font-semibold mb-3"
+                    style={{ color: "var(--navy-blue)" }}
+                  >
                     Who Should Attend
                   </h3>
                   <p className="text-gray-700">{course.audience}</p>
@@ -633,7 +672,8 @@ export default function CoursesPage() {
                 <div className="mt-8 text-center">
                   <Link
                     href="/contact-bridgen#enroll"
-                    className="inline-flex items-center justify-center bg-[var(--red)] hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                    className="inline-flex items-center justify-center hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+                    style={{ backgroundColor: "var(--red)" }}
                   >
                     Enroll Now
                     <svg
@@ -659,7 +699,10 @@ export default function CoursesPage() {
 
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-4">
+            <h2
+              className="text-3xl font-bold mb-4"
+              style={{ color: "var(--navy-blue)" }}
+            >
               Ready to Accelerate Your Career?
             </h2>
             <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
@@ -668,7 +711,8 @@ export default function CoursesPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center bg-[var(--navy-blue)] hover:bg-blue-900 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+              className="inline-flex items-center justify-center hover:bg-blue-900 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+              style={{ backgroundColor: "var(--navy-blue)" }}
             >
               Contact Us
               <svg

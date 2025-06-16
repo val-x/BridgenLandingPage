@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { Boxes } from "./ui/background-boxes";
+import { cn } from "@/lib/utils";
 
 export default function AboutSection() {
   return (
@@ -121,10 +125,20 @@ export default function AboutSection() {
             </div>
           </div>
 
-          <div className="relative">
-            <div className="aspect-[4/3] relative z-10">
-              <div className="w-full h-full bg-gradient-to-br from-[var(--navy-blue)] to-[var(--light-blue)] rounded-lg shadow-xl flex items-center justify-center">
-                <div className="text-white text-5xl font-bold">BRIDGEN</div>
+          <div className="relative overflow-hidden">
+            <div className="aspect-[4/3] relative transition-transform duration-300 hover:scale-105">
+              <div className="h-full relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
+                <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+
+                <Boxes />
+                <h1
+                  className={cn("md:text-4xl text-xl text-white relative z-20")}
+                >
+                  BRIDGEN
+                </h1>
+                <p className="text-center mt-2 text-neutral-300 relative z-20">
+                  Bridge to Next Generation
+                </p>
               </div>
             </div>
             <div className="absolute top-8 -left-8 w-full h-full border-8 border-[var(--navy-blue)] rounded-lg -z-10"></div>
