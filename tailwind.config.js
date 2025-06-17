@@ -98,12 +98,17 @@ module.exports = {
     {
       pattern: /bg-(red|green|blue|gray)-(50|100|200|500|600)/,
     },
-    {
-      pattern: /text-\[var\(--[a-z-]+\)\]/,
-    },
-    {
-      pattern: /bg-\[var\(--[a-z-]+\)\]/,
-    },
+    // CSS variable patterns - removing problematic regex
+    "text-[var(--navy-blue)]",
+    "text-[var(--red)]",
+    "text-[var(--green)]",
+    "text-[var(--light-blue)]",
+    "text-[var(--grey)]",
+    "bg-[var(--navy-blue)]",
+    "bg-[var(--red)]",
+    "bg-[var(--green)]",
+    "bg-[var(--light-blue)]",
+    "bg-[var(--grey)]",
   ],
   theme: {
     extend: {

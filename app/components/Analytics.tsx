@@ -1,7 +1,7 @@
- "use client";
+"use client";
 
-import { useEffect } from 'react';
-import Script from 'next/script';
+import { useEffect } from "react";
+import Script from "next/script";
 
 declare global {
   interface Window {
@@ -14,29 +14,16 @@ interface AnalyticsProps {
   GA_MEASUREMENT_ID?: string;
 }
 
-export default function Analytics({ GA_MEASUREMENT_ID = "G-XXXXXXXXXX" }: AnalyticsProps) {
+export default function Analytics({
+  GA_MEASUREMENT_ID = "G-XXXXXXXXXX",
+}: AnalyticsProps) {
   useEffect(() => {
     // Track page views
     const handleRouteChange = () => {
-      if (typeof window.gtag !== 'undefined') {
-        window.gtag('config', GA_MEASUREMENT_ID, {
+      if (typeof window.gtag !== "undefined") {
+        window.gtag("config", GA_MEASUREMENT_ID, {
           page_location: window.location.href,
           page_title: document.title,
-        });
-      }
-    };
-
-    // Track performance metrics
-    const trackWebVitals = () => {
-      // Core Web Vitals tracking
-      if ('web-vitals' in window) {
-        // @ts-ignore
-        import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-          getCLS((metric: any) => trackEvent('Core Web Vitals', 'CLS', metric.value));
-          getFID((metric: any) => trackEvent('Core Web Vitals', 'FID', metric.value));
-          getFCP((metric: any) => trackEvent('Core Web Vitals', 'FCP', metric.value));
-          getLCP((metric: any) => trackEvent('Core Web Vitals', 'LCP', metric.value));
-          getTTFB((metric: any) => trackEvent('Core Web Vitals', 'TTFB', metric.value));
         });
       }
     };
@@ -48,20 +35,21 @@ export default function Analytics({ GA_MEASUREMENT_ID = "G-XXXXXXXXXX" }: Analyt
         const scrollTop = window.pageYOffset;
         const docHeight = document.body.offsetHeight;
         const winHeight = window.innerHeight;
-        const scrollPercent = Math.round((scrollTop / (docHeight - winHeight)) * 100);
-        
+        const scrollPercent = Math.round(
+          (scrollTop / (docHeight - winHeight)) * 100
+        );
+
         if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
           maxScroll = scrollPercent;
-          trackEvent('Scroll Depth', `${scrollPercent}%`, scrollPercent);
+          trackEvent("Scroll Depth", `${scrollPercent}%`, scrollPercent);
         }
       };
 
-      window.addEventListener('scroll', trackScroll, { passive: true });
-      return () => window.removeEventListener('scroll', trackScroll);
+      window.addEventListener("scroll", trackScroll, { passive: true });
+      return () => window.removeEventListener("scroll", trackScroll);
     };
 
     handleRouteChange();
-    trackWebVitals();
     const removeScrollTracker = trackScrollDepth();
 
     return () => {
@@ -141,29 +129,39 @@ export default function Analytics({ GA_MEASUREMENT_ID = "G-XXXXXXXXXX" }: Analyt
 }
 
 // Utility functions for tracking events
-export const trackEvent = (action: string, category: string, value?: number) => {
-  if (typeof window.gtag !== 'undefined') {
-    window.gtag('event', action, {
+export const trackEvent = (
+  action: string,
+  category: string,
+  value?: number
+) => {
+  if (typeof window.gtag !== "undefined") {
+    window.gtag("event", action, {
       event_category: category,
       value: value,
     });
   }
 };
 
-export const trackConversion = (conversionType: 'course_inquiry' | 'phone_call' | 'whatsapp_click' | 'form_submit') => {
-  if (typeof window.gtag !== 'undefined') {
-    window.gtag('event', 'conversion', {
-      send_to: 'AW-CONVERSION_ID/CONVERSION_LABEL', // Replace with your conversion tracking
-      event_category: 'Lead Generation',
+export const trackConversion = (
+  conversionType:
+    | "course_inquiry"
+    | "phone_call"
+    | "whatsapp_click"
+    | "form_submit"
+) => {
+  if (typeof window.gtag !== "undefined") {
+    window.gtag("event", "conversion", {
+      send_to: "AW-CONVERSION_ID/CONVERSION_LABEL", // Replace with your conversion tracking
+      event_category: "Lead Generation",
       event_label: conversionType,
     });
   }
 };
 
 export const trackCourseInterest = (courseName: string) => {
-  if (typeof window.gtag !== 'undefined') {
-    window.gtag('event', 'course_interest', {
-      event_category: 'Course Engagement',
+  if (typeof window.gtag !== "undefined") {
+    window.gtag("event", "course_interest", {
+      event_category: "Course Engagement",
       event_label: courseName,
       custom_parameter_1: courseName,
     });
@@ -171,11 +169,11 @@ export const trackCourseInterest = (courseName: string) => {
 };
 
 export const trackPlacementSuccess = (studentData?: any) => {
-  if (typeof window.gtag !== 'undefined') {
-    window.gtag('event', 'placement_success', {
-      event_category: 'Business Outcome',
-      event_label: 'Student Placement',
-      custom_parameter_2: 'placement_achieved',
+  if (typeof window.gtag !== "undefined") {
+    window.gtag("event", "placement_success", {
+      event_category: "Business Outcome",
+      event_label: "Student Placement",
+      custom_parameter_2: "placement_achieved",
     });
   }
 };

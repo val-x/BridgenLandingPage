@@ -3,12 +3,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { BackgroundBeams } from "./ui/background-beams";
+import { memo } from "react";
 
-export default function HeroSection() {
-  const [scrollY, setScrollY] = useState(0);
-
+// Memoized trust signals component
+const TrustSignals = memo(function TrustSignals() {
   const trustSignals = [
     { number: "99%", label: "Placement Rate" },
     { number: "2015", label: "Established" },
@@ -16,63 +14,80 @@ export default function HeroSection() {
     { number: "10+", label: "Industry Partners" },
   ];
 
-  // Parallax effect
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center">
+      {trustSignals.map((signal) => (
+        <div
+          key={signal.label}
+          className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20"
+        >
+          <div className="text-2xl font-bold" style={{ color: "var(--red)" }}>
+            {signal.number}
+          </div>
+          <div className="text-sm text-gray-300">{signal.label}</div>
+        </div>
+      ))}
+    </div>
+  );
+});
+
+// Memoized trust indicators component
+const TrustIndicators = memo(function TrustIndicators() {
+  const indicators = [
+    "Industry Certified Faculty",
+    "Hands-on Training",
+    "Job Placement Support",
+  ];
 
   return (
+    <div className="mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-4 text-sm text-gray-300">
+      {indicators.map((indicator) => (
+        <div key={indicator} className="flex items-center gap-2">
+          <svg
+            className="w-4 h-4 text-green-400"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span>{indicator}</span>
+        </div>
+      ))}
+    </div>
+  );
+});
+
+export default function HeroSection() {
+  return (
     <section
-      className="relative text-white overflow-hidden min-h-[80vh] flex items-center hero-section"
+      className="relative text-white overflow-hidden min-h-[80vh] flex items-center"
+      style={{ backgroundColor: "var(--navy-blue)" }}
       aria-label="Hero section with course information and call-to-action"
     >
-      {/* Background Image with parallax effect, blur, and dark blue overlay */}
-      <div
-        className="absolute inset-0 overflow-hidden"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-        }}
-      >
-        <div className="absolute inset-0 scale-110">
-          <Image
-            src="/images/homeHero.png"
-            alt="Interior design students learning CAD and visualization techniques at Bridgen Training Institute"
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-            quality={85}
-            placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-            style={{
-              filter: "blur(8px)",
-            }}
-          />
-        </div>
-        {/* Dark blue overlay with blur background effect */}
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundColor: "var(--navy-blue)",
-            opacity: 0.75,
-            backdropFilter: "blur(2px)",
-          }}
-        ></div>
-        {/* Additional gradient overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/homeHero.png"
+          alt="Interior design students learning CAD and visualization techniques at Bridgen Training Institute"
+          fill
+          priority
+          className="object-cover object-center opacity-20"
+          sizes="100vw"
+          quality={75}
+        />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[var(--navy-blue)]/90 to-[var(--navy-blue)]/70" />
       </div>
 
       <div className="container mx-auto px-4 py-12 sm:py-16 md:py-20 lg:py-24 relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Enhanced Logo and Tagline with better semantic structure */}
-          <motion.header
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-6 sm:mb-8"
-          >
+          {/* Logo and Tagline */}
+          <header className="mb-6 sm:mb-8">
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mb-4">
               <Image
                 src="/images/bridgen_logo_highres.png"
@@ -86,64 +101,29 @@ export default function HeroSection() {
                 Bridge to Next Generation
               </span>
             </div>
-          </motion.header>
+          </header>
 
-          {/* Enhanced Main Heading with better SEO structure */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-center sm:text-left leading-tight"
-          >
+          {/* Main Heading */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-center sm:text-left leading-tight">
             Launch Your Career in{" "}
             <span style={{ color: "var(--red)" }}>Interior Design</span> & CAD
             Training
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-200 text-center sm:text-left max-w-3xl"
-          >
+          <p className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-gray-200 text-center sm:text-left max-w-3xl">
             Expert-led training in Kozhikode, Kerala to transform your creative
             potential into industry-ready skills.{" "}
             <strong className="text-[var(--light-blue)]">
               99% placement success rate
             </strong>{" "}
             since 2015.
-          </motion.p>
+          </p>
 
-          {/* Trust Signals Row */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 text-center"
-          >
-            {trustSignals.map((signal, index) => (
-              <div
-                key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20"
-              >
-                <div
-                  className="text-2xl font-bold"
-                  style={{ color: "var(--red)" }}
-                >
-                  {signal.number}
-                </div>
-                <div className="text-sm text-gray-300">{signal.label}</div>
-              </div>
-            ))}
-          </motion.div>
+          {/* Trust Signals */}
+          <TrustSignals />
 
-          {/* Enhanced CTA Buttons with better accessibility */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start"
-          >
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start">
             <Link
               href="https://wa.me/+919061002200?text=Hello%20Bridgen%20Team%2C%0A%0AI'm%20interested%20in%20exploring%20career%20opportunities%20in%20design.%20I'd%20like%20to%20know%20more%20about%20your%20professional%20training%20programs%20and%20placement%20success.%20%0A%0ALooking%20forward%20to%20your%20response.%0A%0AThank%20you!"
               className="btn-accent w-full sm:w-auto text-center group relative overflow-hidden"
@@ -151,7 +131,7 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               target="_blank"
             >
-              <div className="absolute inset-0 bg-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative flex items-center justify-center">
                 <svg
                   className="w-5 h-5 mr-2"
@@ -171,7 +151,7 @@ export default function HeroSection() {
               className="btn-secondary w-full sm:w-auto text-center group relative overflow-hidden"
               aria-label="Browse Bridgen Training Institute courses"
             >
-              <div className="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gray-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative flex items-center justify-center">
                 Explore Courses
                 <svg
@@ -191,65 +171,14 @@ export default function HeroSection() {
                 </svg>
               </span>
             </Link>
-          </motion.div>
+          </div>
 
-          {/* Additional trust indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-4 text-sm text-gray-300"
-          >
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-4 h-4 text-green-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Industry Certified Faculty</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-4 h-4 text-green-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Hands-on Training</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <svg
-                className="w-4 h-4 text-green-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                aria-hidden="true"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Job Placement Support</span>
-            </div>
-          </motion.div>
+          {/* Trust indicators */}
+          <TrustIndicators />
         </div>
       </div>
 
-      {/* Schema markup for better SEO */}
+      {/* Schema markup for SEO */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

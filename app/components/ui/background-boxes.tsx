@@ -1,21 +1,27 @@
 "use client";
-import React from "react";
-import { motion } from "motion/react";
+import React, { memo } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
-  const rows = new Array(150).fill(1);
-  const cols = new Array(100).fill(1);
-  let colors = [
+export const BoxesCore = memo(function BoxesCore({
+  className,
+  ...rest
+}: {
+  className?: string;
+}) {
+  const rows = new Array(50).fill(1);
+  const cols = new Array(40).fill(1);
+  const colors = [
     "var(--navy-blue)",
     "var(--red)",
     "var(--green)",
     "var(--light-blue)",
     "var(--grey)",
-
   ];
-  const getRandomColor = () => {
-    return colors[Math.floor(Math.random() * colors.length)];
+  const getRandomColor = (): string => {
+    return (
+      colors[Math.floor(Math.random() * colors.length)] || "var(--navy-blue)"
+    );
   };
 
   return (
@@ -31,22 +37,22 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
     >
       {rows.map((_, i) => (
         <motion.div
-          key={`row` + i}
+          key={`row-${i}`}
           className="relative h-8 w-16 border-l border-slate-700"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 2, delay: i * 0.01 }}
         >
           {cols.map((_, j) => (
             <motion.div
               whileHover={{
-                backgroundColor: `${getRandomColor()}`,
-                transition: { duration: 0 },
+                backgroundColor: getRandomColor(),
               }}
-              animate={{
-                transition: { duration: 2 },
-              }}
-              key={`col` + j}
+              transition={{ duration: 0.1 }}
+              key={`col-${j}`}
               className="relative h-8 w-16 border-t border-r border-slate-700"
             >
-              {j % 2 === 0 && i % 2 === 0 ? (
+              {j % 4 === 0 && i % 4 === 0 ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -68,6 +74,6 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
       ))}
     </div>
   );
-};
+});
 
 export const Boxes = React.memo(BoxesCore);

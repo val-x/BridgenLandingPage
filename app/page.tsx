@@ -1,9 +1,23 @@
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+
+// Lazy load non-critical components
+const TestimonialsSection = dynamic(
+  () => import("./components/TestimonialsSection"),
+  {
+    loading: () => <div className="py-16 bg-gray-50 animate-pulse" />,
+  }
+);
+
+const ContactSection = dynamic(() => import("./components/ContactSection"), {
+  loading: () => <div className="py-16 bg-white animate-pulse" />,
+});
+
+// Critical components loaded immediately
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import CoursesSection from "./components/CoursesSection";
-import TestimonialsSection from "./components/TestimonialsSection";
-import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import {
   OrganizationJsonLd,
@@ -11,8 +25,24 @@ import {
   LocalBusinessJsonLd,
 } from "./components/JsonLd";
 
+// Static metadata for better SEO and performance
+export const metadata = {
+  title:
+    "Bridgen Training - Best Interior Design & CAD Courses in Kozhikode | 99% Placement Rate",
+  description:
+    "Transform your creative potential with Bridgen's expert-led Interior Design & CAD courses. Established 2015 in Kozhikode, Kerala. 99% placement success rate.",
+  keywords:
+    "Interior Design Course, CAD Training, Kozhikode, Kerala, Placement, Career Training",
+  openGraph: {
+    title: "Bridgen Training - Interior Design & CAD Courses",
+    description: "99% Placement Success Rate | Expert Training in Kozhikode",
+    type: "website",
+    locale: "en_IN",
+  },
+};
+
 export default function Home() {
-  // FAQ data based on client information
+  // FAQ data - moved to server-side for better performance
   const faqData = [
     {
       question: "What courses does Bridgen offer?",
@@ -55,11 +85,19 @@ export default function Home() {
 
       <Header />
       <main>
+        {/* Critical sections loaded immediately */}
         <HeroSection />
         <AboutSection />
         <CoursesSection />
-        <TestimonialsSection />
-        <ContactSection />
+
+        {/* Non-critical sections lazy loaded */}
+        <Suspense fallback={<div className="py-16 bg-gray-50 animate-pulse" />}>
+          <TestimonialsSection />
+        </Suspense>
+
+        <Suspense fallback={<div className="py-16 bg-white animate-pulse" />}>
+          <ContactSection />
+        </Suspense>
       </main>
       <Footer />
     </div>

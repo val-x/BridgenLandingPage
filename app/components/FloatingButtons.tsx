@@ -76,7 +76,7 @@ I'm excited to start my success story with Bridgen Training!`;
       {/* WhatsApp Button */}
       <Link
         href="https://wa.me/+919061002200?text=Hello%20Bridgen%20Team%2C%0A%0AI'm%20interested%20in%20exploring%20career%20opportunities%20in%20design.%20I'd%20like%20to%20know%20more%20about%20your%20professional%20training%20programs%20and%20placement%20success.%20%0A%0ALooking%20forward%20to%20your%20response.%0A%0AThank%20you!"
-        className="flex items-center justify-center bg-[var(--green)] hover:bg-[#228b7a] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+        className="flex items-center justify-center bg-[#25D366] hover:bg-[#1eb554] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
         title="Chat on WhatsApp"
         target="_blank"
         rel="noopener noreferrer"
@@ -94,7 +94,7 @@ I'm excited to start my success story with Bridgen Training!`;
       {/* Call Button */}
       <Link
         href="tel:+919061002200"
-        className="flex items-center justify-center bg-[var(--green)] hover:bg-[#228b7a] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+        className="flex items-center justify-center bg-[var(--red)] hover:bg-red-700 text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
         title="Call Us"
       >
         <svg
@@ -116,7 +116,7 @@ I'm excited to start my success story with Bridgen Training!`;
       {/* Enquiry Button */}
       <button
         onClick={() => setIsFormOpen(!isFormOpen)}
-        className="flex items-center justify-center bg-[var(--green)] hover:bg-[#228b7a] text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
+        className="flex items-center justify-center bg-[var(--red)] hover:bg-red-700 text-white p-3 md:p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105"
         title="Quick Enquiry"
       >
         <svg

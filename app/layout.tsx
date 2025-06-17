@@ -1,57 +1,60 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import ClientWelcomePopup from "./components/ClientWelcomePopup";
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import FloatingButtons from "./components/FloatingButtons";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Dynamically import client components to avoid SSR issues
+const ClientWelcomePopup = dynamic(
+  () => import("./components/ClientWelcomePopup"),
+  {
+    loading: () => null,
+  }
+);
+
+// Optimized font loading with display swap
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
+  preload: true,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
+// Use system fonts as fallback for better performance
+const systemFont = {
+  variable: "--font-system",
+};
 
+// Enhanced metadata for better SEO and performance
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bridgentraining.com"),
   title: {
     default:
-      "Bridgen Training - Best Interior Design & CAD Courses in Kozhikode, Kerala | 99% Placement Rate",
+      "Bridgen Training - Best Interior Design & CAD Courses in Kozhikode | 99% Placement Rate",
     template: "%s | Bridgen Training Institute",
   },
   description:
-    "Join Bridgen Training Institute (Est. 2015) for professional Interior Design, Architectural Visualization & CAD courses in Kozhikode, Kerala. 99% placement success rate. Expert-led training with hands-on experience. Transform your creative potential into industry-ready skills.",
+    "Transform your creative potential with Bridgen's expert-led Interior Design & CAD courses. Established 2015 in Kozhikode, Kerala. 99% placement success rate with hands-on training and industry partnerships.",
   keywords: [
-    "interior design courses kozhikode",
-    "CAD training kerala",
-    "architectural visualization courses",
-    "interior design institute kerala",
-    "job oriented design courses",
-    "3d visualization training",
-    "autocad courses kozhikode",
-    "placement assistance design courses",
-    "professional design training",
-    "computer aided design kerala",
-    "interior design career",
-    "architectural drafting courses",
-  ].join(", "),
-  authors: [
-    { name: "Bridgen Training Institute", url: "https://bridgentraining.com" },
+    "Interior Design Course",
+    "CAD Training",
+    "Kozhikode",
+    "Kerala",
+    "Placement Assistance",
+    "Career Training",
+    "Architectural Visualization",
+    "3D Design",
+    "AutoCAD",
+    "SketchUp",
   ],
+  authors: [{ name: "Bridgen Training Institute" }],
   creator: "Bridgen Training Institute",
   publisher: "Bridgen Training Institute",
-  category: "Education & Training",
-  classification: "Interior Design & CAD Training Institute",
   formatDetection: {
     email: false,
+    address: false,
     telephone: false,
-  },
-  metadataBase: new URL("https://bridgentraining.com"),
-  alternates: {
-    canonical: "/",
   },
   openGraph: {
     title:
@@ -93,11 +96,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
-      "max-image-preview": "large",
+      noimageindex: false,
       "max-video-preview": -1,
+      "max-image-preview": "large",
       "max-snippet": -1,
     },
   },
@@ -125,7 +130,10 @@ export const metadata: Metadata = {
     "theme-color": "#003366",
   },
   verification: {
-    google: "your-google-verification-code", // Replace with actual code
+    google: process.env.GOOGLE_VERIFICATION_ID,
+  },
+  alternates: {
+    canonical: "/",
   },
 };
 
@@ -135,9 +143,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={inter.className}>
       <head>
-        {/* Preconnect to external domains for performance */}
+        {/* Critical resource hints for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -145,36 +153,77 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link rel="preconnect" href="https://wa.me" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
 
-        {/* DNS prefetch for faster external resource loading */}
-        <link rel="dns-prefetch" href="//www.google-analytics.com" />
-        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+        {/* Preload critical assets */}
+        <link
+          rel="preload"
+          href="/images/homeHero.png"
+          as="image"
+          type="image/png"
+        />
+        <link
+          rel="preload"
+          href="/images/bridgen_logo_highres.png"
+          as="image"
+          type="image/png"
+        />
 
         {/* Critical CSS for above-the-fold content */}
         <style
           dangerouslySetInnerHTML={{
             __html: `
             /* Critical CSS for faster loading */
-            body { font-family: system-ui, -apple-system, sans-serif; }
-            .hero-section { min-height: 80vh; }
+            body { 
+              font-family: system-ui, -apple-system, sans-serif; 
+              margin: 0;
+              padding: 0;
+              line-height: 1.6;
+            }
+            .hero-section { 
+              min-height: 80vh; 
+              position: relative;
+              display: flex;
+              align-items: center;
+            }
+            /* Prevent layout shift */
+            .container {
+              max-width: 1200px;
+              margin: 0 auto;
+              padding: 0 1rem;
+            }
+            /* Loading state styles */
+            .animate-pulse {
+              animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            @keyframes pulse {
+              0%, 100% { opacity: 1; }
+              50% { opacity: .5; }
+            }
           `,
           }}
         />
+
+        {/* Optimize resource loading */}
+        <meta httpEquiv="x-dns-prefetch-control" content="on" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-white text-gray-900`}
+        className={`${inter.variable} ${systemFont.variable} antialiased min-h-screen bg-white text-gray-900`}
       >
         {/* Skip to content for accessibility */}
         <a href="#main-content" className="skip-to-content">
           Skip to main content
         </a>
 
-        <ClientWelcomePopup />
+        {/* Client-side components */}
+        <Suspense fallback={null}>
+          <ClientWelcomePopup />
+        </Suspense>
+
         <FloatingButtons />
 
         <main id="main-content">{children}</main>
-
-        {/* Analytics and tracking can be added here */}
 
         {/* Website schema markup */}
         <script
