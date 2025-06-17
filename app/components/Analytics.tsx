@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { useEffect } from "react";
 import Script from "next/script";
@@ -38,7 +38,7 @@ export default function Analytics({
         const scrollPercent = Math.round(
           (scrollTop / (docHeight - winHeight)) * 100
         );
-
+        
         if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
           maxScroll = scrollPercent;
           trackEvent("Scroll Depth", `${scrollPercent}%`, scrollPercent);
