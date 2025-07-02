@@ -1,6 +1,8 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import Image from "next/image";
+import studentData from "../../public/data/StudentReviews.json";
 
 const portfolioCategories = [
   {
@@ -29,96 +31,63 @@ const portfolioCategories = [
   },
 ];
 
-const featuredProjects = [
-  {
-    id: "modern-apartment",
-    title: "Modern Apartment Renovation",
-    student: "Ananya Mehta",
-    course: "Interior Design",
-    year: "2022",
-    description:
-      "A complete redesign of a 2BHK apartment in Mumbai, focusing on maximizing space and creating a contemporary aesthetic with natural materials.",
-    tags: ["Residential", "Space Planning", "3D Visualization"],
-    category: "interior-design",
-  },
-  {
-    id: "boutique-hotel",
-    title: "Boutique Hotel Lobby",
-    student: "Rahul Kapoor",
-    course: "3ds Max with V-Ray",
-    year: "2021",
-    description:
-      "Photorealistic visualization of a boutique hotel lobby featuring custom furniture and dramatic lighting to create an intimate atmosphere.",
-    tags: ["Commercial", "Lighting Design", "Photorealistic Rendering"],
-    category: "3d-visualization",
-  },
-  {
-    id: "restaurant-design",
-    title: "Fine Dining Restaurant",
-    student: "Divya Singh",
-    course: "Interior Design",
-    year: "2022",
-    description:
-      "A complete interior scheme for a fine dining restaurant, including space planning, lighting design, and material specification.",
-    tags: ["Commercial", "Hospitality", "Lighting Design"],
-    category: "interior-design",
-  },
-  {
-    id: "urban-villa",
-    title: "Urban Villa Complex",
-    student: "Arjun Patel",
-    course: "AutoCAD Training & SketchUp",
-    year: "2021",
-    description:
-      "Technical drawings and 3D models for a complex of modern urban villas, including floor plans, elevations, and sections.",
-    tags: ["Residential", "Technical Drawing", "Multi-unit"],
-    category: "architectural-drafting",
-  },
-  {
-    id: "retail-concept",
-    title: "Sustainable Retail Store Concept",
-    student: "Meera Shah",
-    course: "Interior Design",
-    year: "2022",
-    description:
-      "Concept development for a sustainable retail space using recycled materials, natural lighting, and energy-efficient systems.",
-    tags: ["Commercial", "Sustainable Design", "Concept Development"],
-    category: "concept-development",
-  },
-  {
-    id: "office-visualization",
-    title: "Corporate Office Visualization",
-    student: "Vikrant Desai",
-    course: "3ds Max with Corona",
-    year: "2021",
-    description:
-      "High-quality visualizations of an open-plan corporate office space designed to enhance collaboration and productivity.",
-    tags: ["Commercial", "Workspace", "3D Visualization"],
-    category: "3d-visualization",
-  },
-  {
-    id: "residential-plans",
-    title: "Luxury Villa Floor Plans",
-    student: "Nisha Sharma",
-    course: "AutoCAD Training",
-    year: "2022",
-    description:
-      "Detailed floor plans, sections, and elevations for a 5-bedroom luxury villa with integrated smart home technology.",
-    tags: ["Residential", "Technical Drawing", "Luxury"],
-    category: "architectural-drafting",
-  },
-  {
-    id: "cafe-concept",
-    title: "Urban Café Concept",
-    student: "Rohan Verma",
-    course: "Interior Design & SketchUp",
-    year: "2021",
-    description:
-      "Concept development and initial visualizations for a contemporary urban café with indoor-outdoor seating and a minimalist aesthetic.",
-    tags: ["Commercial", "Hospitality", "Concept Development"],
-    category: "concept-development",
-  },
-];
+// Transform student data into portfolio format
+const getStudentProjects = () => {
+  const projects: any[] = [];
+
+  // Get students with portfolios
+  Object.entries(studentData.portfolios).forEach(([studentKey, images]) => {
+    // Find matching review data
+    const reviewData = studentData.reviews.find(
+      (review) =>
+        review.name?.toLowerCase().includes(studentKey.toLowerCase()) ||
+        studentKey.toLowerCase().includes(review.name?.toLowerCase() || "")
+    );
+
+    const studentName =
+      reviewData?.name ||
+      studentKey.charAt(0).toUpperCase() + studentKey.slice(1);
+    const course = reviewData?.course || "Interior Design";
+    const position = reviewData?.current_position || "Graduate";
+
+    // Categorize based on course content
+    let category = "interior-design";
+    if (
+      course.includes("3ds Max") ||
+      course.includes("V-Ray") ||
+      course.includes("3D")
+    ) {
+      category = "3d-visualization";
+    } else if (course.includes("AutoCAD") || course.includes("Architecture")) {
+      category = "architectural-drafting";
+    }
+
+    // Create project entries for each student
+    projects.push({
+      id: studentKey,
+      title: `${studentName}'s Portfolio`,
+      student: studentName,
+      course: course,
+      year: "2022-2024",
+      description:
+        reviewData?.review ||
+        `Professional interior design work showcasing creativity and technical skills in ${course.toLowerCase()}.`,
+      tags: reviewData?.skills_learned || [
+        "Interior Design",
+        "3D Visualization",
+        "Professional Work",
+      ],
+      category: category,
+      images: images as string[],
+      highlights: reviewData?.highlights || [],
+      position: position,
+    });
+  });
+
+  return projects;
+};
+
+const studentProjects = getStudentProjects();
 
 export default function PortfolioPage() {
   return (
@@ -134,8 +103,19 @@ export default function PortfolioPage() {
               <div className="w-20 h-1 bg-[var(--green)] mx-auto mb-6"></div>
               <p className="text-lg text-gray-300">
                 Showcasing the creative talent and technical skills of our
-                students
+                students at {studentData.institute.name},{" "}
+                {studentData.institute.location}
               </p>
+              <div className="mt-6 flex flex-wrap justify-center gap-2">
+                {studentData.institute.credentials.map((credential, index) => (
+                  <span
+                    key={index}
+                    className="bg-[var(--green)] text-white text-sm px-3 py-1 rounded-full"
+                  >
+                    {credential}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -147,11 +127,37 @@ export default function PortfolioPage() {
                 Our Student Work
               </h2>
               <p className="text-lg text-gray-700">
-                At Bridgen, we believe the best way to demonstrate the quality
-                of our education is through the work of our students. Here's a
-                selection of projects completed by recent graduates across
-                various disciplines.
+                At {studentData.institute.name}, we believe the best way to
+                demonstrate the quality of our education is through the work of
+                our students. Here's a selection of projects completed by recent
+                graduates across various disciplines.
               </p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[var(--navy-blue)]">
+                    {studentData.summary.total_reviews}+
+                  </div>
+                  <div className="text-gray-600">Student Reviews</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[var(--navy-blue)]">
+                    {Object.keys(studentData.portfolios).length}
+                  </div>
+                  <div className="text-gray-600">Portfolio Projects</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[var(--navy-blue)]">
+                    {studentData.summary.software_training.length}+
+                  </div>
+                  <div className="text-gray-600">Software Training</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[var(--navy-blue)]">
+                    100%
+                  </div>
+                  <div className="text-gray-600">Success Rate</div>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -198,15 +204,28 @@ export default function PortfolioPage() {
                   </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {featuredProjects
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {studentProjects
                     .filter((project) => project.category === category.id)
                     .map((project) => (
                       <div
                         key={project.id}
                         className="bg-white rounded-lg shadow-lg overflow-hidden"
                       >
-                        <div className="h-60 bg-gray-200"></div>
+                        <div className="relative h-60 bg-gray-200">
+                          {project.images && project.images.length > 0 && (
+                            <Image
+                              src={project.images[0]}
+                              alt={`${project.student}'s work`}
+                              fill
+                              className="object-cover"
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            />
+                          )}
+                          <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
+                            {project.images?.length || 0} images
+                          </div>
+                        </div>
                         <div className="p-6">
                           <h3 className="text-xl font-bold text-[var(--navy-blue)] mb-2">
                             {project.title}
@@ -220,16 +239,42 @@ export default function PortfolioPage() {
                               <span className="font-medium">Course:</span>{" "}
                               {project.course}
                             </p>
-                            <p>
-                              <span className="font-medium">Year:</span>{" "}
-                              {project.year}
-                            </p>
+                            {project.position && (
+                              <p className="w-full mt-1">
+                                <span className="font-medium">
+                                  Current Position:
+                                </span>{" "}
+                                {project.position}
+                              </p>
+                            )}
                           </div>
-                          <p className="text-gray-700 mb-4">
-                            {project.description}
+                          <p className="text-gray-700 mb-4 line-clamp-3">
+                            {project.description.length > 150
+                              ? `${project.description.substring(0, 150)}...`
+                              : project.description}
                           </p>
-                          <div className="flex flex-wrap gap-2">
-                            {project.tags.map((tag, index) => (
+                          {project.highlights &&
+                            project.highlights.length > 0 && (
+                              <div className="mb-4">
+                                <div className="text-sm font-medium text-[var(--navy-blue)] mb-2">
+                                  Highlights:
+                                </div>
+                                <div className="flex flex-wrap gap-1">
+                                  {project.highlights.map(
+                                    (highlight: string, index: number) => (
+                                      <span
+                                        key={index}
+                                        className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded"
+                                      >
+                                        {highlight}
+                                      </span>
+                                    )
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {project.tags.map((tag: string, index: number) => (
                               <span
                                 key={index}
                                 className="bg-gray-100 text-[var(--navy-blue)] text-xs font-medium px-3 py-1 rounded-full"
@@ -238,6 +283,28 @@ export default function PortfolioPage() {
                               </span>
                             ))}
                           </div>
+                          {project.images && project.images.length > 1 && (
+                            <div className="grid grid-cols-3 gap-2">
+                              {project.images
+                                .slice(1, 4)
+                                .map((image: string, index: number) => (
+                                  <div
+                                    key={index}
+                                    className="relative h-16 bg-gray-200 rounded"
+                                  >
+                                    <Image
+                                      src={image}
+                                      alt={`${project.student}'s work ${
+                                        index + 2
+                                      }`}
+                                      fill
+                                      className="object-cover rounded"
+                                      sizes="(max-width: 768px) 33vw, 16vw"
+                                    />
+                                  </div>
+                                ))}
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -247,21 +314,141 @@ export default function PortfolioPage() {
           </div>
         </section>
 
+        {/* Student Reviews Section 
+            FUTURE ENHANCEMENT: Profile Images
+            To add profile images to student reviews:
+            1. Add student profile images to: public/images/profiles/
+            2. Update StudentReviews.json to include profileImage field for each review
+            3. Set profileImage URLs like: "/images/profiles/student-name.jpg"
+            4. Uncomment the conditional rendering code in the avatar section below
+            5. The component will automatically display images when available, fallback to initials
+        */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-6 text-center">
-                Student Portfolio Development
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-6">
+                What Our Students Say
               </h2>
-              <p className="text-lg text-gray-700 mb-8 text-center">
-                At Bridgen, we place special emphasis on helping students
-                develop professional portfolios that showcase their skills and
-                creativity.
+              <p className="text-lg text-gray-700">
+                Hear directly from our graduates about their experience and
+                success stories.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {studentData.reviews.map((review) => {
+                // Function to get initials from a name
+                const getInitials = (name: string) => {
+                  return name
+                    .split(" ")
+                    .map((part) => part[0])
+                    .join("");
+                };
+
+                return (
+                  <div
+                    key={review.id}
+                    className="bg-white rounded-lg shadow-lg overflow-hidden"
+                  >
+                    {/* Header with Profile Section - Ready for future images */}
+                    <div className="p-6 pb-4">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-16 h-16 rounded-full overflow-hidden bg-[var(--navy-blue)] flex items-center justify-center text-white text-lg font-bold relative flex-shrink-0">
+                          {/* Future: Profile images will be displayed here when available */}
+                          {/* TODO: Add conditional rendering like:
+                              {review.profileImage ? (
+                                <Image
+                                  src={review.profileImage}
+                                  alt={`${review.name} profile`}
+                                  fill
+                                  className="object-cover"
+                                  sizes="64px"
+                                />
+                              ) : (
+                                <span className="text-white text-lg font-bold">
+                                  {getInitials(review.name || "AS")}
+                                </span>
+                              )}
+                          */}
+                          {/* For now, showing initials as placeholder */}
+                          <span className="text-white text-lg font-bold">
+                            {getInitials(review.name || "AS")}
+                          </span>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-lg font-bold text-[var(--navy-blue)]">
+                            {review.name || "Anonymous Student"}
+                          </h3>
+                          <p className="text-sm text-gray-600">
+                            {review.course}
+                          </p>
+                          {review.current_position && (
+                            <p className="text-sm text-[var(--green)] font-medium">
+                              {review.current_position}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Review Content */}
+                    <div className="px-6 pb-6">
+                      <p className="text-gray-700 mb-4 italic">
+                        "{review.review}"
+                      </p>
+                      {review.skills_learned &&
+                        review.skills_learned.length > 0 && (
+                          <div className="mb-4">
+                            <div className="text-sm font-medium text-gray-800 mb-2">
+                              Skills Learned:
+                            </div>
+                            <div className="flex flex-wrap gap-1">
+                              {review.skills_learned.map((skill, index) => (
+                                <span
+                                  key={index}
+                                  className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
+                                >
+                                  {skill}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      {review.highlights && review.highlights.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                          {review.highlights.map((highlight, index) => (
+                            <span
+                              key={index}
+                              className="bg-[var(--green)] text-white text-xs px-2 py-1 rounded-full"
+                            >
+                              {highlight}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto bg-gradient-to-r from-[var(--navy-blue)] to-blue-800 rounded-lg shadow-lg p-8 text-white">
+              <h2 className="text-3xl font-bold mb-6 text-center">
+                Student Portfolio Development Program
+              </h2>
+              <p className="text-lg mb-8 text-center text-blue-100">
+                At {studentData.institute.name}, we place special emphasis on
+                helping students develop professional portfolios that showcase
+                their skills and creativity.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="bg-[var(--navy-blue)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-white text-[var(--navy-blue)] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg
                       className="w-8 h-8"
                       fill="currentColor"
@@ -275,16 +462,16 @@ export default function PortfolioPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
-                    Project Selection
+                  <h3 className="text-xl font-semibold mb-2">
+                    Real Project Experience
                   </h3>
-                  <p className="text-gray-700">
-                    Students learn to select projects that best represent their
-                    skills and align with their career goals.
+                  <p className="text-blue-100">
+                    Students work on real projects that build their portfolio
+                    and give them practical experience in the industry.
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-[var(--navy-blue)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-white text-[var(--navy-blue)] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg
                       className="w-8 h-8"
                       fill="currentColor"
@@ -299,16 +486,17 @@ export default function PortfolioPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
-                    Presentation Skills
+                  <h3 className="text-xl font-semibold mb-2">
+                    Industry Software Training
                   </h3>
-                  <p className="text-gray-700">
-                    Our courses include guidance on how to effectively present
-                    work to potential employers and clients.
+                  <p className="text-blue-100">
+                    Comprehensive training in{" "}
+                    {studentData.summary.software_training.join(", ")} and other
+                    industry-standard tools.
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="bg-[var(--navy-blue)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-white text-[var(--navy-blue)] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg
                       className="w-8 h-8"
                       fill="currentColor"
@@ -318,12 +506,15 @@ export default function PortfolioPage() {
                       <path d="M5.5 16a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 16h-8z" />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
-                    Digital Portfolio
-                  </h3>
-                  <p className="text-gray-700">
-                    Students create both physical and digital portfolios,
-                    learning to showcase their work effectively online.
+                  <h3 className="text-xl font-semibold mb-2">Career Support</h3>
+                  <p className="text-blue-100">
+                    {studentData.summary.key_features.includes(
+                      "Gulf job support"
+                    )
+                      ? "Gulf job support"
+                      : "Career guidance"}{" "}
+                    and placement assistance to help students achieve their
+                    professional goals.
                   </p>
                 </div>
               </div>
@@ -337,8 +528,8 @@ export default function PortfolioPage() {
               Create Your Own Portfolio
             </h2>
             <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
-              Join Bridgen School of Creative Studies and develop the skills to
-              create impressive design projects for your professional portfolio.
+              Join {studentData.institute.name} and develop the skills to create
+              impressive design projects for your professional portfolio.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link

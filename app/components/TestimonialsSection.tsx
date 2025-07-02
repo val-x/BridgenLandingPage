@@ -1,43 +1,52 @@
 import Image from "next/image";
+import studentData from "../../public/data/StudentReviews.json";
 
-const testimonials = [
-  {
-    id: 1,
-    name: "Priya Sharma",
-    role: "Interior Designer",
-    company: "Dezyne Interiors",
-    image: "/testimonial1.jpg",
-    quote:
-      "Bridgen Training transformed my career. The hands-on approach and industry-focused curriculum gave me the confidence to start my own interior design practice. The instructors are truly experts in their field.",
-  },
-  {
-    id: 2,
-    name: "Rajesh Kumar",
-    role: "AutoCAD Specialist",
-    company: "ArchViz Studios",
-    image: "/testimonial2.jpg",
-    quote:
-      "I completed the AutoCAD course at Bridgen, and within two months, I secured a well-paying job. The practical training and placement assistance made all the difference in my career trajectory.",
-  },
-  {
-    id: 3,
-    name: "Aisha Patel",
-    role: "3D Visualization Artist",
-    company: "Dream Spaces",
-    image: "/testimonial3.jpg",
-    quote:
-      "Learning 3ds Max with V-Ray at Bridgen was the best decision I made. The course is comprehensive, and the small batch size ensures personalized attention. I now work with top architectural firms.",
-  },
-  {
-    id: 4,
-    name: "Vikram Singh",
-    role: "Freelance Designer",
-    company: "Self-employed",
-    image: "/testimonial4.jpg",
-    quote:
-      "Thanks to Bridgen's training in SketchUp and Photoshop, I've built a successful freelance business. Their job portal helped me connect with my first clients, and I haven't looked back since.",
-  },
-];
+// Type definition for testimonial data structure
+interface Testimonial {
+  id: number;
+  name: string | null;
+  role: string;
+  company: string;
+  course: string;
+  quote: string;
+  skills: string[];
+  highlights: string[];
+  profileImage: string | null; // Future: Will contain profile image URLs
+}
+
+/*
+ * FUTURE ENHANCEMENT: Profile Images
+ * To add profile images to testimonials:
+ * 1. Add student profile images to: public/images/profiles/
+ * 2. Update the StudentReviews.json to include profileImage field for each review
+ * 3. Set profileImage URLs like: "/images/profiles/student-name.jpg"
+ * 4. The component will automatically display images when available, fallback to initials
+ */
+
+// Transform student reviews to testimonial format
+const getTestimonials = (): Testimonial[] => {
+  return studentData.reviews
+    .filter((review) => review.name) // Only include reviews with names
+    .slice(0, 4) // Take first 4 reviews
+    .map((review) => ({
+      id: review.id,
+      name: review.name,
+      role: review.current_position || "Graduate",
+      company: review.current_position?.includes("UAE")
+        ? "UAE Company"
+        : review.current_position?.includes("Business Owner")
+        ? review.current_position
+        : studentData.institute.name,
+      course: review.course,
+      quote: review.review,
+      skills: review.skills_learned || [],
+      highlights: review.highlights || [],
+      // Placeholder for future profile images
+      profileImage: null, // Will be populated with actual image URLs later
+    }));
+};
+
+const testimonials = getTestimonials();
 
 export default function TestimonialsSection() {
   // Function to get initials from a name
@@ -46,6 +55,12 @@ export default function TestimonialsSection() {
       .split(" ")
       .map((part) => part[0])
       .join("");
+  };
+
+  // Function to truncate long testimonials
+  const truncateQuote = (quote: string, maxLength: number = 180) => {
+    if (quote.length <= maxLength) return quote;
+    return quote.substring(0, maxLength).trim() + "...";
   };
 
   return (
@@ -58,7 +73,8 @@ export default function TestimonialsSection() {
           <div className="w-20 h-1 bg-[var(--light-blue)] mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600">
             Hear from our graduates who have successfully launched their careers
-            in design and visualization.
+            in design and visualization at {studentData.institute.name},{" "}
+            {studentData.institute.location}.
           </p>
         </div>
 
@@ -66,15 +82,30 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center"
+              className="bg-white rounded-lg shadow-md overflow-hidden p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start"
             >
               <div className="flex-shrink-0">
-                <div className="w-24 h-24 rounded-full overflow-hidden bg-[var(--navy-blue)] flex items-center justify-center text-white text-2xl font-bold">
-                  {getInitials(testimonial.name)}
+                {/* Profile Image Section - Ready for future image integration */}
+                <div className="w-24 h-24 rounded-full overflow-hidden bg-[var(--navy-blue)] flex items-center justify-center text-white text-2xl font-bold relative">
+                  {testimonial.profileImage ? (
+                    // Will display actual profile images when available
+                    <Image
+                      src={testimonial.profileImage}
+                      alt={`${testimonial.name} profile`}
+                      fill
+                      className="object-cover"
+                      sizes="96px"
+                    />
+                  ) : (
+                    // Fallback to initials when no profile image is available
+                    <span className="text-white text-2xl font-bold">
+                      {getInitials(testimonial.name || "")}
+                    </span>
+                  )}
                 </div>
               </div>
 
-              <div>
+              <div className="flex-1">
                 <svg
                   className="text-[var(--light-blue)] w-10 h-10 mb-4 opacity-40"
                   fill="currentColor"
@@ -84,16 +115,53 @@ export default function TestimonialsSection() {
                   <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.626.41-2.032.31-.406.7-.754 1.2-1.05v-1.3c-.93.14-1.72.442-2.38.903-.66.46-1.19 1.06-1.58 1.8-.39.75-.59 1.6-.59 2.57 0 .97.2 1.81.59 2.56.39.75.92 1.35 1.58 1.8.66.46 1.45.76 2.38.903v-1.29c-.5-.297-.89-.632-1.2-1.03-.31-.395-.51-1.06-.41-2.02.47.108.97.116 1.52-.013.55-.126.99-.396 1.32-.807.46-.6.69-1.34.69-2.23zm9.45 0c0-.88-.23-1.618-.69-2.217-.326-.42-.77-.694-1.33-.824-.56-.126-1.07-.136-1.54-.027-.16-.95.09-1.626.4-2.032.31-.406.7-.754 1.2-1.05v-1.3c-.93.14-1.72.442-2.38.903-.66.46-1.19 1.06-1.58 1.8-.39.75-.59 1.6-.59 2.57 0 .97.2 1.81.59 2.56.39.75.92 1.347 1.58 1.81.66.46 1.45.764 2.38.9v-1.29c-.5-.297-.89-.632-1.2-1.03-.31-.395-.51-1.06-.41-2.02.47.108.97.116 1.52-.013.55-.126 1-.396 1.32-.807.46-.6.69-1.34.69-2.23z" />
                 </svg>
 
-                <p className="text-gray-700 italic mb-4">{testimonial.quote}</p>
+                <p className="text-gray-700 italic mb-4">
+                  "{truncateQuote(testimonial.quote)}"
+                </p>
 
-                <div>
+                <div className="mb-4">
                   <h4 className="font-semibold text-[var(--navy-blue)]">
                     {testimonial.name}
                   </h4>
-                  <p className="text-sm text-gray-600">
-                    {testimonial.role}, {testimonial.company}
+                  <p className="text-sm text-gray-600 mb-2">
+                    {testimonial.role}
+                  </p>
+                  <p className="text-xs text-[var(--green)] font-medium">
+                    Course: {testimonial.course}
                   </p>
                 </div>
+
+                {/* Skills learned tags */}
+                {testimonial.skills.length > 0 && (
+                  <div className="mb-3">
+                    <div className="flex flex-wrap gap-1">
+                      {testimonial.skills.slice(0, 3).map((skill, index) => (
+                        <span
+                          key={index}
+                          className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Highlights */}
+                {testimonial.highlights.length > 0 && (
+                  <div className="flex flex-wrap gap-1">
+                    {testimonial.highlights
+                      .slice(0, 2)
+                      .map((highlight, index) => (
+                        <span
+                          key={index}
+                          className="bg-[var(--green)] text-white text-xs px-2 py-1 rounded-full"
+                        >
+                          {highlight}
+                        </span>
+                      ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -106,7 +174,9 @@ export default function TestimonialsSection() {
 
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-[var(--red)]">1000+</div>
+              <div className="text-4xl font-bold text-[var(--red)]">
+                {Object.keys(studentData.portfolios).length * 50}+
+              </div>
               <p className="text-gray-600">Graduates</p>
             </div>
 
@@ -127,6 +197,19 @@ export default function TestimonialsSection() {
                 10+
               </div>
               <p className="text-gray-600">Years Experience</p>
+            </div>
+          </div>
+
+          <div className="mb-6">
+            <div className="flex flex-wrap justify-center gap-2">
+              {studentData.institute.credentials.map((credential, index) => (
+                <span
+                  key={index}
+                  className="bg-[var(--navy-blue)] text-white text-sm px-3 py-1 rounded-full"
+                >
+                  {credential}
+                </span>
+              ))}
             </div>
           </div>
 

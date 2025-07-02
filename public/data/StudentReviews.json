@@ -1,0 +1,226 @@
+{
+  "institute": {
+    "name": "Bridgen",
+    "location": "Calicut",
+    "credentials": [
+      "Authorised training centre of Kerala state Rutronics",
+      "Authorised training partner of Rutronics"
+    ],
+    "website": "https://www.keralastaterutronix.com/Web_Support/aboutus.html"
+  },
+  "reviews": [
+    {
+      "id": 1,
+      "name": "Bharat Bhagyanath",
+      "course": "Diploma in Interior Design",
+      "current_position": "Working in UAE",
+      "review": "I had a great experience during my diploma in interior design at Dreamzone. The faculty was knowledgeable and supportive, and the hands-on approach really helped me grow creatively and professionally. I'm truly grateful for everything I learned there.",
+      "rating": null
+    },
+    {
+      "id": 2,
+      "name": "Aswin Raj",
+      "course": "Interior Design and AutoCAD course",
+      "current_position": null,
+      "review": "I joined Bridgen for Interior Design and AutoCAD course. At first, I was not confident in design and software, but the teachers helped me a lot. They explain everything step by step. Now I can do interior design, draw plans in AutoCAD, and even create 3D views. I also got chance to work on real projects. This training changed my life. I thank all the team at Bridgen. If you are looking for the best interior design institute in Calicut, I surely recommend Bridgen.",
+      "rating": null,
+      "skills_learned": [
+        "Interior Design",
+        "AutoCAD",
+        "3D Views",
+        "Real Projects"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Murshida",
+      "course": "Interior Architecture and Design",
+      "current_position": "Interior Designer in UAE",
+      "review": "My name is Murshida. I studied Interior Architecture and Design at Bridgen. The training was practical, and the teachers gave personal attention to each student. We learned AutoCAD, 3ds Max, V-Ray, and real project experience, which helped me a lot to build my portfolio. Today, I am proud to say that I am working in the UAE as an interior designer, and this was possible because of the strong foundation I got from Bridgen. If anyone is searching for the best interior design course with Gulf job support, Bridgen is the right place!",
+      "rating": null,
+      "skills_learned": [
+        "AutoCAD",
+        "3ds Max",
+        "V-Ray",
+        "Portfolio Development"
+      ],
+      "highlights": [
+        "Gulf job support",
+        "Working in UAE"
+      ]
+    },
+    {
+      "id": 4,
+      "name": null,
+      "course": "Architectural Interior Design",
+      "current_position": null,
+      "review": "I completed my architectural interior design course at Bridgen, Calicut, and I'm thoroughly impressed with the quality of education and training I received. The faculty's expertise and industry experience provided valuable insights, and the hands-on approach to learning helped me develop practical skills. The institute's emphasis on creativity, innovation, and attention to detail has equipped me with the confidence to pursue my career goals. I highly recommend Bridgen to anyone looking to excel in interior design.",
+      "rating": null,
+      "highlights": [
+        "Faculty expertise",
+        "Industry experience",
+        "Hands-on approach",
+        "Creativity and innovation"
+      ]
+    },
+    {
+      "id": 5,
+      "name": null,
+      "course": "Interior Design",
+      "current_position": null,
+      "review": "I had a fantastic experience studying interior design here. The faculty, hands-on projects, and creative environment truly shaped my skills and confidence. Highly recommend this institute to aspiring designers.",
+      "rating": null,
+      "highlights": [
+        "Hands-on projects",
+        "Creative environment"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Muhammad Riyas",
+      "course": "Interior Design",
+      "current_position": "Business Owner (Accacia Viz)",
+      "review": "Joining this institute was a turning point in my career. The practical training and expert guidance helped me grow from a student to a business owner(Accacia viz). Truly the best place to learn interior design and build your future",
+      "rating": null,
+      "highlights": [
+        "Career transformation",
+        "Business owner",
+        "Practical training"
+      ]
+    }
+  ],
+  "summary": {
+    "total_reviews": 6,
+    "courses_offered": [
+      "Diploma in Interior Design",
+      "Interior Design and AutoCAD",
+      "Interior Architecture and Design",
+      "Architectural Interior Design"
+    ],
+    "key_features": [
+      "Hands-on approach",
+      "Expert faculty",
+      "Real project experience",
+      "Gulf job support",
+      "Personal attention",
+      "Industry expertise",
+      "Creative environment"
+    ],
+    "software_training": [
+      "AutoCAD",
+      "3ds Max",
+      "V-Ray"
+    ],
+    "career_outcomes": [
+      "Working in UAE",
+      "Business ownership",
+      "Professional growth"
+    ]
+  },
+  "portfolios": {
+    "aiswarya": [
+      "/images/portfolio/aiswarya/bedroom03.jpg",
+      "/images/portfolio/aiswarya/dinning.jpg",
+      "/images/portfolio/aiswarya/kithchencamara1.jpg",
+      "/images/portfolio/aiswarya/bedroom.jpg",
+      "/images/portfolio/aiswarya/bookshelf.jpg",
+      "/images/portfolio/aiswarya/dinning02.jpg"
+    ],
+    "aswathy": [
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-35.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-36.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-37-2.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-37.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-38.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-39-2.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-39.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-40-2.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-40.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-41-2.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-41.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-42-2.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-42.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-43.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-44-2.jpg",
+      "/images/portfolio/aswathy/photo-2025-06-28-04-45-44.jpg"
+    ],
+    "aswathy2025": [
+      "/images/portfolio/aswathy2025/2-2.jpg",
+      "/images/portfolio/aswathy2025/bedroom-camara-2.jpg",
+      "/images/portfolio/aswathy2025/cam2-view001-2.png",
+      "/images/portfolio/aswathy2025/camara-3.jpg",
+      "/images/portfolio/aswathy2025/camara-4.jpg",
+      "/images/portfolio/aswathy2025/final-house-camara2-2.jpg",
+      "/images/portfolio/aswathy2025/kiyhchen-camar-3.jpg",
+      "/images/portfolio/aswathy2025/render-camara-3.jpg",
+      "/images/portfolio/aswathy2025/resort-camara-1-jpg-123124.jpg",
+      "/images/portfolio/aswathy2025/toilet-camara-2.jpg",
+      "/images/portfolio/aswathy2025/toilet-final-render-camara-2.jpg",
+      "/images/portfolio/aswathy2025/view001-5.png",
+      "/images/portfolio/aswathy2025/view001-6.png",
+      "/images/portfolio/aswathy2025/view001-8.png",
+      "/images/portfolio/aswathy2025/view002-4.png",
+      "/images/portfolio/aswathy2025/view002-5.png",
+      "/images/portfolio/aswathy2025/coffe-shope-223.jpg",
+      "/images/portfolio/aswathy2025/house-camara-12.jpg",
+      "/images/portfolio/aswathy2025/my-bedroom-last-final-loock-2.jpg",
+      "/images/portfolio/aswathy2025/new-kithchen-camara-2.jpg",
+      "/images/portfolio/aswathy2025/toilet-final-124.jpg",
+      "/images/portfolio/aswathy2025/view-cam-2.png",
+      "/images/portfolio/aswathy2025/view001-7.png",
+      "/images/portfolio/aswathy2025/view002-6.png",
+      "/images/portfolio/aswathy2025/view002-cam1-2.png"
+    ],
+    "muhammadShamil": [
+      "/images/portfolio/muhammadShamil/2.jpg",
+      "/images/portfolio/muhammadShamil/bedroom-camara-1.jpg",
+      "/images/portfolio/muhammadShamil/camara-1.jpg",
+      "/images/portfolio/muhammadShamil/camara-2.jpg",
+      "/images/portfolio/muhammadShamil/final-house-camara2.jpg",
+      "/images/portfolio/muhammadShamil/kiyhchen-camar-2.jpg",
+      "/images/portfolio/muhammadShamil/render-camara-2.jpg",
+      "/images/portfolio/muhammadShamil/resort-camara-1-jpg-123123.jpg",
+      "/images/portfolio/muhammadShamil/toilet-camara-1.jpg",
+      "/images/portfolio/muhammadShamil/toilet-final-render-camara-1.jpg",
+      "/images/portfolio/muhammadShamil/coffe-shope-222.jpg",
+      "/images/portfolio/muhammadShamil/house-camara-11.jpg",
+      "/images/portfolio/muhammadShamil/my-bedroom-last-final-loock.jpg",
+      "/images/portfolio/muhammadShamil/new-kithchen-camara-1.jpg",
+      "/images/portfolio/muhammadShamil/toilet-final-123.jpg"
+    ],
+    "shamil": [
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-50.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-51-2.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-51.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-52-2.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-52.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-53-2.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-53.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-54-2.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-54.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-55.jpg",
+      "/images/portfolio/shamil/photo-2025-06-22-10-30-56.jpg"
+    ],
+    "sreeLakshmi": [
+      "/images/portfolio/sreeLakshmi/dining2.jpg",
+      "/images/portfolio/sreeLakshmi/traditional-home.jpg",
+      "/images/portfolio/sreeLakshmi/whatsapp-image-2025-06-21-at-12-56-41-7d0bf63a.jpg",
+      "/images/portfolio/sreeLakshmi/whatsapp-image-2025-06-21-at-12-56-41-b6950921.jpg",
+      "/images/portfolio/sreeLakshmi/whatsapp-image-2025-06-21-at-12-56-42-9e17b67f.jpg",
+      "/images/portfolio/sreeLakshmi/bathroom.jpg",
+      "/images/portfolio/sreeLakshmi/bathroom2.jpg",
+      "/images/portfolio/sreeLakshmi/cafe.jpg",
+      "/images/portfolio/sreeLakshmi/dining.jpg",
+      "/images/portfolio/sreeLakshmi/home.jpg",
+      "/images/portfolio/sreeLakshmi/living-hall.jpg",
+      "/images/portfolio/sreeLakshmi/living1.jpg",
+      "/images/portfolio/sreeLakshmi/resort.jpg"
+    ],
+    "sunaina": [
+      "/images/portfolio/sunaina/2.jpg",
+      "/images/portfolio/sunaina/camara-1.jpg",
+      "/images/portfolio/sunaina/toilet-camara-1.jpg",
+      "/images/portfolio/sunaina/new-kithchen-camara-1.jpg"
+    ]
+  }
+}
