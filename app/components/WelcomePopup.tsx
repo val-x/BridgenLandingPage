@@ -1,26 +1,149 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function WelcomePopup() {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentFeature, setCurrentFeature] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768 || "ontouchstart" in window;
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     // Check if the user has seen the popup before
     const hasSeenPopup = localStorage.getItem("hasSeenPopup");
 
     if (!hasSeenPopup) {
-      // If not, show the popup
-      setIsOpen(true);
-      // Set the flag in localStorage so it doesn't show on future visits
+      // Show popup after longer delay on mobile for better UX
+      setTimeout(
+        () => {
+          setIsOpen(true);
+        },
+        isMobile ? 2000 : 1000
+      );
       localStorage.setItem("hasSeenPopup", "true");
     }
-  }, []);
+  }, [isMobile]);
+
+  // Auto-cycle through features (slower on mobile, disabled on very small screens)
+  useEffect(() => {
+    if (
+      isOpen &&
+      (!isMobile || (typeof window !== "undefined" && window.innerWidth > 400))
+    ) {
+      const interval = setInterval(
+        () => {
+          setCurrentFeature((prev) => (prev + 1) % 4);
+        },
+        isMobile ? 4000 : 3000
+      ); // Slower on mobile
+      return () => clearInterval(interval);
+    }
+  }, [isOpen, isMobile]);
 
   const closePopup = () => {
     setIsOpen(false);
+    // Remove body scroll lock on mobile
+    if (isMobile) {
+      document.body.style.overflow = "unset";
+    }
+  };
+
+  // Touch gesture handling for feature carousel
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0]?.clientX || 0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0]?.clientX || 0);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      setCurrentFeature((prev) => (prev + 1) % 4);
+    } else if (isRightSwipe) {
+      setCurrentFeature((prev) => (prev === 0 ? 3 : prev - 1));
+    }
+  };
+
+  // Prevent body scroll on mobile when popup is open
+  useEffect(() => {
+    if (isOpen && isMobile) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+      document.body.style.position = "unset";
+      document.body.style.width = "unset";
+    };
+  }, [isOpen, isMobile]);
+
+  const features = [
+    {
+      icon: "🎯",
+      title: "99% Placement Rate",
+      description: "Students find jobs quickly after training",
+      color: "from-red-500 to-pink-500",
+      bgColor: "bg-red-50",
+      textColor: "text-red-600",
+    },
+    {
+      icon: "💼",
+      title: "Job-Oriented Training",
+      description: "Skills that employers actually need",
+      color: "from-green-500 to-emerald-500",
+      bgColor: "bg-green-50",
+      textColor: "text-green-600",
+    },
+    {
+      icon: "⭐",
+      title: "10+ Years Experience",
+      description: "Expert instructors with industry knowledge",
+      color: "from-blue-500 to-cyan-500",
+      bgColor: "bg-blue-50",
+      textColor: "text-blue-600",
+    },
+    {
+      icon: "🌍",
+      title: "Global Placement",
+      description: "100% support in Gulf & India",
+      color: "from-purple-500 to-indigo-500",
+      bgColor: "bg-purple-50",
+      textColor: "text-purple-600",
+    },
+  ];
+
+  // Reduced particle count for mobile performance
+  const particles = Array.from({ length: isMobile ? 8 : 15 }, (_, i) => i);
+
+  const getWindowDimensions = () => {
+    if (typeof window !== "undefined") {
+      return { width: window.innerWidth, height: window.innerHeight };
+    }
+    return { width: 1000, height: 800 };
   };
 
   return (
@@ -30,173 +153,507 @@ export default function WelcomePopup() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm"
+          className={`fixed inset-0 z-[100] flex items-center justify-center ${
+            isMobile ? "px-3 py-4" : "px-4 py-6"
+          }`}
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(0,51,102,0.95) 0%, rgba(0,35,71,0.98) 100%)",
+            paddingTop: isMobile ? "env(safe-area-inset-top, 1rem)" : undefined,
+            paddingBottom: isMobile
+              ? "env(safe-area-inset-bottom, 1rem)"
+              : undefined,
+          }}
         >
-          <motion.div
-            initial={{ scale: 0.9, y: 20 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.9, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-lg overflow-hidden rounded-xl bg-gradient-to-br from-white to-gray-100 shadow-2xl max-h-[90vh] md:max-h-[80vh] border border-gray-200"
-          >
-            {/* Top colorful accent bar */}
-            <div className="flex h-2">
-              <div className="w-1/4 bg-[#003366]"></div> {/* Navy blue */}
-              <div className="w-1/4 bg-[#e63946]"></div> {/* Red */}
-              <div className="w-1/4 bg-[#2a9d8f]"></div> {/* Green */}
-              <div className="w-1/4 bg-[#4cc9f0]"></div> {/* Light blue */}
+          {/* Optimized Background Particles - fewer on mobile */}
+          {!isMobile ||
+          (typeof window !== "undefined" && window.innerWidth > 400) ? (
+            <div className="absolute inset-0 overflow-hidden">
+              {particles.map((particle) => (
+                <motion.div
+                  key={particle}
+                  className={`absolute ${
+                    isMobile ? "w-1 h-1" : "w-2 h-2"
+                  } bg-white/20 rounded-full`}
+                  initial={{
+                    x: Math.random() * getWindowDimensions().width,
+                    y: Math.random() * getWindowDimensions().height,
+                    scale: 0,
+                  }}
+                  animate={{
+                    y: [null, -50, -100],
+                    scale: [0, 1, 0],
+                    opacity: [0, 0.7, 0],
+                  }}
+                  transition={{
+                    duration: isMobile ? 4 : 3,
+                    repeat: Infinity,
+                    delay: Math.random() * 2,
+                  }}
+                />
+              ))}
             </div>
+          ) : null}
 
-            <button
+          {/* Main Modal - Mobile Optimized */}
+          <motion.div
+            initial={{
+              scale: isMobile ? 0.9 : 0.5,
+              y: isMobile ? 20 : 0,
+              rotateY: isMobile ? 0 : -180,
+              opacity: 0,
+            }}
+            animate={{ scale: 1, y: 0, rotateY: 0, opacity: 1 }}
+            exit={{
+              scale: isMobile ? 0.9 : 0.5,
+              y: isMobile ? 20 : 0,
+              rotateY: isMobile ? 0 : 180,
+              opacity: 0,
+            }}
+            transition={{
+              type: "spring",
+              damping: isMobile ? 25 : 20,
+              stiffness: isMobile ? 300 : 200,
+              duration: isMobile ? 0.5 : 0.8,
+            }}
+            className={`relative w-full overflow-hidden shadow-2xl ${
+              isMobile
+                ? "max-w-sm rounded-2xl max-h-[95vh]"
+                : "max-w-lg rounded-3xl max-h-[85vh]"
+            }`}
+            style={{
+              background: "rgba(255, 255, 255, 0.95)",
+              backdropFilter: isMobile ? "blur(15px)" : "blur(20px)",
+              border: "1px solid rgba(255, 255, 255, 0.2)",
+            }}
+          >
+            {/* Mobile-Optimized Close Button */}
+            <motion.button
               onClick={closePopup}
-              className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-gray-700 hover:bg-[#003366] hover:text-white transition-colors duration-200 shadow-md"
+              className={`absolute top-3 right-3 z-10 flex items-center justify-center rounded-full text-gray-600 hover:text-white transition-all duration-300 touch-manipulation ${
+                isMobile ? "h-12 w-12" : "h-10 w-10"
+              }`}
+              style={{
+                background: "rgba(255, 255, 255, 0.2)",
+                backdropFilter: "blur(10px)",
+              }}
+              whileHover={{
+                scale: isMobile ? 1.05 : 1.1,
+                background: "linear-gradient(135deg, #ef4444, #f97316)",
+              }}
+              whileTap={{ scale: 0.95 }}
               aria-label="Close popup"
             >
-              <svg
+              <motion.svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className={`${isMobile ? "h-6 w-6" : "h-5 w-5"}`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 strokeWidth={2}
+                whileHover={{ rotate: isMobile ? 90 : 180 }}
+                transition={{ duration: 0.3 }}
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M6 18L18 6M6 6l12 12"
                 />
-              </svg>
-            </button>
+              </motion.svg>
+            </motion.button>
 
-            <div className="p-6 md:p-8">
-              <div className="mb-6 flex items-center justify-center md:justify-start">
-                <div className="mr-4 rounded-full bg-white p-2 shadow-md">
+            {/* Simplified background for mobile */}
+            {!isMobile && (
+              <motion.div
+                className="absolute inset-0 opacity-10"
+                animate={{
+                  background: [
+                    "linear-gradient(45deg, #ef4444, #f97316)",
+                    "linear-gradient(45deg, #10b981, #06b6d4)",
+                    "linear-gradient(45deg, #3b82f6, #8b5cf6)",
+                    "linear-gradient(45deg, #8b5cf6, #ef4444)",
+                  ],
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            )}
+
+            <div className={`relative ${isMobile ? "p-5" : "p-8"}`}>
+              {/* Mobile-Optimized Header */}
+              <motion.div
+                initial={{ y: isMobile ? -20 : -50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                className="text-center mb-6"
+              >
+                <motion.div
+                  className={`mx-auto mb-3 rounded-full p-2 shadow-lg ${
+                    isMobile ? "w-16 h-16" : "w-20 h-20 p-3"
+                  }`}
+                  style={{
+                    background: "linear-gradient(135deg, #003366, #4cc9f0)",
+                  }}
+                  whileHover={{
+                    scale: isMobile ? 1.05 : 1.1,
+                    rotate: isMobile ? 180 : 360,
+                  }}
+                  transition={{ duration: isMobile ? 0.5 : 0.8 }}
+                >
                   <Image
                     src="/images/bridgen_logo_highres.png"
                     alt="Bridgen Logo"
-                    width={50}
-                    height={50}
-                    className="h-auto w-auto"
+                    width={isMobile ? 48 : 60}
+                    height={isMobile ? 48 : 60}
+                    className="w-full h-full object-contain filter brightness-0 invert"
                   />
-                </div>
-                <h2 className="bg-gradient-to-r from-[#003366] to-[#4cc9f0] bg-clip-text text-2xl font-bold text-transparent">
-                  Why Choose Bridgen?
-                </h2>
-              </div>
-
-              <div className="space-y-5">
-                {/* Feature 1 */}
-                <motion.div
-                  initial={{ x: -10, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.1 }}
-                  className="group flex items-center rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-[#003366] hover:shadow-md"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e63946]/10 text-[#e63946] shadow group-hover:bg-[#e63946] group-hover:text-white transition-colors duration-200">
-                    <span className="font-bold">99%</span>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-gray-800">
-                      99% Placement Rate
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Our students find jobs quickly after training
-                    </p>
-                  </div>
                 </motion.div>
 
-                {/* Feature 2 */}
-                <motion.div
-                  initial={{ x: -10, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                  className="group flex items-center rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-[#003366] hover:shadow-md"
+                <motion.h1
+                  className={`font-bold mb-2 ${
+                    isMobile ? "text-2xl" : "text-3xl"
+                  }`}
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #003366, #4cc9f0, #e63946)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundSize: "200% 200%",
+                  }}
+                  animate={
+                    !isMobile
+                      ? {
+                          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                        }
+                      : {}
+                  }
+                  transition={
+                    !isMobile
+                      ? {
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }
+                      : {}
+                  }
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#2a9d8f]/10 text-[#2a9d8f] shadow group-hover:bg-[#2a9d8f] group-hover:text-white transition-colors duration-200">
-                    <svg
-                      className="h-6 w-6"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
-                        clipRule="evenodd"
-                      />
-                      <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-gray-800">
-                      Job-Oriented Training
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Focused on skills that employers need
-                    </p>
-                  </div>
-                </motion.div>
+                  Welcome to Bridgen!
+                </motion.h1>
 
-                {/* Feature 3 */}
-                <motion.div
-                  initial={{ x: -10, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="group flex items-center rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-[#003366] hover:shadow-md"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#4cc9f0]/10 text-[#4cc9f0] shadow group-hover:bg-[#4cc9f0] group-hover:text-white transition-colors duration-200">
-                    <span className="font-bold">10+</span>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-gray-800">
-                      10+ Years of Expertise
-                    </h3>
-                    <p className="text-sm text-gray-600">
-                      Experienced instructors with industry knowledge
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* Feature 4 */}
-                <motion.div
-                  initial={{ x: -10, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
-                  className="group flex items-center rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition-all duration-200 hover:border-[#003366] hover:shadow-md"
+                  className={`text-gray-600 ${
+                    isMobile ? "text-xs" : "text-sm"
+                  }`}
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#003366]/10 text-[#003366] shadow group-hover:bg-[#003366] group-hover:text-white transition-colors duration-200">
-                    <svg
-                      className="h-6 w-6"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
+                  Kerala's #1 training institute
+                </motion.p>
+              </motion.div>
+
+              {/* Mobile-Optimized Feature Carousel with Touch Support */}
+              <div
+                ref={carouselRef}
+                className={`relative mb-6 ${isMobile ? "h-24" : "h-32"}`}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentFeature}
+                    initial={{
+                      x: isMobile ? 50 : 100,
+                      opacity: 0,
+                      rotateY: isMobile ? 0 : 90,
+                    }}
+                    animate={{ x: 0, opacity: 1, rotateY: 0 }}
+                    exit={{
+                      x: isMobile ? -50 : -100,
+                      opacity: 0,
+                      rotateY: isMobile ? 0 : -90,
+                    }}
+                    transition={{
+                      duration: isMobile ? 0.3 : 0.5,
+                      type: "spring",
+                      stiffness: 200,
+                    }}
+                    className="absolute inset-0"
+                  >
+                    <motion.div
+                      className={`rounded-xl h-full ${
+                        features[currentFeature].bgColor
+                      } ${isMobile ? "p-4" : "p-6 rounded-2xl"}`}
+                      style={{
+                        background: `linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4))`,
+                        backdropFilter: "blur(10px)",
+                        border: "1px solid rgba(255,255,255,0.3)",
+                      }}
+                      whileHover={!isMobile ? { scale: 1.02 } : {}}
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="font-semibold text-gray-800">
-                      100% Placement Support
-                    </h3>
-                    <p className="text-sm text-gray-600">In Gulf and India</p>
-                  </div>
-                </motion.div>
+                      <div className="flex items-center h-full">
+                        <motion.div
+                          className={`mr-3 ${
+                            isMobile ? "text-2xl" : "text-4xl mr-4"
+                          }`}
+                          animate={
+                            !isMobile
+                              ? {
+                                  rotate: [0, 10, -10, 0],
+                                  scale: [1, 1.1, 1],
+                                }
+                              : {}
+                          }
+                          transition={
+                            !isMobile
+                              ? {
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  ease: "easeInOut",
+                                }
+                              : {}
+                          }
+                        >
+                          {features[currentFeature].icon}
+                        </motion.div>
+                        <div className="flex-1">
+                          <h3
+                            className={`font-bold mb-1 ${
+                              features[currentFeature].textColor
+                            } ${isMobile ? "text-lg" : "text-xl"}`}
+                          >
+                            {features[currentFeature].title}
+                          </h3>
+                          <p
+                            className={`text-gray-600 ${
+                              isMobile ? "text-xs" : "text-sm"
+                            }`}
+                          >
+                            {features[currentFeature].description}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Mobile-Friendly Feature Indicators */}
+                <div
+                  className={`absolute left-1/2 transform -translate-x-1/2 flex space-x-2 ${
+                    isMobile ? "-bottom-4" : "-bottom-6"
+                  }`}
+                >
+                  {features.map((_, index) => (
+                    <motion.button
+                      key={index}
+                      className={`rounded-full transition-all duration-300 touch-manipulation ${
+                        index === currentFeature
+                          ? `bg-blue-500 ${isMobile ? "w-6 h-3" : "w-6 h-2"}`
+                          : `bg-gray-300 ${isMobile ? "w-3 h-3" : "w-2 h-2"}`
+                      }`}
+                      onClick={() => setCurrentFeature(index)}
+                      whileHover={{ scale: isMobile ? 1.1 : 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                    />
+                  ))}
+                </div>
+
+                {/* Mobile swipe hint */}
+                {isMobile && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 0.5, 0] }}
+                    transition={{ delay: 1, duration: 2, repeat: 2 }}
+                    className="absolute top-1/2 right-2 transform -translate-y-1/2 text-gray-400 text-xs"
+                  >
+                    👈 Swipe
+                  </motion.div>
+                )}
               </div>
 
-              <div className="mt-8">
-                <button
+              {/* Mobile-Optimized Stats Grid */}
+              <motion.div
+                initial={{ y: isMobile ? 20 : 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+                className={`grid grid-cols-2 gap-3 mb-6 ${
+                  isMobile ? "gap-2 mb-5" : "gap-4 mb-8"
+                }`}
+              >
+                {[
+                  { number: "500+", label: "Students", icon: "👥" },
+                  { number: "99%", label: "Placement", icon: "🎯" },
+                  { number: "50+", label: "Companies", icon: "🏢" },
+                  { number: "10+", label: "Years", icon: "⭐" },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    className={`text-center rounded-lg ${
+                      isMobile ? "p-3" : "p-4 rounded-xl"
+                    }`}
+                    style={{
+                      background: "rgba(255, 255, 255, 0.4)",
+                      backdropFilter: "blur(10px)",
+                      border: "1px solid rgba(255, 255, 255, 0.3)",
+                    }}
+                    whileHover={
+                      !isMobile
+                        ? {
+                            scale: 1.05,
+                            background: "rgba(255, 255, 255, 0.6)",
+                          }
+                        : {}
+                    }
+                    whileTap={{ scale: 0.98 }}
+                    initial={{ scale: 0, rotate: isMobile ? 0 : -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{
+                      delay: 0.6 + index * 0.1,
+                      type: "spring",
+                      stiffness: 200,
+                    }}
+                  >
+                    <div className={`mb-1 ${isMobile ? "text-lg" : "text-xl"}`}>
+                      {stat.icon}
+                    </div>
+                    <div
+                      className={`font-bold text-blue-600 ${
+                        isMobile ? "text-lg" : "text-2xl"
+                      }`}
+                    >
+                      {stat.number}
+                    </div>
+                    <div
+                      className={`text-gray-600 ${
+                        isMobile ? "text-xs" : "text-xs"
+                      }`}
+                    >
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* Mobile-Optimized CTA Buttons */}
+              <motion.div
+                initial={{ y: isMobile ? 20 : 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
+                className={`space-y-3 ${isMobile ? "space-y-2" : "space-y-3"}`}
+              >
+                <motion.button
                   onClick={closePopup}
-                  className="group relative w-full overflow-hidden rounded-lg bg-[#003366] py-3 px-4 text-lg font-bold text-white shadow-lg transition-all duration-300 hover:bg-[#002347]"
+                  className={`w-full text-white font-bold relative overflow-hidden touch-manipulation ${
+                    isMobile
+                      ? "py-3 px-4 text-base rounded-lg"
+                      : "py-4 px-6 text-lg rounded-xl"
+                  }`}
+                  style={{
+                    background: "linear-gradient(135deg, #003366, #4cc9f0)",
+                  }}
+                  whileHover={{ scale: isMobile ? 1.01 : 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10">Get Started</span>
-                  <span className="absolute inset-0 -translate-y-full bg-gradient-to-r from-[#e63946] to-[#4cc9f0] transition-transform duration-300 ease-in-out group-hover:translate-y-0"></span>
-                </button>
-              </div>
+                  <motion.span
+                    className="relative z-10"
+                    animate={
+                      !isMobile
+                        ? {
+                            textShadow: [
+                              "0 0 0px rgba(255,255,255,0)",
+                              "0 0 10px rgba(255,255,255,0.3)",
+                              "0 0 0px rgba(255,255,255,0)",
+                            ],
+                          }
+                        : {}
+                    }
+                    transition={
+                      !isMobile
+                        ? {
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }
+                        : {}
+                    }
+                  >
+                    🚀 Start Your Journey Today
+                  </motion.span>
+                  {!isMobile && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      animate={{
+                        x: ["-100%", "100%"],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  )}
+                </motion.button>
+
+                <motion.button
+                  onClick={closePopup}
+                  className={`w-full font-medium text-gray-600 border border-gray-300 touch-manipulation ${
+                    isMobile
+                      ? "py-2.5 px-4 text-sm rounded-lg"
+                      : "py-3 px-6 rounded-xl"
+                  }`}
+                  style={{
+                    background: "rgba(255, 255, 255, 0.8)",
+                    backdropFilter: "blur(10px)",
+                  }}
+                  whileHover={{
+                    scale: isMobile ? 1.01 : 1.02,
+                    background: "rgba(255, 255, 255, 0.9)",
+                    borderColor: "#4cc9f0",
+                  }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Maybe Later
+                </motion.button>
+              </motion.div>
             </div>
+
+            {/* Simplified decorative elements for mobile */}
+            {!isMobile && (
+              <>
+                <motion.div
+                  className="absolute top-0 right-0 w-24 h-24 opacity-10"
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <div className="w-full h-full bg-gradient-to-br from-blue-400 to-purple-400 rounded-full blur-xl" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute bottom-0 left-0 w-20 h-20 opacity-10"
+                  animate={{
+                    rotate: [360, 0],
+                  }}
+                  transition={{
+                    duration: 15,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                >
+                  <div className="w-full h-full bg-gradient-to-br from-red-400 to-yellow-400 rounded-full blur-xl" />
+                </motion.div>
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}

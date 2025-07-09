@@ -41,8 +41,8 @@ const getTestimonials = (): Testimonial[] => {
       quote: review.review,
       skills: review.skills_learned || [],
       highlights: review.highlights || [],
-      // Placeholder for future profile images
-      profileImage: null, // Will be populated with actual image URLs later
+      // Use actual profile image if available, otherwise null
+      profileImage: review.profileImage || null,
     }));
 };
 
