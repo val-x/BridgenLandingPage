@@ -31,7 +31,7 @@ const courses = [
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+        <path d="M21 19v2H3v-2l2-2v-4l2-2V9l2-2V5l2-2h4l2 2v2l2 2v4l2 2v4l2 2zM5 19h14v-2l-2-2v-4l-2-2V7l-2-2h-4L7 7v2l-2 2v4l-2 2v2zm4-6h6v-2H9v2zm0-4h6V7H9v2z" />
       </svg>
     ),
     description:
@@ -148,7 +148,7 @@ const courses = [
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h6v2H7v-2zm12-6h2v2h-2V9zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2z" />
       </svg>
     ),
     description:
@@ -192,8 +192,7 @@ const courses = [
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M17.5 12a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"></path>
-        <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+        <path d="M12 2l8 4.5v11L12 22l-8-4.5v-11L12 2zm0 2.5L6.5 7v8.5L12 19l5.5-3.5V7L12 4.5zm0 3L8 9.5v5l4 2.5 4-2.5v-5L12 7.5zm0 2l2 1.5v3l-2 1.5-2-1.5v-3L12 9.5z" />
       </svg>
     ),
     description:
@@ -237,7 +236,7 @@ const courses = [
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M3 10h18v10H3V10zM3 4h18v4H3V4z"></path>
+        <path d="M3 2h18c.55 0 1 .45 1 1v18c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1V3c0-.55.45-1 1-1zm2 2v16h14V4H5zm2 3h10v2H7V7zm0 4h8v2H7v-2zm0 4h6v2H7v-2zm11-6h2v2h-2v-2zm0 4h2v2h-2v-2z" />
       </svg>
     ),
     description:
@@ -277,7 +276,9 @@ const courses = [
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-7 14c-3.36 0-5-1.94-5-5 0-3.31 1.79-5 5-5 1.76 0 3.22.61 4.08 1.76l-1.93 1.55C13.81 9.85 13 9.5 12 9.5c-1.55 0-2.5 1.13-2.5 3 0 1.97.82 3 2.5 3 1.17 0 1.93-.47 2.33-1.61H12V11.5h4.15v1.38c0 2.39-1.5 4.12-4.15 4.12z"></path>
+        <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h6v2H8v-2zm8-2h2v2h-2v-2zm0 4h2v2h-2v-2zm-6 2h4v2H10v-2z" />
+        <circle cx="9" cy="15" r="1" />
+        <circle cx="15" cy="9" r="1" />
       </svg>
     ),
     description:
@@ -321,7 +322,7 @@ const courses = [
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M11 2.27V2c-5 .5-9 4.76-9 10s4 9.5 9 10v-.27A9.97 9.97 0 0 1 4 12c0-5.08 3.77-9.4 9-9.73zM14.82 4A9.86 9.86 0 0 1 19 8.55V4h-4.18zM19 9.65V12H5l7-7c1.3 1.3 5.4 5.4 7 7zm-6.48-1.63L9 10.55v4.9c2.3-2.3 3.5-3.5 3.52-3.52 2.77 2.77 5.07 5.07 6.48 6.48V11l-6.48-2.98zm0 11.08c-1.53-1.53-2.93-2.93-6.52-6.52V20h11v-5.5c-1.43 1.43-2.95 2.95-4.48 4.48z"></path>
+        <path d="M2 20h20v2H2v-2zm1-2h18V6H3v12zm2-10h14v8H5V8zm2 2v4h3v-4H7zm5 0v4h3v-4h-3zm5 0v4h2v-4h-2zM12 3L6 6h12l-6-3z" />
       </svg>
     ),
     description:

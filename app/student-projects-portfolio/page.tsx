@@ -3,6 +3,11 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import Image from "next/image";
 import studentData from "../../public/data/StudentReviews.json";
+import dynamic from "next/dynamic";
+
+const InteriorDesignProjectCard = dynamic(
+  () => import("../components/InteriorDesignProjectCard")
+);
 
 const portfolioCategories = [
   {
@@ -207,122 +212,123 @@ export default function PortfolioPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {studentProjects
                     .filter((project) => project.category === category.id)
-                    .map((project) => (
-                      <div
-                        key={project.id}
-                        className="bg-white rounded-lg shadow-lg overflow-hidden"
-                      >
-                        <div className="relative h-60 bg-gray-200">
-                          {project.images && project.images.length > 0 && (
-                            <Image
-                              src={project.images[0]}
-                              alt={`${project.student}'s work`}
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            />
-                          )}
-                          <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
-                            {project.images?.length || 0} images
-                          </div>
-                        </div>
-                        <div className="p-6">
-                          <h3 className="text-xl font-bold text-[var(--navy-blue)] mb-2">
-                            {project.title}
-                          </h3>
-                          <div className="flex flex-wrap items-center text-sm text-gray-600 mb-4">
-                            <p className="mr-4">
-                              <span className="font-medium">Student:</span>{" "}
-                              {project.student}
-                            </p>
-                            <p className="mr-4">
-                              <span className="font-medium">Course:</span>{" "}
-                              {project.course}
-                            </p>
-                            {project.position && (
-                              <p className="w-full mt-1">
-                                <span className="font-medium">
-                                  Current Position:
-                                </span>{" "}
-                                {project.position}
-                              </p>
+                    .map((project) =>
+                      category.id === "interior-design" ? (
+                        <InteriorDesignProjectCard
+                          key={project.id}
+                          project={project}
+                        />
+                      ) : (
+                        <div
+                          key={project.id}
+                          className="bg-white rounded-lg shadow-lg overflow-hidden"
+                        >
+                          <div className="relative h-60 bg-gray-200">
+                            {project.images && project.images.length > 0 && (
+                              <Image
+                                src={project.images[0]}
+                                alt={`${project.student}'s work`}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                              />
                             )}
+                            <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
+                              {project.images?.length || 0} images
+                            </div>
                           </div>
-                          <p className="text-gray-700 mb-4 line-clamp-3">
-                            {project.description.length > 150
-                              ? `${project.description.substring(0, 150)}...`
-                              : project.description}
-                          </p>
-                          {project.highlights &&
-                            project.highlights.length > 0 && (
-                              <div className="mb-4">
-                                <div className="text-sm font-medium text-[var(--navy-blue)] mb-2">
-                                  Highlights:
+                          <div className="p-6">
+                            <h3 className="text-xl font-bold text-[var(--navy-blue)] mb-2">
+                              {project.title}
+                            </h3>
+                            <div className="flex flex-wrap items-center text-sm text-gray-600 mb-4">
+                              <p className="mr-4">
+                                <span className="font-medium">Student:</span>{" "}
+                                {project.student}
+                              </p>
+                              <p className="mr-4">
+                                <span className="font-medium">Course:</span>{" "}
+                                {project.course}
+                              </p>
+                              {project.position && (
+                                <p className="w-full mt-1">
+                                  <span className="font-medium">
+                                    Current Position:
+                                  </span>{" "}
+                                  {project.position}
+                                </p>
+                              )}
+                            </div>
+                            <p className="text-gray-700 mb-4 line-clamp-3">
+                              {project.description.length > 150
+                                ? `${project.description.substring(0, 150)}...`
+                                : project.description}
+                            </p>
+                            {project.highlights &&
+                              project.highlights.length > 0 && (
+                                <div className="mb-4">
+                                  <div className="text-sm font-medium text-[var(--navy-blue)] mb-2">
+                                    Highlights:
+                                  </div>
+                                  <div className="flex flex-wrap gap-1">
+                                    {project.highlights.map(
+                                      (highlight: string, index: number) => (
+                                        <span
+                                          key={index}
+                                          className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded"
+                                        >
+                                          {highlight}
+                                        </span>
+                                      )
+                                    )}
+                                  </div>
                                 </div>
-                                <div className="flex flex-wrap gap-1">
-                                  {project.highlights.map(
-                                    (highlight: string, index: number) => (
-                                      <span
-                                        key={index}
-                                        className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded"
-                                      >
-                                        {highlight}
-                                      </span>
-                                    )
-                                  )}
-                                </div>
+                              )}
+                            <div className="flex flex-wrap gap-2 mb-4">
+                              {project.tags.map(
+                                (tag: string, index: number) => (
+                                  <span
+                                    key={index}
+                                    className="bg-gray-100 text-[var(--navy-blue)] text-xs font-medium px-3 py-1 rounded-full"
+                                  >
+                                    {tag}
+                                  </span>
+                                )
+                              )}
+                            </div>
+                            {project.images && project.images.length > 1 && (
+                              <div className="grid grid-cols-3 gap-2">
+                                {project.images
+                                  .slice(1, 4)
+                                  .map((image: string, index: number) => (
+                                    <div
+                                      key={index}
+                                      className="relative h-16 bg-gray-200 rounded"
+                                    >
+                                      <Image
+                                        src={image}
+                                        alt={`${project.student}'s work ${
+                                          index + 2
+                                        }`}
+                                        fill
+                                        className="object-cover rounded"
+                                        sizes="(max-width: 768px) 33vw, 16vw"
+                                      />
+                                    </div>
+                                  ))}
                               </div>
                             )}
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {project.tags.map((tag: string, index: number) => (
-                              <span
-                                key={index}
-                                className="bg-gray-100 text-[var(--navy-blue)] text-xs font-medium px-3 py-1 rounded-full"
-                              >
-                                {tag}
-                              </span>
-                            ))}
                           </div>
-                          {project.images && project.images.length > 1 && (
-                            <div className="grid grid-cols-3 gap-2">
-                              {project.images
-                                .slice(1, 4)
-                                .map((image: string, index: number) => (
-                                  <div
-                                    key={index}
-                                    className="relative h-16 bg-gray-200 rounded"
-                                  >
-                                    <Image
-                                      src={image}
-                                      alt={`${project.student}'s work ${
-                                        index + 2
-                                      }`}
-                                      fill
-                                      className="object-cover rounded"
-                                      sizes="(max-width: 768px) 33vw, 16vw"
-                                    />
-                                  </div>
-                                ))}
-                            </div>
-                          )}
                         </div>
-                      </div>
-                    ))}
+                      )
+                    )}
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Student Reviews Section 
-            FUTURE ENHANCEMENT: Profile Images
-            To add profile images to student reviews:
-            1. Add student profile images to: public/images/profiles/
-            2. Update StudentReviews.json to include profileImage field for each review
-            3. Set profileImage URLs like: "/images/profiles/student-name.jpg"
-            4. Uncomment the conditional rendering code in the avatar section below
-            5. The component will automatically display images when available, fallback to initials
-        */}
+        {/* Student Reviews Section with Profile Images */}
         <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
@@ -354,26 +360,19 @@ export default function PortfolioPage() {
                     <div className="p-6 pb-4">
                       <div className="flex items-center gap-4 mb-4">
                         <div className="w-16 h-16 rounded-full overflow-hidden bg-[var(--navy-blue)] flex items-center justify-center text-white text-lg font-bold relative flex-shrink-0">
-                          {/* Future: Profile images will be displayed here when available */}
-                          {/* TODO: Add conditional rendering like:
-                              {review.profileImage ? (
-                                <Image
-                                  src={review.profileImage}
-                                  alt={`${review.name} profile`}
-                                  fill
-                                  className="object-cover"
-                                  sizes="64px"
-                                />
-                              ) : (
-                                <span className="text-white text-lg font-bold">
-                                  {getInitials(review.name || "AS")}
-                                </span>
-                              )}
-                          */}
-                          {/* For now, showing initials as placeholder */}
-                          <span className="text-white text-lg font-bold">
-                            {getInitials(review.name || "AS")}
-                          </span>
+                          {review.profileImage ? (
+                            <Image
+                              src={review.profileImage}
+                              alt={`${review.name} profile`}
+                              fill
+                              className="object-cover"
+                              sizes="64px"
+                            />
+                          ) : (
+                            <span className="text-white text-lg font-bold">
+                              {getInitials(review.name || "AS")}
+                            </span>
+                          )}
                         </div>
                         <div className="flex-1">
                           <h3 className="text-lg font-bold text-[var(--navy-blue)]">

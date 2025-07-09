@@ -210,6 +210,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.variable} ${systemFont.variable} antialiased min-h-screen bg-white text-gray-900`}
+        suppressHydrationWarning={true}
       >
         {/* Skip to content for accessibility */}
         <a href="#main-content" className="skip-to-content">

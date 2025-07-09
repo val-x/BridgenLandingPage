@@ -1,0 +1,285 @@
+{
+  "designSystemProfile": {
+    "name": "Educational Design Institute Profile",
+    "version": "1.0.0",
+    "description": "Design system extracted from Cindrebay and Dreamzone educational institutes",
+    "designPhilosophy": {
+      "primary": "Professional yet approachable educational branding",
+      "secondary": "Trust-building through testimonials and achievements",
+      "tertiary": "Clear information hierarchy with call-to-action focus"
+    },
+    "colorPalettes": {
+      "primary": {
+        "professional": {
+          "primary": "#1e40af",
+          "secondary": "#3b82f6",
+          "accent": "#06b6d4",
+          "neutral": "#64748b",
+          "background": "#ffffff",
+          "text": "#1e293b"
+        },
+        "vibrant": {
+          "primary": "#dc2626",
+          "secondary": "#ea580c",
+          "accent": "#7c3aed",
+          "neutral": "#6b7280",
+          "background": "#f8fafc",
+          "text": "#111827"
+        }
+      },
+      "semantic": {
+        "success": "#10b981",
+        "warning": "#f59e0b",
+        "error": "#ef4444",
+        "info": "#3b82f6"
+      }
+    },
+    "typography": {
+      "fontFamilies": {
+        "primary": "system-ui, -apple-system, sans-serif",
+        "secondary": "Georgia, serif",
+        "monospace": "Monaco, Consolas, monospace"
+      },
+      "hierarchy": {
+        "h1": {
+          "fontSize": "2.5rem",
+          "fontWeight": "700",
+          "lineHeight": "1.2",
+          "letterSpacing": "-0.025em"
+        },
+        "h2": {
+          "fontSize": "2rem",
+          "fontWeight": "600",
+          "lineHeight": "1.3"
+        },
+        "h3": {
+          "fontSize": "1.5rem",
+          "fontWeight": "600",
+          "lineHeight": "1.4"
+        },
+        "body": {
+          "fontSize": "1rem",
+          "fontWeight": "400",
+          "lineHeight": "1.6"
+        },
+        "caption": {
+          "fontSize": "0.875rem",
+          "fontWeight": "400",
+          "lineHeight": "1.4"
+        }
+      }
+    },
+    "spacing": {
+      "scale": "8px",
+      "sizes": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "24px",
+        "xl": "32px",
+        "2xl": "48px",
+        "3xl": "64px",
+        "4xl": "96px"
+      }
+    },
+    "layoutPatterns": {
+      "header": {
+        "structure": "logo + navigation + cta",
+        "behavior": "sticky/fixed on scroll",
+        "elements": ["logo", "primaryNav", "contactInfo", "ctaButtons"]
+      },
+      "hero": {
+        "structure": "headline + subtext + cta + visual",
+        "variants": [
+          "imageBackground",
+          "gradientBackground",
+          "videoBackground"
+        ],
+        "elements": [
+          "primaryHeadline",
+          "supportingText",
+          "primaryCTA",
+          "secondaryCTA"
+        ]
+      },
+      "sections": {
+        "coursesGrid": {
+          "layout": "3-4 column grid",
+          "cardStructure": "image + title + description + cta",
+          "spacing": "consistent gutters"
+        },
+        "testimonials": {
+          "layout": "carousel or grid",
+          "elements": ["quote", "authorName", "credentials", "photo"],
+          "navigation": "dots + arrows"
+        },
+        "stats": {
+          "layout": "horizontal row with equal columns",
+          "elements": ["number", "label", "icon"],
+          "animation": "countUp on scroll"
+        },
+        "features": {
+          "layout": "alternating text-image sections",
+          "elements": ["headline", "description", "bulletPoints", "cta"]
+        }
+      },
+      "footer": {
+        "structure": "multi-column with contact + links + social",
+        "elements": ["contactInfo", "quickLinks", "socialMedia", "copyright"]
+      }
+    },
+    "components": {
+      "navigation": {
+        "primary": {
+          "type": "horizontal menu",
+          "behavior": "dropdown for nested items",
+          "states": ["default", "hover", "active"],
+          "responsive": "hamburger menu on mobile"
+        },
+        "breadcrumb": {
+          "separator": "chevron or slash",
+          "truncation": "middle truncation for long paths"
+        }
+      },
+      "buttons": {
+        "primary": {
+          "style": "filled with rounded corners",
+          "states": ["default", "hover", "active", "disabled"],
+          "sizes": ["sm", "md", "lg"]
+        },
+        "secondary": {
+          "style": "outlined with border",
+          "usage": "secondary actions"
+        },
+        "text": {
+          "style": "text only with underline on hover",
+          "usage": "tertiary actions, links"
+        }
+      },
+      "cards": {
+        "course": {
+          "structure": "image + content + footer",
+          "shadow": "subtle drop shadow",
+          "hover": "lift effect with deeper shadow",
+          "elements": ["thumbnail", "title", "description", "price", "cta"]
+        },
+        "testimonial": {
+          "structure": "quote + author info",
+          "styling": "background color or border",
+          "elements": ["quote", "authorName", "position", "company", "avatar"]
+        },
+        "feature": {
+          "structure": "icon + title + description",
+          "layout": "centered or left-aligned",
+          "iconStyle": "outlined or filled"
+        }
+      },
+      "forms": {
+        "input": {
+          "style": "bordered with focus states",
+          "validation": "inline error messages",
+          "required": "asterisk or visual indicator"
+        },
+        "contact": {
+          "layout": "single or multi-column",
+          "fields": ["name", "email", "phone", "message"],
+          "submission": "loading state + success message"
+        }
+      }
+    },
+    "animations": {
+      "page": {
+        "entrance": "fade-in from bottom",
+        "duration": "0.3s ease-out"
+      },
+      "hover": {
+        "buttons": "subtle scale or color transition",
+        "cards": "lift with shadow increase",
+        "duration": "0.2s ease"
+      },
+      "scroll": {
+        "parallax": "background images move slower",
+        "reveal": "elements fade-in as they enter viewport"
+      }
+    },
+    "responsiveBreakpoints": {
+      "mobile": "320px - 767px",
+      "tablet": "768px - 1023px",
+      "desktop": "1024px - 1439px",
+      "large": "1440px+"
+    },
+    "responsiveBehaviors": {
+      "navigation": "hamburger menu on mobile",
+      "grids": "stack columns on smaller screens",
+      "typography": "smaller font sizes on mobile",
+      "spacing": "reduced margins/padding on mobile"
+    },
+    "contentStructure": {
+      "homepage": [
+        "hero",
+        "coursesOverview",
+        "whyChooseUs",
+        "testimonials",
+        "stats",
+        "blog/news",
+        "cta",
+        "footer"
+      ],
+      "coursePage": [
+        "breadcrumb",
+        "courseHero",
+        "courseDetails",
+        "curriculum",
+        "faculty",
+        "admissions",
+        "relatedCourses"
+      ],
+      "aboutPage": [
+        "breadcrumb",
+        "aboutHero",
+        "mission",
+        "team",
+        "achievements",
+        "facilities"
+      ]
+    },
+    "designPrinciples": {
+      "hierarchy": "Clear visual hierarchy with size, color, and spacing",
+      "consistency": "Consistent spacing, typography, and component usage",
+      "accessibility": "High contrast ratios and keyboard navigation",
+      "performance": "Optimized images and minimal animations",
+      "trust": "Professional appearance with credibility indicators",
+      "clarity": "Clear information architecture and navigation"
+    },
+    "brandElements": {
+      "logo": {
+        "placement": "top-left in header",
+        "sizing": "proportional to header height",
+        "variants": ["full-color", "monochrome", "icon-only"]
+      },
+      "imagery": {
+        "style": "professional photography with consistent treatment",
+        "subjects": ["students", "facilities", "projects", "achievements"],
+        "treatment": "natural lighting, authentic scenarios"
+      },
+      "iconography": {
+        "style": "outlined or minimal filled",
+        "consistency": "same weight and style throughout",
+        "usage": "support text, not replace it"
+      }
+    },
+    "interactionPatterns": {
+      "onboarding": "progressive disclosure of information",
+      "courseSelection": "filter and search functionality",
+      "contactFlow": "multiple touchpoints (form, phone, email)",
+      "testimonialDisplay": "carousel with auto-play option",
+      "newsEvents": "card-based layout with read-more pattern"
+    },
+    "seoAndPerformance": {
+      "metaPatterns": "descriptive titles and descriptions",
+      "imageOptimization": "multiple formats and sizes",
+      "loadingStates": "skeleton screens for content areas",
+      "errorStates": "friendly error messages with next steps"
+    }
+  }
+}
