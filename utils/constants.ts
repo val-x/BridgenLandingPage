@@ -7,7 +7,7 @@
  * @author Bridgen Development Team
  */
 
-import type { NavigationLink, CourseInfo } from "@/types";
+import type { NavigationLink, CourseInfo } from "../types";
 
 // Company information - single source of truth
 export const COMPANY_INFO = {

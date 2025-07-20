@@ -267,14 +267,14 @@ export default function InteriorDesignProjectCard({
           className="fixed inset-0 z-[100] bg-black"
           onClick={closeModal}
         >
-          {/* Mobile-optimized header */}
-          <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent p-4 flex justify-between items-center">
-            <div className="text-white text-sm">
+          {/* Fully responsive header */}
+          <div className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/80 to-transparent p-3 sm:p-4 md:p-6 flex justify-between items-center">
+            <div className="text-white text-sm sm:text-base md:text-lg font-medium">
               {currentIndex + 1} / {images.length}
             </div>
             <button
               onClick={closeModal}
-              className="text-white text-2xl font-light hover:bg-white/20 rounded-full w-10 h-10 flex items-center justify-center transition-colors"
+              className="text-white text-xl sm:text-2xl md:text-3xl font-light hover:bg-white/20 rounded-full w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex items-center justify-center transition-all duration-200 hover:scale-110"
               aria-label="Close gallery"
             >
               ×
@@ -310,16 +310,16 @@ export default function InteriorDesignProjectCard({
             </div>
           </div>
 
-          {/* Navigation arrows - larger touch targets for mobile */}
+          {/* Navigation arrows - fully responsive */}
           {images.length > 1 && (
             <>
               <button
                 onClick={prevSlide}
-                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white bg-black/30 backdrop-blur-sm rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center hover:bg-black/50 transition-colors touch-manipulation"
+                className="absolute left-2 sm:left-3 md:left-6 lg:left-8 top-1/2 -translate-y-1/2 text-white bg-black/30 backdrop-blur-sm rounded-full w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center hover:bg-black/50 transition-all duration-200 touch-manipulation hover:scale-110"
                 aria-label="Previous image"
               >
                 <svg
-                  className="w-6 h-6 md:w-8 md:h-8"
+                  className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -334,11 +334,11 @@ export default function InteriorDesignProjectCard({
               </button>
               <button
                 onClick={nextSlide}
-                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white bg-black/30 backdrop-blur-sm rounded-full w-12 h-12 md:w-14 md:h-14 flex items-center justify-center hover:bg-black/50 transition-colors touch-manipulation"
+                className="absolute right-2 sm:right-3 md:right-6 lg:right-8 top-1/2 -translate-y-1/2 text-white bg-black/30 backdrop-blur-sm rounded-full w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center hover:bg-black/50 transition-all duration-200 touch-manipulation hover:scale-110"
                 aria-label="Next image"
               >
                 <svg
-                  className="w-6 h-6 md:w-8 md:h-8"
+                  className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -354,15 +354,17 @@ export default function InteriorDesignProjectCard({
             </>
           )}
 
-          {/* Dot indicators - mobile-friendly */}
+          {/* Dot indicators - fully responsive */}
           {images.length > 1 && images.length <= 10 && (
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 bg-black/30 backdrop-blur-sm rounded-full px-4 py-2">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-1 sm:space-x-2 lg:space-x-3 bg-black/30 backdrop-blur-sm rounded-full px-3 py-2 sm:px-4 sm:py-2 lg:px-6 lg:py-3">
               {images.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors touch-manipulation ${
-                    index === currentIndex ? "bg-white" : "bg-white/50"
+                  className={`w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 rounded-full transition-all duration-200 touch-manipulation hover:scale-110 ${
+                    index === currentIndex
+                      ? "bg-white shadow-lg"
+                      : "bg-white/50 hover:bg-white/70"
                   }`}
                   aria-label={`Go to image ${index + 1}`}
                 />
@@ -372,7 +374,7 @@ export default function InteriorDesignProjectCard({
 
           {/* Swipe instruction for first-time users */}
           {images.length > 1 && (
-            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/70 text-xs text-center md:hidden">
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 text-white/70 text-xs sm:text-sm text-center md:hidden">
               Swipe to navigate
             </div>
           )}

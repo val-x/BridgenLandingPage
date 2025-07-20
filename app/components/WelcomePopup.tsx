@@ -7,59 +7,71 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function WelcomePopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [currentFeature, setCurrentFeature] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [screenSize, setScreenSize] = useState<string>("md");
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Detect mobile device
+  // Enhanced responsive detection with better tablet support
   useEffect(() => {
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 768 || "ontouchstart" in window;
-      setIsMobile(mobile);
+    const checkScreenSize = () => {
+      const width = window.innerWidth;
+      if (width < 480) setScreenSize("xs");
+      else if (width < 640) setScreenSize("sm");
+      else if (width < 768) setScreenSize("md");
+      else if (width < 1024) setScreenSize("lg");
+      else setScreenSize("xl");
     };
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
+
+  const isMobile = screenSize === "xs" || screenSize === "sm";
+  const isTablet = screenSize === "md" || screenSize === "lg";
+  const isDesktop = screenSize === "xl";
 
   useEffect(() => {
     // Check if the user has seen the popup before
-    const hasSeenPopup = localStorage.getItem("hasSeenPopup");
+    if (typeof window !== "undefined" && window.localStorage) {
+      const hasSeenPopup = localStorage.getItem("hasSeenPopup");
 
-    if (!hasSeenPopup) {
-      // Show popup after longer delay on mobile for better UX
-      setTimeout(
-        () => {
-          setIsOpen(true);
-        },
-        isMobile ? 2000 : 1000
-      );
-      localStorage.setItem("hasSeenPopup", "true");
+      if (!hasSeenPopup) {
+        // Show popup after appropriate delay based on device type
+        setTimeout(
+          () => {
+            setIsOpen(true);
+          },
+          isMobile ? 2000 : isTablet ? 1500 : 1000
+        );
+        localStorage.setItem("hasSeenPopup", "true");
+      }
     }
-  }, [isMobile]);
+  }, [isMobile, isTablet]);
 
   // Auto-cycle through features (slower on mobile, disabled on very small screens)
   useEffect(() => {
     if (
       isOpen &&
-      (!isMobile || (typeof window !== "undefined" && window.innerWidth > 400))
+      (!isMobile ||
+        (typeof window !== "undefined" && window && window.innerWidth > 400))
     ) {
       const interval = setInterval(
         () => {
           setCurrentFeature((prev) => (prev + 1) % 4);
         },
-        isMobile ? 4000 : 3000
-      ); // Slower on mobile
+        isMobile ? 4000 : isTablet ? 3500 : 3000
+      ); // Slower on mobile, medium on tablet
       return () => clearInterval(interval);
     }
-  }, [isOpen, isMobile]);
+    return undefined; // Explicit return for when condition is not met
+  }, [isOpen, isMobile, isTablet]);
 
   const closePopup = () => {
     setIsOpen(false);
     // Remove body scroll lock on mobile
-    if (isMobile) {
+    if (isMobile && typeof document !== "undefined" && document.body) {
       document.body.style.overflow = "unset";
     }
   };
@@ -89,17 +101,24 @@ export default function WelcomePopup() {
 
   // Prevent body scroll on mobile when popup is open
   useEffect(() => {
-    if (isOpen && isMobile) {
+    if (
+      isOpen &&
+      (isMobile || isTablet) &&
+      typeof document !== "undefined" &&
+      document.body
+    ) {
       document.body.style.overflow = "hidden";
       document.body.style.position = "fixed";
       document.body.style.width = "100%";
     }
     return () => {
-      document.body.style.overflow = "unset";
-      document.body.style.position = "unset";
-      document.body.style.width = "unset";
+      if (typeof document !== "undefined" && document.body) {
+        document.body.style.overflow = "unset";
+        document.body.style.position = "unset";
+        document.body.style.width = "unset";
+      }
     };
-  }, [isOpen, isMobile]);
+  }, [isOpen, isMobile, isTablet]);
 
   const features = [
     {
@@ -136,14 +155,137 @@ export default function WelcomePopup() {
     },
   ];
 
-  // Reduced particle count for mobile performance
-  const particles = Array.from({ length: isMobile ? 8 : 15 }, (_, i) => i);
+  // Get current feature safely
+  const currentFeatureData = features[currentFeature] ?? features[0]!;
+
+  // Responsive particle count
+  const getParticleCount = () => {
+    switch (screenSize) {
+      case "xs":
+        return 6;
+      case "sm":
+        return 8;
+      case "md":
+        return 12;
+      case "lg":
+        return 15;
+      case "xl":
+        return 20;
+      default:
+        return 12;
+    }
+  };
+
+  const particles = Array.from({ length: getParticleCount() }, (_, i) => i);
 
   const getWindowDimensions = () => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && window) {
       return { width: window.innerWidth, height: window.innerHeight };
     }
     return { width: 1000, height: 800 };
+  };
+
+  // Responsive sizing helpers
+  const getModalSize = () => {
+    switch (screenSize) {
+      case "xs":
+        return "max-w-[95vw] max-h-[98vh] rounded-xl";
+      case "sm":
+        return "max-w-sm max-h-[95vh] rounded-2xl";
+      case "md":
+        return "max-w-lg max-h-[90vh] rounded-2xl";
+      case "lg":
+        return "max-w-xl max-h-[85vh] rounded-3xl";
+      case "xl":
+        return "max-w-2xl max-h-[80vh] rounded-3xl";
+      default:
+        return "max-w-lg max-h-[85vh] rounded-3xl";
+    }
+  };
+
+  const getPadding = () => {
+    switch (screenSize) {
+      case "xs":
+        return "p-4";
+      case "sm":
+        return "p-5";
+      case "md":
+        return "p-6";
+      case "lg":
+        return "p-7";
+      case "xl":
+        return "p-8";
+      default:
+        return "p-6";
+    }
+  };
+
+  const getLogoSize = () => {
+    switch (screenSize) {
+      case "xs":
+        return { container: "w-12 h-12", image: 32 };
+      case "sm":
+        return { container: "w-14 h-14", image: 40 };
+      case "md":
+        return { container: "w-18 h-18", image: 56 };
+      case "lg":
+        return { container: "w-20 h-20", image: 64 };
+      case "xl":
+        return { container: "w-24 h-24", image: 72 };
+      default:
+        return { container: "w-16 h-16", image: 48 };
+    }
+  };
+
+  const getTitleSize = () => {
+    switch (screenSize) {
+      case "xs":
+        return "text-xl";
+      case "sm":
+        return "text-2xl";
+      case "md":
+        return "text-3xl";
+      case "lg":
+        return "text-3xl";
+      case "xl":
+        return "text-4xl";
+      default:
+        return "text-2xl";
+    }
+  };
+
+  const getCarouselHeight = () => {
+    switch (screenSize) {
+      case "xs":
+        return "h-20";
+      case "sm":
+        return "h-24";
+      case "md":
+        return "h-32";
+      case "lg":
+        return "h-36";
+      case "xl":
+        return "h-40";
+      default:
+        return "h-28";
+    }
+  };
+
+  const getStatsGrid = () => {
+    switch (screenSize) {
+      case "xs":
+        return "grid-cols-2 gap-2";
+      case "sm":
+        return "grid-cols-2 gap-3";
+      case "md":
+        return "grid-cols-4 gap-4";
+      case "lg":
+        return "grid-cols-4 gap-4";
+      case "xl":
+        return "grid-cols-4 gap-5";
+      default:
+        return "grid-cols-2 gap-4";
+    }
   };
 
   return (
@@ -154,26 +296,39 @@ export default function WelcomePopup() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={`fixed inset-0 z-[100] flex items-center justify-center ${
-            isMobile ? "px-3 py-4" : "px-4 py-6"
+            screenSize === "xs"
+              ? "px-2 py-2"
+              : screenSize === "sm"
+              ? "px-3 py-3"
+              : screenSize === "md"
+              ? "px-6 py-8"
+              : "px-4 py-6"
           }`}
           style={{
             background:
               "linear-gradient(135deg, rgba(0,51,102,0.95) 0%, rgba(0,35,71,0.98) 100%)",
-            paddingTop: isMobile ? "env(safe-area-inset-top, 1rem)" : undefined,
-            paddingBottom: isMobile
-              ? "env(safe-area-inset-bottom, 1rem)"
-              : undefined,
+            paddingTop:
+              isMobile || isTablet
+                ? "env(safe-area-inset-top, 0.5rem)"
+                : undefined,
+            paddingBottom:
+              isMobile || isTablet
+                ? "env(safe-area-inset-bottom, 0.5rem)"
+                : undefined,
           }}
         >
-          {/* Optimized Background Particles - fewer on mobile */}
-          {!isMobile ||
-          (typeof window !== "undefined" && window.innerWidth > 400) ? (
+          {/* Optimized Background Particles - responsive count */}
+          {screenSize !== "xs" && (
             <div className="absolute inset-0 overflow-hidden">
               {particles.map((particle) => (
                 <motion.div
                   key={particle}
                   className={`absolute ${
-                    isMobile ? "w-1 h-1" : "w-2 h-2"
+                    screenSize === "xs"
+                      ? "w-1 h-1"
+                      : screenSize === "sm"
+                      ? "w-1.5 h-1.5"
+                      : "w-2 h-2"
                   } bg-white/20 rounded-full`}
                   initial={{
                     x: Math.random() * getWindowDimensions().width,
@@ -186,52 +341,59 @@ export default function WelcomePopup() {
                     opacity: [0, 0.7, 0],
                   }}
                   transition={{
-                    duration: isMobile ? 4 : 3,
+                    duration:
+                      screenSize === "xs" ? 5 : screenSize === "sm" ? 4 : 3,
                     repeat: Infinity,
                     delay: Math.random() * 2,
                   }}
                 />
               ))}
             </div>
-          ) : null}
+          )}
 
-          {/* Main Modal - Mobile Optimized */}
+          {/* Main Modal - Enhanced Responsive */}
           <motion.div
             initial={{
-              scale: isMobile ? 0.9 : 0.5,
-              y: isMobile ? 20 : 0,
-              rotateY: isMobile ? 0 : -180,
+              scale: isMobile ? 0.9 : isTablet ? 0.8 : 0.5,
+              y: isMobile ? 20 : isTablet ? 10 : 0,
+              rotateY: isMobile ? 0 : isTablet ? -90 : -180,
               opacity: 0,
             }}
             animate={{ scale: 1, y: 0, rotateY: 0, opacity: 1 }}
             exit={{
-              scale: isMobile ? 0.9 : 0.5,
-              y: isMobile ? 20 : 0,
-              rotateY: isMobile ? 0 : 180,
+              scale: isMobile ? 0.9 : isTablet ? 0.8 : 0.5,
+              y: isMobile ? 20 : isTablet ? 10 : 0,
+              rotateY: isMobile ? 0 : isTablet ? 90 : 180,
               opacity: 0,
             }}
             transition={{
               type: "spring",
-              damping: isMobile ? 25 : 20,
-              stiffness: isMobile ? 300 : 200,
-              duration: isMobile ? 0.5 : 0.8,
+              damping: isMobile ? 25 : isTablet ? 22 : 20,
+              stiffness: isMobile ? 300 : isTablet ? 250 : 200,
+              duration: isMobile ? 0.5 : isTablet ? 0.6 : 0.8,
             }}
-            className={`relative w-full overflow-hidden shadow-2xl ${
-              isMobile
-                ? "max-w-sm rounded-2xl max-h-[95vh]"
-                : "max-w-lg rounded-3xl max-h-[85vh]"
-            }`}
+            className={`relative w-full overflow-hidden shadow-2xl ${getModalSize()}`}
             style={{
               background: "rgba(255, 255, 255, 0.95)",
-              backdropFilter: isMobile ? "blur(15px)" : "blur(20px)",
+              backdropFilter: isMobile
+                ? "blur(15px)"
+                : isTablet
+                ? "blur(18px)"
+                : "blur(20px)",
               border: "1px solid rgba(255, 255, 255, 0.2)",
             }}
           >
-            {/* Mobile-Optimized Close Button */}
+            {/* Responsive Close Button */}
             <motion.button
               onClick={closePopup}
-              className={`absolute top-3 right-3 z-10 flex items-center justify-center rounded-full text-gray-600 hover:text-white transition-all duration-300 touch-manipulation ${
-                isMobile ? "h-12 w-12" : "h-10 w-10"
+              className={`absolute top-2 right-2 z-10 flex items-center justify-center rounded-full text-gray-600 hover:text-white transition-all duration-300 touch-manipulation ${
+                screenSize === "xs"
+                  ? "h-10 w-10"
+                  : screenSize === "sm"
+                  ? "h-11 w-11"
+                  : screenSize === "md"
+                  ? "h-12 w-12"
+                  : "h-10 w-10"
               }`}
               style={{
                 background: "rgba(255, 255, 255, 0.2)",
@@ -246,7 +408,15 @@ export default function WelcomePopup() {
             >
               <motion.svg
                 xmlns="http://www.w3.org/2000/svg"
-                className={`${isMobile ? "h-6 w-6" : "h-5 w-5"}`}
+                className={`${
+                  screenSize === "xs"
+                    ? "h-5 w-5"
+                    : screenSize === "sm"
+                    ? "h-5 w-5"
+                    : screenSize === "md"
+                    ? "h-6 w-6"
+                    : "h-5 w-5"
+                }`}
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -282,8 +452,8 @@ export default function WelcomePopup() {
               />
             )}
 
-            <div className={`relative ${isMobile ? "p-5" : "p-8"}`}>
-              {/* Mobile-Optimized Header */}
+            <div className={`relative ${getPadding()}`}>
+              {/* Responsive Header */}
               <motion.div
                 initial={{ y: isMobile ? -20 : -50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -291,8 +461,8 @@ export default function WelcomePopup() {
                 className="text-center mb-6"
               >
                 <motion.div
-                  className={`mx-auto mb-3 rounded-full p-2 shadow-lg ${
-                    isMobile ? "w-16 h-16" : "w-20 h-20 p-3"
+                  className={`mx-auto mb-3 rounded-full p-2 shadow-lg overflow-hidden ${
+                    getLogoSize().container
                   }`}
                   style={{
                     background: "linear-gradient(135deg, #003366, #4cc9f0)",
@@ -306,16 +476,14 @@ export default function WelcomePopup() {
                   <Image
                     src="/images/bridgen_logo_highres.png"
                     alt="Bridgen Logo"
-                    width={isMobile ? 48 : 60}
-                    height={isMobile ? 48 : 60}
-                    className="w-full h-full object-contain filter brightness-0 invert"
+                    width={getLogoSize().image}
+                    height={getLogoSize().image}
+                    className="w-full h-full object-contain rounded-full"
                   />
                 </motion.div>
 
                 <motion.h1
-                  className={`font-bold mb-2 ${
-                    isMobile ? "text-2xl" : "text-3xl"
-                  }`}
+                  className={`font-bold mb-2 ${getTitleSize()}`}
                   style={{
                     background:
                       "linear-gradient(135deg, #003366, #4cc9f0, #e63946)",
@@ -349,17 +517,21 @@ export default function WelcomePopup() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
                   className={`text-gray-600 ${
-                    isMobile ? "text-xs" : "text-sm"
+                    screenSize === "xs"
+                      ? "text-xs"
+                      : screenSize === "sm"
+                      ? "text-sm"
+                      : "text-sm"
                   }`}
                 >
                   Kerala's #1 training institute
                 </motion.p>
               </motion.div>
 
-              {/* Mobile-Optimized Feature Carousel with Touch Support */}
+              {/* Responsive Feature Carousel with Touch Support */}
               <div
                 ref={carouselRef}
-                className={`relative mb-6 ${isMobile ? "h-24" : "h-32"}`}
+                className={`relative mb-6 ${getCarouselHeight()}`}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
@@ -387,8 +559,16 @@ export default function WelcomePopup() {
                   >
                     <motion.div
                       className={`rounded-xl h-full ${
-                        features[currentFeature].bgColor
-                      } ${isMobile ? "p-4" : "p-6 rounded-2xl"}`}
+                        currentFeatureData.bgColor
+                      } ${
+                        screenSize === "xs"
+                          ? "p-3"
+                          : screenSize === "sm"
+                          ? "p-4"
+                          : screenSize === "md"
+                          ? "p-5"
+                          : "p-6 rounded-2xl"
+                      }`}
                       style={{
                         background: `linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4))`,
                         backdropFilter: "blur(10px)",
@@ -399,7 +579,13 @@ export default function WelcomePopup() {
                       <div className="flex items-center h-full">
                         <motion.div
                           className={`mr-3 ${
-                            isMobile ? "text-2xl" : "text-4xl mr-4"
+                            screenSize === "xs"
+                              ? "text-xl"
+                              : screenSize === "sm"
+                              ? "text-2xl"
+                              : screenSize === "md"
+                              ? "text-3xl"
+                              : "text-4xl mr-4"
                           }`}
                           animate={
                             !isMobile
@@ -419,22 +605,34 @@ export default function WelcomePopup() {
                               : {}
                           }
                         >
-                          {features[currentFeature].icon}
+                          {currentFeatureData.icon}
                         </motion.div>
                         <div className="flex-1">
                           <h3
                             className={`font-bold mb-1 ${
-                              features[currentFeature].textColor
-                            } ${isMobile ? "text-lg" : "text-xl"}`}
+                              currentFeatureData.textColor
+                            } ${
+                              screenSize === "xs"
+                                ? "text-base"
+                                : screenSize === "sm"
+                                ? "text-lg"
+                                : screenSize === "md"
+                                ? "text-lg"
+                                : "text-xl"
+                            }`}
                           >
-                            {features[currentFeature].title}
+                            {currentFeatureData.title}
                           </h3>
                           <p
                             className={`text-gray-600 ${
-                              isMobile ? "text-xs" : "text-sm"
+                              screenSize === "xs"
+                                ? "text-xs"
+                                : screenSize === "sm"
+                                ? "text-xs"
+                                : "text-sm"
                             }`}
                           >
-                            {features[currentFeature].description}
+                            {currentFeatureData.description}
                           </p>
                         </div>
                       </div>
@@ -442,10 +640,16 @@ export default function WelcomePopup() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Mobile-Friendly Feature Indicators */}
+                {/* Responsive Feature Indicators */}
                 <div
                   className={`absolute left-1/2 transform -translate-x-1/2 flex space-x-2 ${
-                    isMobile ? "-bottom-4" : "-bottom-6"
+                    screenSize === "xs"
+                      ? "-bottom-3"
+                      : screenSize === "sm"
+                      ? "-bottom-4"
+                      : screenSize === "md"
+                      ? "-bottom-5"
+                      : "-bottom-6"
                   }`}
                 >
                   {features.map((_, index) => (
@@ -453,8 +657,24 @@ export default function WelcomePopup() {
                       key={index}
                       className={`rounded-full transition-all duration-300 touch-manipulation ${
                         index === currentFeature
-                          ? `bg-blue-500 ${isMobile ? "w-6 h-3" : "w-6 h-2"}`
-                          : `bg-gray-300 ${isMobile ? "w-3 h-3" : "w-2 h-2"}`
+                          ? `bg-blue-500 ${
+                              screenSize === "xs"
+                                ? "w-5 h-2"
+                                : screenSize === "sm"
+                                ? "w-6 h-2"
+                                : screenSize === "md"
+                                ? "w-8 h-3"
+                                : "w-6 h-2"
+                            }`
+                          : `bg-gray-300 ${
+                              screenSize === "xs"
+                                ? "w-2 h-2"
+                                : screenSize === "sm"
+                                ? "w-3 h-2"
+                                : screenSize === "md"
+                                ? "w-4 h-3"
+                                : "w-2 h-2"
+                            }`
                       }`}
                       onClick={() => setCurrentFeature(index)}
                       whileHover={{ scale: isMobile ? 1.1 : 1.2 }}
@@ -476,14 +696,12 @@ export default function WelcomePopup() {
                 )}
               </div>
 
-              {/* Mobile-Optimized Stats Grid */}
+              {/* Responsive Stats Grid */}
               <motion.div
                 initial={{ y: isMobile ? 20 : 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-                className={`grid grid-cols-2 gap-3 mb-6 ${
-                  isMobile ? "gap-2 mb-5" : "gap-4 mb-8"
-                }`}
+                className={`grid ${getStatsGrid()} mb-6`}
               >
                 {[
                   { number: "500+", label: "Students", icon: "👥" },
@@ -494,7 +712,13 @@ export default function WelcomePopup() {
                   <motion.div
                     key={index}
                     className={`text-center rounded-lg ${
-                      isMobile ? "p-3" : "p-4 rounded-xl"
+                      screenSize === "xs"
+                        ? "p-2"
+                        : screenSize === "sm"
+                        ? "p-3"
+                        : screenSize === "md"
+                        ? "p-3"
+                        : "p-4 rounded-xl"
                     }`}
                     style={{
                       background: "rgba(255, 255, 255, 0.4)",
@@ -518,19 +742,39 @@ export default function WelcomePopup() {
                       stiffness: 200,
                     }}
                   >
-                    <div className={`mb-1 ${isMobile ? "text-lg" : "text-xl"}`}>
+                    <div
+                      className={`mb-1 ${
+                        screenSize === "xs"
+                          ? "text-base"
+                          : screenSize === "sm"
+                          ? "text-lg"
+                          : screenSize === "md"
+                          ? "text-lg"
+                          : "text-xl"
+                      }`}
+                    >
                       {stat.icon}
                     </div>
                     <div
                       className={`font-bold text-blue-600 ${
-                        isMobile ? "text-lg" : "text-2xl"
+                        screenSize === "xs"
+                          ? "text-base"
+                          : screenSize === "sm"
+                          ? "text-lg"
+                          : screenSize === "md"
+                          ? "text-xl"
+                          : "text-2xl"
                       }`}
                     >
                       {stat.number}
                     </div>
                     <div
                       className={`text-gray-600 ${
-                        isMobile ? "text-xs" : "text-xs"
+                        screenSize === "xs"
+                          ? "text-xs"
+                          : screenSize === "sm"
+                          ? "text-xs"
+                          : "text-xs"
                       }`}
                     >
                       {stat.label}
@@ -539,18 +783,28 @@ export default function WelcomePopup() {
                 ))}
               </motion.div>
 
-              {/* Mobile-Optimized CTA Buttons */}
+              {/* Responsive CTA Buttons */}
               <motion.div
                 initial={{ y: isMobile ? 20 : 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
-                className={`space-y-3 ${isMobile ? "space-y-2" : "space-y-3"}`}
+                className={`space-y-3 ${
+                  screenSize === "xs"
+                    ? "space-y-2"
+                    : screenSize === "sm"
+                    ? "space-y-2"
+                    : "space-y-3"
+                }`}
               >
                 <motion.button
                   onClick={closePopup}
                   className={`w-full text-white font-bold relative overflow-hidden touch-manipulation ${
-                    isMobile
+                    screenSize === "xs"
+                      ? "py-2.5 px-3 text-sm rounded-lg"
+                      : screenSize === "sm"
                       ? "py-3 px-4 text-base rounded-lg"
+                      : screenSize === "md"
+                      ? "py-3 px-5 text-base rounded-xl"
                       : "py-4 px-6 text-lg rounded-xl"
                   }`}
                   style={{
@@ -602,8 +856,12 @@ export default function WelcomePopup() {
                 <motion.button
                   onClick={closePopup}
                   className={`w-full font-medium text-gray-600 border border-gray-300 touch-manipulation ${
-                    isMobile
+                    screenSize === "xs"
+                      ? "py-2 px-3 text-xs rounded-lg"
+                      : screenSize === "sm"
                       ? "py-2.5 px-4 text-sm rounded-lg"
+                      : screenSize === "md"
+                      ? "py-2.5 px-5 text-sm rounded-xl"
                       : "py-3 px-6 rounded-xl"
                   }`}
                   style={{

@@ -1,19 +1,6 @@
-import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-// Lazy load non-critical components
-const TestimonialsSection = dynamic(
-  () => import("./components/TestimonialsSection"),
-  {
-    loading: () => <div className="py-16 bg-gray-50 animate-pulse" />,
-  }
-);
-
-const ContactSection = dynamic(() => import("./components/ContactSection"), {
-  loading: () => <div className="py-16 bg-white animate-pulse" />,
-});
-
-// Critical components loaded immediately
+// Import components directly to avoid dynamic import issues
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
@@ -24,6 +11,10 @@ import {
   FaqJsonLd,
   LocalBusinessJsonLd,
 } from "./components/JsonLd";
+
+// Import non-critical components directly
+import TestimonialsSection from "./components/TestimonialsSection";
+import ContactSection from "./components/ContactSection";
 
 // Static metadata for better SEO and performance
 export const metadata = {
@@ -90,14 +81,9 @@ export default function Home() {
         <AboutSection />
         <CoursesSection />
 
-        {/* Non-critical sections lazy loaded */}
-        <Suspense fallback={<div className="py-16 bg-gray-50 animate-pulse" />}>
-          <TestimonialsSection />
-        </Suspense>
-
-        <Suspense fallback={<div className="py-16 bg-white animate-pulse" />}>
-          <ContactSection />
-        </Suspense>
+        {/* Non-critical sections */}
+        <TestimonialsSection />
+        <ContactSection />
       </main>
       <Footer />
     </div>

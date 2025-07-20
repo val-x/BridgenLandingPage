@@ -11,27 +11,74 @@
 
 import React, { useState, useCallback } from "react";
 
-// Import types and utilities for better maintainability
-import type {
-  ContactFormData,
-  SubmitMethodType,
-  InputChangeHandler,
-  FormEventHandler,
-} from "@/types";
-import {
-  COMPANY_INFO,
-  AVAILABLE_COURSES,
-  CSS_VARIABLES,
-} from "@/utils/constants";
-import {
-  validateContactForm,
-  formatContactMessage,
-  createWhatsAppUrl,
-  createEmailUrl,
-  safeOpenUrl,
-  sanitizeInput,
-  handleError,
-} from "@/utils/helpers";
+// Inline types to avoid import issues
+interface ContactFormData {
+  name: string;
+  email: string;
+  phone: string;
+  course: string;
+  message: string;
+}
+
+type SubmitMethodType = "whatsapp" | "email";
+type InputChangeHandler = (
+  event: React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >
+) => void;
+type FormEventHandler = (event: React.FormEvent<HTMLFormElement>) => void;
+
+// Inline constants
+const COMPANY_INFO = {
+  PHONE: "+91 9061002200",
+  WHATSAPP_NUMBER: "919061002200",
+  EMAIL: "hello@bridgentraining.com",
+  ADDRESS: {
+    BUILDING: "Thayyil Arcade",
+    STREET: "V Panoli Road",
+    LANDMARK: "near Baby Memorial Hospital",
+    AREA: "Thiruthiyad",
+    CITY: "Kozhikode",
+    STATE: "Kerala",
+    PINCODE: "673004",
+  },
+  WORKING_HOURS: {
+    FULL: "Monday - Saturday: 9:00 AM - 6:00 PM",
+    WEEKEND: "Closed",
+  },
+};
+
+const AVAILABLE_COURSES = [
+  { id: "autocad", name: "AutoCAD Training" },
+  { id: "interior-design", name: "Interior Design" },
+  { id: "3ds-max", name: "3ds Max with V-Ray/Corona" },
+  { id: "sketchup", name: "SketchUp with V-Ray/Corona" },
+  { id: "photoshop", name: "Photoshop for Designers" },
+];
+
+// Inline helper functions
+const sanitizeInput = (input: string): string => {
+  return input.trim().replace(/[<>]/g, "").slice(0, 1000);
+};
+
+const createWhatsAppUrl = (message: string): string => {
+  const encodedMessage = encodeURIComponent(message);
+  return `https://wa.me/${COMPANY_INFO.WHATSAPP_NUMBER}?text=${encodedMessage}`;
+};
+
+const createEmailUrl = (subject: string, body: string): string => {
+  const encodedSubject = encodeURIComponent(subject);
+  const encodedBody = encodeURIComponent(body);
+  return `mailto:${COMPANY_INFO.EMAIL}?subject=${encodedSubject}&body=${encodedBody}`;
+};
+
+const safeOpenUrl = (url: string): void => {
+  try {
+    window.open(url, "_blank", "noopener,noreferrer");
+  } catch (error) {
+    console.error("Failed to open URL:", error);
+  }
+};
 
 // Component constants
 const INITIAL_FORM_DATA: ContactFormData = {
@@ -76,9 +123,7 @@ const FormInput = ({
     <input
       type={type}
       id={id}
-      className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[${
-        CSS_VARIABLES.COLORS.NAVY_BLUE
-      }] focus:border-transparent font-sans text-gray-900 ${
+      className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-800 focus:border-transparent font-sans text-gray-900 ${
         error ? "border-red-500" : "border-gray-300"
       }`}
       placeholder={placeholder}
@@ -130,9 +175,7 @@ const FormTextarea = ({
     <textarea
       id={id}
       rows={rows}
-      className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[${
-        CSS_VARIABLES.COLORS.NAVY_BLUE
-      }] focus:border-transparent font-sans text-gray-900 resize-vertical ${
+      className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-800 focus:border-transparent font-sans text-gray-900 resize-vertical ${
         error ? "border-red-500" : "border-gray-300"
       }`}
       placeholder={placeholder}
@@ -169,9 +212,7 @@ const CourseSelect = ({ value, onChange, error }: CourseSelectProps) => (
     </label>
     <select
       id="course"
-      className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[${
-        CSS_VARIABLES.COLORS.NAVY_BLUE
-      }] focus:border-transparent text-gray-900 font-sans ${
+      className={`w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-800 focus:border-transparent text-gray-900 font-sans ${
         error ? "border-red-500" : "border-gray-300"
       }`}
       value={value}
@@ -221,7 +262,7 @@ const SubmitMethodSelector = ({
           value="whatsapp"
           checked={selectedMethod === "whatsapp"}
           onChange={(e) => onChange(e.target.value as SubmitMethodType)}
-          className={`h-4 w-4 text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}] focus:ring-[${CSS_VARIABLES.COLORS.NAVY_BLUE}]`}
+          className="h-4 w-4 text-blue-800 focus:ring-blue-800"
         />
         <span className="ml-2 text-gray-700">WhatsApp</span>
       </label>
@@ -232,7 +273,7 @@ const SubmitMethodSelector = ({
           value="email"
           checked={selectedMethod === "email"}
           onChange={(e) => onChange(e.target.value as SubmitMethodType)}
-          className={`h-4 w-4 text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}] focus:ring-[${CSS_VARIABLES.COLORS.NAVY_BLUE}]`}
+          className="h-4 w-4 text-blue-800 focus:ring-blue-800"
         />
         <span className="ml-2 text-gray-700">Email</span>
       </label>
@@ -251,6 +292,12 @@ export default function ContactSection() {
     Partial<Record<keyof ContactFormData, string>>
   >({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  // Ensure client-side only rendering to prevent hydration mismatch
+  React.useEffect(() => {
+    setIsHydrated(true);
+  }, []);
 
   // Handle input changes with sanitization
   const handleInputChange: InputChangeHandler = useCallback(
@@ -289,11 +336,17 @@ export default function ContactSection() {
       setIsSubmitting(true);
 
       try {
-        // Validate form data
-        const validation = validateContactForm(formData);
+        // Simple validation
+        const errors: Partial<Record<keyof ContactFormData, string>> = {};
 
-        if (!validation.isValid) {
-          setErrors(validation.errors);
+        if (!formData.name.trim()) errors.name = "Name is required";
+        if (!formData.email.trim()) errors.email = "Email is required";
+        if (!formData.phone.trim()) errors.phone = "Phone is required";
+        if (!formData.course) errors.course = "Course is required";
+        if (!formData.message.trim()) errors.message = "Message is required";
+
+        if (Object.keys(errors).length > 0) {
+          setErrors(errors);
           return;
         }
 
@@ -301,7 +354,17 @@ export default function ContactSection() {
         setErrors({});
 
         // Format the message
-        const message = formatContactMessage(formData);
+        const courseName =
+          AVAILABLE_COURSES.find((c) => c.id === formData.course)?.name ||
+          formData.course;
+        const message = `Hello! I'm ${formData.name} and I'm interested in Bridgen Training programs.
+
+📧 Email: ${formData.email}
+📱 Phone: ${formData.phone}
+🎓 Course of Interest: ${courseName}
+💬 My Message: ${formData.message}
+
+I'm excited to start my success story with Bridgen Training!`;
 
         // Submit based on selected method
         if (submitMethod === "whatsapp") {
@@ -316,7 +379,7 @@ export default function ContactSection() {
         // Reset form after successful submission
         setFormData(INITIAL_FORM_DATA);
       } catch (error) {
-        handleError(error, "form submission");
+        console.error("Form submission error:", error);
         setErrors({ message: "Something went wrong. Please try again." });
       } finally {
         setIsSubmitting(false);
@@ -325,19 +388,54 @@ export default function ContactSection() {
     [formData, submitMethod, isSubmitting]
   );
 
+  // Don't render form until hydrated to prevent hydration mismatch
+  if (!isHydrated) {
+    return (
+      <section className="py-16 md:py-24 font-sans" id="contact">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--navy-blue)] mb-4 font-sans">
+              Get In Touch
+            </h2>
+            <div className="w-20 h-1 bg-[var(--red)] mx-auto mb-6"></div>
+            <p className="max-w-2xl mx-auto text-gray-600 font-sans">
+              Ready to transform your creative passion into a global profession?
+              Contact us today to learn more about our Gulf-ready design
+              programs.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="bg-white rounded-lg shadow-md p-8 animate-pulse">
+              <div className="h-8 bg-gray-200 rounded mb-4"></div>
+              <div className="space-y-4">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow-md p-8 animate-pulse">
+              <div className="h-8 bg-gray-200 rounded mb-4"></div>
+              <div className="space-y-4">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="py-16 md:py-24 font-sans" id="contact">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2
-            className={`text-3xl md:text-4xl font-bold text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}] mb-4 font-sans`}
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4 font-sans">
             Get In Touch
           </h2>
-          <div
-            className={`w-20 h-1 bg-[${CSS_VARIABLES.COLORS.RED}] mx-auto mb-6`}
-          ></div>
+          <div className="w-20 h-1 bg-red-500 mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600 font-sans">
             Ready to transform your creative passion into a global profession?
             Contact us today to learn more about our Gulf-ready design programs.
@@ -348,9 +446,7 @@ export default function ContactSection() {
           {/* Contact Form */}
           <div>
             <div className="bg-white rounded-lg shadow-md p-8">
-              <h3
-                className={`text-2xl font-semibold text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}] mb-6 font-sans`}
-              >
+              <h3 className="text-2xl font-semibold text-blue-800 mb-6 font-sans">
                 ✉️ Send Us a Message
               </h3>
 
@@ -415,7 +511,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full bg-[${CSS_VARIABLES.COLORS.NAVY_BLUE}] hover:bg-[#00264d] disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors font-sans`}
+                    className="w-full bg-blue-800 hover:bg-blue-900 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors font-sans"
                   >
                     {isSubmitting
                       ? "Sending..."
@@ -431,7 +527,7 @@ export default function ContactSection() {
             <div className="mt-8 flex flex-col md:flex-row gap-4">
               <a
                 href={`tel:${COMPANY_INFO.PHONE}`}
-                className={`flex-1 bg-[${CSS_VARIABLES.COLORS.LIGHT_BLUE}] hover:bg-[#3ab7dc] text-white rounded-lg p-4 flex items-center justify-center gap-3 transition-colors`}
+                className="flex-1 bg-blue-400 hover:bg-blue-500 text-white rounded-lg p-4 flex items-center justify-center gap-3 transition-colors"
                 aria-label={`Call us at ${COMPANY_INFO.PHONE}`}
               >
                 <svg
@@ -468,18 +564,14 @@ export default function ContactSection() {
 
             {/* Contact Information */}
             <div className="bg-white rounded-lg shadow-md p-8">
-              <h3
-                className={`text-2xl font-semibold text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}] mb-6`}
-              >
+              <h3 className="text-2xl font-semibold text-blue-800 mb-6">
                 📞 Contact Information
               </h3>
 
               <div className="space-y-4">
                 {/* Address */}
                 <div className="flex items-start">
-                  <div
-                    className={`flex-shrink-0 bg-[${CSS_VARIABLES.COLORS.NAVY_BLUE}] text-white p-3 rounded-lg mr-4`}
-                  >
+                  <div className="flex-shrink-0 bg-blue-800 text-white p-3 rounded-lg mr-4">
                     <svg
                       className="w-6 h-6"
                       fill="currentColor"
@@ -495,9 +587,7 @@ export default function ContactSection() {
                     </svg>
                   </div>
                   <div>
-                    <h4
-                      className={`text-lg font-medium text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}]`}
-                    >
+                    <h4 className="text-lg font-medium text-blue-800">
                       Visit Us
                     </h4>
                     <p className="text-gray-600">
@@ -515,9 +605,7 @@ export default function ContactSection() {
 
                 {/* Phone */}
                 <div className="flex items-start">
-                  <div
-                    className={`flex-shrink-0 bg-[${CSS_VARIABLES.COLORS.RED}] text-white p-3 rounded-lg mr-4`}
-                  >
+                  <div className="flex-shrink-0 bg-red-500 text-white p-3 rounded-lg mr-4">
                     <svg
                       className="w-6 h-6"
                       fill="currentColor"
@@ -529,9 +617,7 @@ export default function ContactSection() {
                     </svg>
                   </div>
                   <div>
-                    <h4
-                      className={`text-lg font-medium text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}]`}
-                    >
+                    <h4 className="text-lg font-medium text-blue-800">
                       Call Us
                     </h4>
                     <p className="text-gray-600">{COMPANY_INFO.PHONE}</p>
@@ -540,9 +626,7 @@ export default function ContactSection() {
 
                 {/* Email */}
                 <div className="flex items-start">
-                  <div
-                    className={`flex-shrink-0 bg-[${CSS_VARIABLES.COLORS.GREEN}] text-white p-3 rounded-lg mr-4`}
-                  >
+                  <div className="flex-shrink-0 bg-green-500 text-white p-3 rounded-lg mr-4">
                     <svg
                       className="w-6 h-6"
                       fill="currentColor"
@@ -555,9 +639,7 @@ export default function ContactSection() {
                     </svg>
                   </div>
                   <div>
-                    <h4
-                      className={`text-lg font-medium text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}]`}
-                    >
+                    <h4 className="text-lg font-medium text-blue-800">
                       Email Us
                     </h4>
                     <p className="text-gray-600">{COMPANY_INFO.EMAIL}</p>
@@ -566,9 +648,7 @@ export default function ContactSection() {
 
                 {/* Working Hours */}
                 <div className="flex items-start">
-                  <div
-                    className={`flex-shrink-0 bg-[${CSS_VARIABLES.COLORS.LIGHT_BLUE}] text-white p-3 rounded-lg mr-4`}
-                  >
+                  <div className="flex-shrink-0 bg-blue-400 text-white p-3 rounded-lg mr-4">
                     <svg
                       className="w-6 h-6"
                       fill="currentColor"
@@ -584,9 +664,7 @@ export default function ContactSection() {
                     </svg>
                   </div>
                   <div>
-                    <h4
-                      className={`text-lg font-medium text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}]`}
-                    >
+                    <h4 className="text-lg font-medium text-blue-800">
                       Working Hours
                     </h4>
                     <p className="text-gray-600">
@@ -601,23 +679,19 @@ export default function ContactSection() {
 
               {/* Call to Action */}
               <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                <h4
-                  className={`text-xl font-medium text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}] mb-2`}
-                >
+                <h4 className="text-xl font-medium text-blue-800 mb-2">
                   Need design support?
                 </h4>
                 <p className="text-gray-700 mb-2">
                   Let's work together on your next project — from blueprint to
                   build.
                 </p>
-                <div
-                  className={`flex flex-col sm:flex-row items-start sm:items-center text-[${CSS_VARIABLES.COLORS.NAVY_BLUE}]`}
-                >
+                <div className="flex flex-col sm:flex-row items-start sm:items-center text-blue-800">
                   <div className="flex items-center mb-2 sm:mb-0">
                     <span className="mr-2">📞</span>
                     <a
                       href={`tel:${COMPANY_INFO.WHATSAPP_NUMBER}`}
-                      className={`hover:text-[${CSS_VARIABLES.COLORS.GREEN}] transition-colors`}
+                      className="hover:text-green-500 transition-colors"
                     >
                       {COMPANY_INFO.WHATSAPP_NUMBER}
                     </a>
@@ -627,7 +701,7 @@ export default function ContactSection() {
                     <span className="mr-2">📩</span>
                     <a
                       href={`mailto:${COMPANY_INFO.EMAIL}`}
-                      className={`hover:text-[${CSS_VARIABLES.COLORS.GREEN}] transition-colors break-all`}
+                      className="hover:text-green-500 transition-colors break-all"
                     >
                       {COMPANY_INFO.EMAIL}
                     </a>

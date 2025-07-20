@@ -7,7 +7,7 @@
  * @author Bridgen Development Team
  */
 
-import type { ContactFormData, CourseType } from "@/types";
+import type { ContactFormData, CourseType } from "../types";
 import {
   COMPANY_INFO,
   AVAILABLE_COURSES,

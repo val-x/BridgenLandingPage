@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 
 // Lazy load the heavy Boxes component
 const BoxesBackground = dynamic(
@@ -22,31 +23,35 @@ const aboutStats = [
       <svg
         className="w-8 h-8"
         fill="currentColor"
-        viewBox="0 0 20 20"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+        <path d="M12 6v6l4 2" stroke="white" strokeWidth="2" fill="none" />
+        <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" fill="none" />
       </svg>
     ),
     title: "10+ Years Experience",
     description:
       "Legacy of trusted training, evolved into an independent institute",
     color: "var(--red)",
+    gradient: "from-red-500 to-pink-500",
   },
   {
     icon: (
       <svg
         className="w-8 h-8"
         fill="currentColor"
-        viewBox="0 0 20 20"
+        viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
       </svg>
     ),
     title: "99% Placement Record",
     description: "Career opportunities across India and the Middle East",
     color: "var(--green)",
+    gradient: "from-green-500 to-emerald-500",
   },
   {
     icon: (
@@ -67,6 +72,7 @@ const aboutStats = [
     description:
       "Curriculum aligned with Gulf and global industry expectations",
     color: "var(--light-blue)",
+    gradient: "from-blue-500 to-cyan-500",
   },
   {
     icon: (
@@ -87,62 +93,157 @@ const aboutStats = [
     title: "Small Batch Training",
     description: "Personalized attention through limited batch sizes",
     color: "var(--navy-blue)",
+    gradient: "from-indigo-500 to-purple-500",
   },
 ];
 
 export default function AboutSection() {
   return (
-    <section className="py-16 md:py-24 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--navy-blue)] mb-4">
-            About Bridgen
-          </h2>
-          <div className="w-20 h-1 bg-[var(--red)] mx-auto"></div>
-        </div>
+    <section className="relative py-20 md:py-32 overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100"></div>
+      <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-blue-100 to-transparent rounded-full blur-3xl opacity-60"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-red-100 to-transparent rounded-full blur-3xl opacity-60"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="text-2xl font-semibold mb-6 text-[var(--navy-blue)]">
-              Bridgen – Bridge to Next Generation
-            </h3>
-            <p className="text-gray-700 mb-6">
-              Bridgen is a premier training institute in Kerala, empowering the
-              next generation of interior designers, CAD experts, and
-              visualization professionals. Founded in 2015, we began our journey
-              as DreamZone Calicut, where we built a legacy of excellence over
-              10 years as a franchise.
-            </p>
-            <p className="text-gray-700 mb-6">
-              Today, we have evolved into Bridgen, an independent brand
-              dedicated to delivering international-standard training that
-              prepares students for global careers. Over the past decade, we've
-              earned a strong reputation for high-quality, job-oriented
-              education and have proudly achieved a 99% placement record — both
-              in India and across the Middle East.
-            </p>
-
-            <div className="grid grid-cols-2 gap-6 mt-8">
-              {aboutStats.map((stat, index) => (
-                <div
-                  key={stat.title}
-                  className="bg-white p-6 rounded-lg shadow-sm"
-                >
-                  <div className="mb-3" style={{ color: stat.color }}>
-                    {stat.icon}
-                  </div>
-                  <h4 className="text-lg font-semibold mb-2 text-gray-800">
-                    {stat.title}
-                  </h4>
-                  <p className="text-gray-600 text-sm">{stat.description}</p>
-                </div>
-              ))}
-            </div>
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Header Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
+        >
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] text-white px-6 py-2 rounded-full text-sm font-medium mb-6">
+            <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+            About Our Institute
           </div>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-[var(--navy-blue)] via-[var(--light-blue)] to-[var(--red)] bg-clip-text text-transparent">
+              About Bridgen
+            </span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--light-blue)] mx-auto rounded-full"></div>
+        </motion.div>
 
-          <div className="relative overflow-hidden">
-            <div className="aspect-[4/3] relative">
-              <div className="h-full relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Content Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div className="relative">
+              <div className="absolute -top-4 -left-4 w-8 h-8 bg-gradient-to-br from-[var(--red)] to-[var(--light-blue)] rounded-lg opacity-20"></div>
+              <h3 className="text-3xl md:text-4xl font-bold mb-6 text-[var(--navy-blue)] leading-tight">
+                Bridgen –
+                <span className="block bg-gradient-to-r from-[var(--red)] to-[var(--light-blue)] bg-clip-text text-transparent">
+                  Bridge to Next Generation
+                </span>
+              </h3>
+            </div>
+
+            <div className="space-y-6 text-lg leading-relaxed">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="text-gray-700 bg-white/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm"
+              >
+                Bridgen is a premier training institute in Kerala, empowering
+                the next generation of interior designers, CAD experts, and
+                visualization professionals. Founded in 2015, we began our
+                journey as DreamZone Calicut, where we built a legacy of
+                excellence over 10 years as a franchise.
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="text-gray-700 bg-white/50 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-sm"
+              >
+                Today, we have evolved into Bridgen, an independent brand
+                dedicated to delivering international-standard training that
+                prepares students for global careers. Over the past decade,
+                we've earned a strong reputation for high-quality, job-oriented
+                education and have proudly achieved a 99% placement record —
+                both in India and across the Middle East.
+              </motion.p>
+            </div>
+
+            {/* Stats Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12"
+            >
+              {aboutStats.map((stat, index) => (
+                <motion.div
+                  key={stat.title}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{
+                    scale: 1.05,
+                    transition: { duration: 0.2 },
+                  }}
+                  className="group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                >
+                  {/* Gradient Background */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+                  ></div>
+
+                  {/* Icon */}
+                  <div className="relative z-10 mb-4">
+                    <div
+                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center text-white shadow-lg group-hover:shadow-xl transition-all duration-300`}
+                    >
+                      {stat.icon}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <h4 className="text-lg font-bold mb-2 text-gray-800 group-hover:text-[var(--navy-blue)] transition-colors duration-300">
+                      {stat.title}
+                    </h4>
+                    <p className="text-gray-600 text-sm leading-relaxed">
+                      {stat.description}
+                    </p>
+                  </div>
+
+                  {/* Hover Effect */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--light-blue)] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Visual Section */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            {/* Main Container */}
+            <div className="relative group">
+              {/* Background Glow */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-[var(--red)] via-[var(--light-blue)] to-[var(--navy-blue)] rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+
+              {/* Main Content Box */}
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl">
+                {/* Animated Background */}
                 <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
                 {/* Lazy loaded boxes background */}
@@ -154,16 +255,38 @@ export default function AboutSection() {
                   <BoxesBackground />
                 </Suspense>
 
-                <h1 className="md:text-4xl text-xl text-white relative z-20 font-bold">
-                  BRIDGEN
-                </h1>
-                <p className="text-center mt-2 text-neutral-300 relative z-20">
-                  Bridge to Next Generation
-                </p>
+                {/* Content Overlay */}
+                <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center p-8">
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    viewport={{ once: true }}
+                    className="space-y-4"
+                  >
+                    <h1 className="text-4xl md:text-6xl font-bold text-white tracking-wider">
+                      <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                        BRIDGEN
+                      </span>
+                    </h1>
+                    <div className="w-16 h-0.5 bg-gradient-to-r from-[var(--red)] to-[var(--light-blue)] mx-auto rounded-full"></div>
+                    <p className="text-lg text-neutral-300 font-medium tracking-wide">
+                      Bridge to Next Generation
+                    </p>
+                  </motion.div>
+                </div>
+
+                {/* Floating Elements */}
+                <div className="absolute top-4 right-4 w-3 h-3 bg-[var(--red)] rounded-full animate-pulse"></div>
+                <div className="absolute bottom-4 left-4 w-2 h-2 bg-[var(--light-blue)] rounded-full animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-4 w-1 h-1 bg-white rounded-full animate-pulse delay-500"></div>
               </div>
             </div>
-            <div className="absolute top-8 -left-8 w-full h-full border-8 border-[var(--navy-blue)] rounded-lg -z-10"></div>
-          </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute -top-6 -right-6 w-24 h-24 border-4 border-[var(--navy-blue)] rounded-2xl opacity-20 -z-10"></div>
+            <div className="absolute -bottom-6 -left-6 w-16 h-16 border-4 border-[var(--red)] rounded-full opacity-20 -z-10"></div>
+          </motion.div>
         </div>
       </div>
     </section>
