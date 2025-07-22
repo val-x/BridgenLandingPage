@@ -236,56 +236,159 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="relative"
           >
-            {/* Main Container */}
-            <div className="relative group">
-              {/* Background Glow */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-[var(--red)] via-[var(--light-blue)] to-[var(--navy-blue)] rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-
-              {/* Main Content Box */}
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 shadow-2xl">
-                {/* Animated Background */}
-                <div className="absolute inset-0 w-full h-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
-
-                {/* Lazy loaded boxes background */}
-                <Suspense
-                  fallback={
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-800 to-slate-900" />
-                  }
-                >
-                  <BoxesBackground />
-                </Suspense>
-
-                {/* Content Overlay */}
-                <div className="absolute inset-0 z-30 flex flex-col items-center justify-center text-center p-8">
-                  <motion.div
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                    viewport={{ once: true }}
-                    className="space-y-4"
-                  >
-                    <h1 className="text-4xl md:text-6xl font-bold text-white tracking-wider">
-                      <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                        BRIDGEN
-                      </span>
-                    </h1>
-                    <div className="w-16 h-0.5 bg-gradient-to-r from-[var(--red)] to-[var(--light-blue)] mx-auto rounded-full"></div>
-                    <p className="text-lg text-neutral-300 font-medium tracking-wide">
-                      Bridge to Next Generation
-                    </p>
-                  </motion.div>
-                </div>
-
-                {/* Floating Elements */}
-                <div className="absolute top-4 right-4 w-3 h-3 bg-[var(--red)] rounded-full animate-pulse"></div>
-                <div className="absolute bottom-4 left-4 w-2 h-2 bg-[var(--light-blue)] rounded-full animate-pulse delay-1000"></div>
-                <div className="absolute top-1/2 left-4 w-1 h-1 bg-white rounded-full animate-pulse delay-500"></div>
+            {/* Main Logo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="relative mb-8"
+            >
+              <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto">
+                <Image
+                  src="/images/bridgen_logo_highres.png"
+                  alt="Bridgen Logo"
+                  fill
+                  className="object-contain drop-shadow-2xl rounded-full"
+                  priority
+                />
+                {/* Glow effect */}
+                {/* <div className="absolute inset-0 bg-gradient-to-br from-[var(--light-blue)] to-[var(--red)] rounded-full blur-3xl opacity-20 animate-pulse"></div> */}
               </div>
-            </div>
+            </motion.div>
+
+            {/* Portfolio Images Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-sm sm:max-w-md mx-auto"
+            >
+              {/* Student Portfolio Images */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                className="relative group overflow-hidden rounded-2xl shadow-lg"
+              >
+                <div className="relative w-full h-32 sm:h-40 md:h-48">
+                  <Image
+                    src="/images/portfolio/aiswarya/bedroom.jpg"
+                    alt="Student Portfolio - Bedroom Design"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-white text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Bedroom Design
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                className="relative group overflow-hidden rounded-2xl shadow-lg"
+              >
+                <div className="relative w-full h-32 sm:h-40 md:h-48">
+                  <Image
+                    src="/images/portfolio/sreeLakshmi/living-hall.jpg"
+                    alt="Student Portfolio - Living Hall Design"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-white text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Living Hall
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                className="relative group overflow-hidden rounded-2xl shadow-lg"
+              >
+                <div className="relative w-full h-32 sm:h-40 md:h-48">
+                  <Image
+                    src="/images/portfolio/aswathy2025/coffe-shope-223.jpg"
+                    alt="Student Portfolio - Coffee Shop Design"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-white text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Coffee Shop
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05 }}
+                className="relative group overflow-hidden rounded-2xl shadow-lg"
+              >
+                <div className="relative w-full h-32 sm:h-40 md:h-48">
+                  <Image
+                    src="/images/portfolio/muhammadShamil/bedroom-camara-1.jpg"
+                    alt="Student Portfolio - Bedroom Interior"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 text-white text-xs sm:text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    Bedroom Interior
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
 
             {/* Decorative Elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 border-4 border-[var(--navy-blue)] rounded-2xl opacity-20 -z-10"></div>
-            <div className="absolute -bottom-6 -left-6 w-16 h-16 border-4 border-[var(--red)] rounded-full opacity-20 -z-10"></div>
+            <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 w-8 sm:w-12 md:w-16 h-8 sm:h-12 md:h-16 bg-gradient-to-br from-[var(--red)] to-[var(--light-blue)] rounded-full opacity-20 blur-xl"></div>
+            <div className="absolute -bottom-2 sm:-bottom-4 -left-2 sm:-left-4 w-10 sm:w-16 md:w-20 h-10 sm:h-16 md:h-20 bg-gradient-to-br from-[var(--light-blue)] to-[var(--navy-blue)] rounded-full opacity-20 blur-xl"></div>
+
+            {/* Floating Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              viewport={{ once: true }}
+              className="absolute -top-4 sm:-top-8 -left-4 sm:-left-8 bg-white/90 backdrop-blur-sm p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border border-gray-100"
+            >
+              <div className="text-center">
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--navy-blue)]">
+                  500+
+                </div>
+                <div className="text-xs text-gray-600">Students Trained</div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              viewport={{ once: true }}
+              className="absolute -bottom-4 sm:-bottom-8 -right-4 sm:-right-8 bg-white/90 backdrop-blur-sm p-2 sm:p-4 rounded-xl sm:rounded-2xl shadow-lg border border-gray-100"
+            >
+              <div className="text-center">
+                <div className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--red)]">
+                  99%
+                </div>
+                <div className="text-xs text-gray-600">Placement Rate</div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
