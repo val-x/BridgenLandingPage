@@ -428,14 +428,17 @@ I'm excited to start my success story with Bridgen Training!`;
   }
 
   return (
-    <section className="py-16 md:py-24 font-sans" id="contact">
+    <section
+      className="py-16 md:py-24 font-sans bg-gradient-to-br from-gray-50 via-white to-gray-100"
+      id="contact"
+    >
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4 font-sans">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4 font-sans">
             Get In Touch
           </h2>
-          <div className="w-20 h-1 bg-red-500 mx-auto mb-6"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600 font-sans">
             Ready to transform your creative passion into a global profession?
             Contact us today to learn more about our Gulf-ready design programs.
@@ -445,8 +448,8 @@ I'm excited to start my success story with Bridgen Training!`;
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div>
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h3 className="text-2xl font-semibold text-blue-800 mb-6 font-sans">
+            <div className="bg-white rounded-lg shadow-lg p-8 border border-[var(--navy-blue)]/10">
+              <h3 className="text-2xl font-semibold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-6 font-sans">
                 ✉️ Send Us a Message
               </h3>
 
@@ -511,7 +514,7 @@ I'm excited to start my success story with Bridgen Training!`;
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-blue-800 hover:bg-blue-900 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors font-sans"
+                    className="w-full bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] hover:from-[var(--navy-blue)]/90 hover:to-[var(--light-blue)]/90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 font-sans"
                   >
                     {isSubmitting
                       ? "Sending..."
@@ -527,7 +530,7 @@ I'm excited to start my success story with Bridgen Training!`;
             <div className="mt-8 flex flex-col md:flex-row gap-4">
               <a
                 href={`tel:${COMPANY_INFO.PHONE}`}
-                className="flex-1 bg-blue-400 hover:bg-blue-500 text-white rounded-lg p-4 flex items-center justify-center gap-3 transition-colors"
+                className="flex-1 bg-gradient-to-r from-[var(--green)] to-[var(--red)] hover:from-[var(--green)]/90 hover:to-[var(--red)]/90 text-white rounded-lg p-4 flex items-center justify-center gap-3 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
                 aria-label={`Call us at ${COMPANY_INFO.PHONE}`}
               >
                 <svg
@@ -547,7 +550,7 @@ I'm excited to start my success story with Bridgen Training!`;
           {/* Contact Information and Map */}
           <div className="space-y-8">
             {/* Google Maps */}
-            <div className="bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-[var(--green)]/10">
               <div className="h-[400px] bg-gray-200">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3912.911978226204!2d75.78649431475854!3d11.266374391999001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba65f1b65f35c95%3A0xa3c70fe638cae83d!2sBaby%20Memorial%20Hospital!5e0!3m2!1sen!2sin!4v1645689751241!5m2!1sen!2sin"
@@ -563,15 +566,15 @@ I'm excited to start my success story with Bridgen Training!`;
             </div>
 
             {/* Contact Information */}
-            <div className="bg-white rounded-lg shadow-md p-8">
-              <h3 className="text-2xl font-semibold text-blue-800 mb-6">
+            <div className="bg-white rounded-lg shadow-lg p-8 border border-[var(--red)]/10">
+              <h3 className="text-2xl font-semibold bg-gradient-to-r from-[var(--red)] to-[var(--green)] bg-clip-text text-transparent mb-6">
                 📞 Contact Information
               </h3>
 
               <div className="space-y-4">
                 {/* Address */}
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-blue-800 text-white p-3 rounded-lg mr-4">
+                  <div className="flex-shrink-0 bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] text-white p-3 rounded-lg mr-4">
                     <svg
                       className="w-6 h-6"
                       fill="currentColor"
@@ -587,7 +590,7 @@ I'm excited to start my success story with Bridgen Training!`;
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-blue-800">
+                    <h4 className="text-lg font-medium bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent">
                       Visit Us
                     </h4>
                     <p className="text-gray-600">
@@ -605,7 +608,7 @@ I'm excited to start my success story with Bridgen Training!`;
 
                 {/* Phone */}
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-red-500 text-white p-3 rounded-lg mr-4">
+                  <div className="flex-shrink-0 bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] text-white p-3 rounded-lg mr-4">
                     <svg
                       className="w-6 h-6"
                       fill="currentColor"
@@ -617,7 +620,7 @@ I'm excited to start my success story with Bridgen Training!`;
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-blue-800">
+                    <h4 className="text-lg font-medium bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] bg-clip-text text-transparent">
                       Call Us
                     </h4>
                     <p className="text-gray-600">{COMPANY_INFO.PHONE}</p>
@@ -626,7 +629,7 @@ I'm excited to start my success story with Bridgen Training!`;
 
                 {/* Email */}
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-green-500 text-white p-3 rounded-lg mr-4">
+                  <div className="flex-shrink-0 bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] text-white p-3 rounded-lg mr-4">
                     <svg
                       className="w-6 h-6"
                       fill="currentColor"
@@ -639,7 +642,7 @@ I'm excited to start my success story with Bridgen Training!`;
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-blue-800">
+                    <h4 className="text-lg font-medium bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] bg-clip-text text-transparent">
                       Email Us
                     </h4>
                     <p className="text-gray-600">{COMPANY_INFO.EMAIL}</p>
@@ -648,7 +651,7 @@ I'm excited to start my success story with Bridgen Training!`;
 
                 {/* Working Hours */}
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 bg-blue-400 text-white p-3 rounded-lg mr-4">
+                  <div className="flex-shrink-0 bg-gradient-to-r from-[var(--light-blue)] to-[var(--green)] text-white p-3 rounded-lg mr-4">
                     <svg
                       className="w-6 h-6"
                       fill="currentColor"
@@ -664,7 +667,7 @@ I'm excited to start my success story with Bridgen Training!`;
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-medium text-blue-800">
+                    <h4 className="text-lg font-medium bg-gradient-to-r from-[var(--light-blue)] to-[var(--green)] bg-clip-text text-transparent">
                       Working Hours
                     </h4>
                     <p className="text-gray-600">
@@ -678,20 +681,20 @@ I'm excited to start my success story with Bridgen Training!`;
               </div>
 
               {/* Call to Action */}
-              <div className="mt-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                <h4 className="text-xl font-medium text-blue-800 mb-2">
+              <div className="mt-8 p-4 bg-gradient-to-br from-[var(--navy-blue)]/5 to-[var(--green)]/5 rounded-lg border border-[var(--navy-blue)]/20">
+                <h4 className="text-xl font-medium bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-2">
                   Need design support?
                 </h4>
                 <p className="text-gray-700 mb-2">
                   Let's work together on your next project — from blueprint to
                   build.
                 </p>
-                <div className="flex flex-col sm:flex-row items-start sm:items-center text-blue-800">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center text-[var(--navy-blue)]">
                   <div className="flex items-center mb-2 sm:mb-0">
                     <span className="mr-2">📞</span>
                     <a
                       href={`tel:${COMPANY_INFO.WHATSAPP_NUMBER}`}
-                      className="hover:text-green-500 transition-colors"
+                      className="hover:text-[var(--green)] transition-colors"
                     >
                       {COMPANY_INFO.WHATSAPP_NUMBER}
                     </a>
@@ -701,7 +704,7 @@ I'm excited to start my success story with Bridgen Training!`;
                     <span className="mr-2">📩</span>
                     <a
                       href={`mailto:${COMPANY_INFO.EMAIL}`}
-                      className="hover:text-green-500 transition-colors break-all"
+                      className="hover:text-[var(--green)] transition-colors break-all"
                     >
                       {COMPANY_INFO.EMAIL}
                     </a>

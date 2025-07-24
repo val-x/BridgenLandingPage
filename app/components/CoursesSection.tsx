@@ -101,7 +101,7 @@ const courses = [
       "Creating Mood Boards",
       "Presentation Layouts",
       "Design Mockups",
-      "Render Adjustments",
+      "Portfolio Enhancement",
     ],
     audience:
       "Essential for interior designers, architects, and professionals who need to create professional presentations.",
@@ -112,15 +112,15 @@ const courses = [
     duration: "3 Months",
     icon: <Building className="w-12 h-12" />,
     image:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=250&fit=crop&crop=center&auto=format&q=80",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=250&fit=crop&crop=center&auto=format&q=80",
     description:
-      "Learn the fundamentals of Building Information Modeling (BIM) with Autodesk Revit, creating and managing building models for architectural projects.",
+      "Learn Building Information Modeling (BIM) with Autodesk Revit. Create comprehensive building models and generate construction documentation.",
     topics: [
       "Introduction to BIM and Revit",
       "Creating Architectural Models",
       "Family Creation and Customization",
-      "Project Collaboration and Documentation",
-      "Advanced BIM Techniques",
+      "Project Collaboration",
+      "Construction Documentation",
     ],
     audience:
       "Ideal for architectural and engineering professionals looking to integrate BIM in their practice.",
@@ -129,87 +129,100 @@ const courses = [
 
 export default function CoursesSection() {
   return (
-    <section className="py-16 md:py-24" id="courses">
+    <section className="py-16 md:py-24 bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--navy-blue)] mb-4">
-            Our Courses
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4">
+            Our Professional Courses
           </h2>
-          <div className="w-20 h-1 bg-[var(--green)] mx-auto mb-6"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600">
-            Comprehensive training programs designed to build your career in
-            interior design and architectural visualization with 99% placement
-            assurance.
+            Comprehensive training programs designed to transform your creative
+            passion into professional expertise. Choose from our range of
+            industry-focused courses.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course) => (
+          {courses.map((course, index) => (
             <div
               key={course.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              className="bg-white rounded-lg shadow-lg overflow-hidden border border-[var(--navy-blue)]/10 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
             >
               {/* Course Image */}
               <div className="relative h-48 overflow-hidden">
                 <img
                   src={course.image}
                   alt={course.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-                  <div className="text-white text-center">{course.icon}</div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute top-4 left-4">
+                  <div className="bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] text-white p-2 rounded-lg">
+                    {course.icon}
+                  </div>
+                </div>
+                <div className="absolute top-4 right-4">
+                  <span className="bg-gradient-to-r from-[var(--red)] to-[var(--green)] text-white text-sm font-medium px-3 py-1 rounded-full">
+                    {course.duration}
+                  </span>
                 </div>
               </div>
 
-              {/* Course Header */}
-              <div className="bg-[var(--navy-blue)] text-white p-4">
-                <div className="text-center">
-                  <h3 className="text-xl font-bold">{course.title}</h3>
-                  <p className="text-sm text-gray-300 mt-1">
-                    {course.duration}
+              {/* Course Content */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-3">
+                  {course.title}
+                </h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">
+                  {course.description}
+                </p>
+
+                {/* Topics */}
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-[var(--navy-blue)] mb-2">
+                    What You'll Learn:
+                  </h4>
+                  <ul className="space-y-1">
+                    {course.topics.slice(0, 3).map((topic, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-center text-sm text-gray-600"
+                      >
+                        <CheckCircle className="w-4 h-4 text-[var(--green)] mr-2 flex-shrink-0" />
+                        {topic}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Audience */}
+                <div className="mb-6">
+                  <p className="text-sm text-gray-500 italic">
+                    {course.audience}
                   </p>
                 </div>
-              </div>
 
-              <div className="p-6">
-                <p className="text-gray-700 mb-4">{course.description}</p>
-
-                <h4 className="font-semibold text-[var(--navy-blue)] mb-2">
-                  Key Topics:
-                </h4>
-                <ul className="text-sm text-gray-600 mb-4 space-y-1">
-                  {course.topics.map((topic, index) => (
-                    <li key={index} className="flex items-start">
-                      <CheckCircle className="w-4 h-4 text-[var(--green)] mr-2 mt-0.5" />
-                      {topic}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="bg-gray-50 p-4 rounded-md text-sm text-gray-700">
-                  <strong>Ideal for:</strong> {course.audience}
-                </div>
-
-                <div className="mt-6">
-                  <Link
-                    href={`/courses#${course.id}`}
-                    className="inline-flex items-center justify-center w-full bg-[var(--navy-blue)] hover:bg-[#00264d] text-white font-medium py-2 px-4 rounded transition-colors"
-                  >
-                    Learn More
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Link>
-                </div>
+                {/* CTA Button */}
+                <Link
+                  href="/courses"
+                  className="inline-flex items-center justify-center w-full bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] hover:from-[var(--navy-blue)]/90 hover:to-[var(--light-blue)]/90 text-white font-medium py-3 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-105"
+                >
+                  Learn More
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
               </div>
             </div>
           ))}
         </div>
 
+        {/* View All Courses CTA */}
         <div className="text-center mt-12">
           <Link
             href="/courses"
-            className="inline-flex items-center justify-center bg-[var(--red)] hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition-colors"
+            className="inline-flex items-center justify-center bg-gradient-to-r from-[var(--green)] to-[var(--red)] hover:from-[var(--green)]/90 hover:to-[var(--red)]/90 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
-            View All Course Details
+            View All Courses
             <ArrowRight className="w-5 h-5 ml-2" />
           </Link>
         </div>

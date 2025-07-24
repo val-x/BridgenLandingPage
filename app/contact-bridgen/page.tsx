@@ -51,7 +51,7 @@ export default function ContactPage() {
       <Header />
       <main>
         {/* Hero Section with Parallax Effect */}
-        <section className="relative py-20 bg-gradient-to-r from-[var(--navy-blue)] to-[#1a365d] text-white overflow-hidden">
+        <section className="relative py-20 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--navy-blue)] text-white overflow-hidden">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0 bg-[url('/images/blueprint-pattern.svg')] bg-center"></div>
           </div>
@@ -60,12 +60,12 @@ export default function ContactPage() {
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
                 Let's Start a
-                <span className="text-[var(--green)] block md:inline">
+                <span className="bg-gradient-to-r from-[var(--green)] to-[var(--red)] bg-clip-text text-transparent block md:inline">
                   {" "}
                   Conversation
                 </span>
               </h1>
-              <div className="w-24 h-1 bg-[var(--green)] mx-auto mb-8"></div>
+              <div className="w-24 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-8"></div>
               <p className="text-xl text-gray-300 mb-10 max-w-3xl mx-auto">
                 Have questions about our courses? Want to visit our campus?
                 We're here to guide you on your creative journey.
@@ -74,7 +74,7 @@ export default function ContactPage() {
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <a
                   href="#contact-form"
-                  className="inline-flex items-center justify-center bg-[var(--red)] hover:bg-red-600 text-white font-medium py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg"
+                  className="inline-flex items-center justify-center bg-gradient-to-r from-[var(--red)] to-[var(--green)] hover:from-[var(--red)]/90 hover:to-[var(--green)]/90 text-white font-medium py-4 px-8 rounded-lg transition-all transform hover:scale-105 shadow-lg"
                 >
                   Contact Us Now
                   <svg
@@ -133,15 +133,15 @@ export default function ContactPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-4">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4">
                   Why Reach Out To Us?
                 </h2>
-                <div className="w-20 h-1 bg-[var(--green)] mx-auto mb-6"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-6"></div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="bg-gray-50 rounded-xl p-8 text-center shadow-md transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
-                  <div className="bg-[var(--navy-blue)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="bg-gradient-to-br from-[var(--navy-blue)]/5 to-[var(--green)]/5 rounded-xl p-8 text-center shadow-md transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg border border-[var(--navy-blue)]/10">
+                  <div className="bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg
                       className="w-8 h-8"
                       fill="none"
@@ -157,7 +157,7 @@ export default function ContactPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                  <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-4">
                     Course Guidance
                   </h3>
                   <p className="text-gray-600">
@@ -167,8 +167,8 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-8 text-center shadow-md transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
-                  <div className="bg-[var(--navy-blue)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="bg-gradient-to-br from-[var(--green)]/5 to-[var(--light-blue)]/5 rounded-xl p-8 text-center shadow-md transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg border border-[var(--green)]/10">
+                  <div className="bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg
                       className="w-8 h-8"
                       fill="none"
@@ -184,7 +184,7 @@ export default function ContactPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                  <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] bg-clip-text text-transparent mb-4">
                     Schedule a Visit
                   </h3>
                   <p className="text-gray-600">
@@ -194,8 +194,8 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-8 text-center shadow-md transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg">
-                  <div className="bg-[var(--navy-blue)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="bg-gradient-to-br from-[var(--red)]/5 to-[var(--navy-blue)]/5 rounded-xl p-8 text-center shadow-md transform transition-all duration-300 hover:-translate-y-2 hover:shadow-lg border border-[var(--red)]/10">
+                  <div className="bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg
                       className="w-8 h-8"
                       fill="none"
@@ -211,7 +211,7 @@ export default function ContactPage() {
                       />
                     </svg>
                   </div>
-                  <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                  <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] bg-clip-text text-transparent mb-4">
                     Career Support
                   </h3>
                   <p className="text-gray-600">
@@ -235,10 +235,10 @@ export default function ContactPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-4">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4">
                   Frequently Asked Questions
                 </h2>
-                <div className="w-20 h-1 bg-[var(--green)] mx-auto mb-6"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-6"></div>
                 <p className="text-lg text-gray-700">
                   Find answers to common questions about our courses,
                   admissions, and more.
@@ -249,13 +249,13 @@ export default function ContactPage() {
                 {faqs.map((faq, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300"
+                    className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 border border-[var(--navy-blue)]/10"
                   >
                     <button
-                      className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
+                      className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-gradient-to-r from-[var(--navy-blue)]/5 to-[var(--green)]/5 transition-colors"
                       onClick={() => toggleFaq(index)}
                     >
-                      <h3 className="text-xl font-semibold text-[var(--navy-blue)]">
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent">
                         {faq.question}
                       </h3>
                       <svg
@@ -290,7 +290,7 @@ export default function ContactPage() {
         </section>
 
         {/* Final CTA Section */}
-        <section className="py-16 bg-gradient-to-r from-[var(--navy-blue)] to-[#1a365d)] text-white">
+        <section className="py-16 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-6">
               Ready to Transform Your Creative Career?
@@ -302,7 +302,7 @@ export default function ContactPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link
                 href="/courses"
-                className="inline-flex items-center justify-center bg-[var(--green)] hover:bg-green-600 text-white font-medium py-3 px-8 rounded-lg transition-all"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] hover:from-[var(--green)]/90 hover:to-[var(--light-blue)]/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Explore Our Courses
                 <svg
@@ -322,7 +322,7 @@ export default function ContactPage() {
               </Link>
               <Link
                 href="/student-placement-success"
-                className="inline-flex items-center justify-center bg-transparent border-2 border-white hover:border-[var(--green)] text-white font-medium py-3 px-8 rounded-lg transition-all"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] hover:from-[var(--red)]/90 hover:to-[var(--navy-blue)]/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 border-2 border-white/20"
               >
                 Success Stories
                 <svg

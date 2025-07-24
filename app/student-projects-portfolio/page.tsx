@@ -99,13 +99,13 @@ export default function PortfolioPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main>
-        <section className="py-12 bg-[var(--navy-blue)] text-white">
+        <section className="py-12 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--navy-blue)] text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 Student Projects Portfolio
               </h1>
-              <div className="w-20 h-1 bg-[var(--green)] mx-auto mb-6"></div>
+              <div className="w-20 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-6"></div>
               <p className="text-lg text-gray-300">
                 Showcasing the creative talent and technical skills of our
                 students at {studentData.institute.name},{" "}
@@ -115,7 +115,7 @@ export default function PortfolioPage() {
                 {studentData.institute.credentials.map((credential, index) => (
                   <span
                     key={index}
-                    className="bg-[var(--green)] text-white text-sm px-3 py-1 rounded-full"
+                    className="bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] text-white text-sm px-3 py-1 rounded-full"
                   >
                     {credential}
                   </span>
@@ -139,25 +139,25 @@ export default function PortfolioPage() {
               </p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[var(--navy-blue)]">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent">
                     {studentData.summary.total_reviews}+
                   </div>
                   <div className="text-gray-600">Student Reviews</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[var(--navy-blue)]">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-[var(--green)] to-[var(--red)] bg-clip-text text-transparent">
                     {Object.keys(studentData.portfolios).length}
                   </div>
                   <div className="text-gray-600">Portfolio Projects</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[var(--navy-blue)]">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] bg-clip-text text-transparent">
                     {studentData.summary.software_training.length}+
                   </div>
                   <div className="text-gray-600">Software Training</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[var(--navy-blue)]">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-[var(--light-blue)] to-[var(--green)] bg-clip-text text-transparent">
                     100%
                   </div>
                   <div className="text-gray-600">Success Rate</div>
@@ -171,14 +171,14 @@ export default function PortfolioPage() {
                   key={category.id}
                   className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
                 >
-                  <div className="bg-[var(--navy-blue)] text-white p-5">
+                  <div className="bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] text-white p-5">
                     <h3 className="text-xl font-bold">{category.title}</h3>
                   </div>
                   <div className="p-5">
                     <p className="text-gray-700 mb-4">{category.description}</p>
                     <a
                       href={`#${category.id}`}
-                      className="inline-flex items-center text-[var(--navy-blue)] font-medium"
+                      className="inline-flex items-center text-[var(--navy-blue)] font-medium hover:text-[var(--red)] transition-colors"
                     >
                       View Projects
                       <svg
@@ -203,8 +203,8 @@ export default function PortfolioPage() {
 
             {portfolioCategories.map((category) => (
               <div key={category.id} id={category.id} className="mb-16">
-                <div className="border-l-4 border-[var(--navy-blue)] pl-4 mb-8">
-                  <h2 className="text-2xl font-bold text-[var(--navy-blue)]">
+                <div className="border-l-4 border-gradient-to-b from-[var(--navy-blue)] to-[var(--green)] pl-4 mb-8">
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent">
                     {category.title}
                   </h2>
                 </div>
@@ -238,7 +238,7 @@ export default function PortfolioPage() {
                             </div>
                           </div>
                           <div className="p-6">
-                            <h3 className="text-xl font-bold text-[var(--navy-blue)] mb-2">
+                            <h3 className="text-xl font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-2">
                               {project.title}
                             </h3>
                             <div className="flex flex-wrap items-center text-sm text-gray-600 mb-4">
@@ -275,7 +275,7 @@ export default function PortfolioPage() {
                                       (highlight: string, index: number) => (
                                         <span
                                           key={index}
-                                          className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded"
+                                          className="bg-gradient-to-r from-[var(--green)]/20 to-[var(--light-blue)]/20 text-[var(--green)] text-xs font-medium px-2 py-1 rounded border border-[var(--green)]/30"
                                         >
                                           {highlight}
                                         </span>
@@ -289,7 +289,7 @@ export default function PortfolioPage() {
                                 (tag: string, index: number) => (
                                   <span
                                     key={index}
-                                    className="bg-gray-100 text-[var(--navy-blue)] text-xs font-medium px-3 py-1 rounded-full"
+                                    className="bg-gradient-to-r from-[var(--navy-blue)]/10 to-[var(--light-blue)]/10 text-[var(--navy-blue)] text-xs font-medium px-3 py-1 rounded-full border border-[var(--navy-blue)]/20"
                                   >
                                     {tag}
                                   </span>
@@ -359,7 +359,7 @@ export default function PortfolioPage() {
                     {/* Header with Profile Section - Ready for future images */}
                     <div className="p-6 pb-4">
                       <div className="flex items-center gap-4 mb-4">
-                        <div className="w-16 h-16 rounded-full overflow-hidden bg-[var(--navy-blue)] flex items-center justify-center text-white text-lg font-bold relative flex-shrink-0">
+                        <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] flex items-center justify-center text-white text-lg font-bold relative flex-shrink-0">
                           {review.profileImage ? (
                             <Image
                               src={review.profileImage}
@@ -375,7 +375,7 @@ export default function PortfolioPage() {
                           )}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-bold text-[var(--navy-blue)]">
+                          <h3 className="text-lg font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent">
                             {review.name || "Anonymous Student"}
                           </h3>
                           <p className="text-sm text-gray-600">
@@ -405,7 +405,7 @@ export default function PortfolioPage() {
                               {review.skills_learned.map((skill, index) => (
                                 <span
                                   key={index}
-                                  className="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded"
+                                  className="bg-gradient-to-r from-[var(--light-blue)]/20 to-[var(--navy-blue)]/20 text-[var(--navy-blue)] text-xs px-2 py-1 rounded border border-[var(--light-blue)]/30"
                                 >
                                   {skill}
                                 </span>
@@ -418,7 +418,7 @@ export default function PortfolioPage() {
                           {review.highlights.map((highlight, index) => (
                             <span
                               key={index}
-                              className="bg-[var(--green)] text-white text-xs px-2 py-1 rounded-full"
+                              className="bg-gradient-to-r from-[var(--green)] to-[var(--red)] text-white text-xs px-2 py-1 rounded-full"
                             >
                               {highlight}
                             </span>
@@ -435,11 +435,11 @@ export default function PortfolioPage() {
 
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto bg-gradient-to-r from-[var(--navy-blue)] to-blue-800 rounded-lg shadow-lg p-8 text-white">
+            <div className="max-w-4xl mx-auto bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] rounded-lg shadow-lg p-8 text-white">
               <h2 className="text-3xl font-bold mb-6 text-center">
                 Student Portfolio Development Program
               </h2>
-              <p className="text-lg mb-8 text-center text-blue-100">
+              <p className="text-lg mb-8 text-center text-gray-200">
                 At {studentData.institute.name}, we place special emphasis on
                 helping students develop professional portfolios that showcase
                 their skills and creativity.
@@ -488,7 +488,7 @@ export default function PortfolioPage() {
                   <h3 className="text-xl font-semibold mb-2">
                     Industry Software Training
                   </h3>
-                  <p className="text-blue-100">
+                  <p className="text-gray-200">
                     Comprehensive training in{" "}
                     {studentData.summary.software_training.join(", ")} and other
                     industry-standard tools.
@@ -506,7 +506,7 @@ export default function PortfolioPage() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Career Support</h3>
-                  <p className="text-blue-100">
+                  <p className="text-gray-200">
                     {studentData.summary.key_features.includes(
                       "Gulf job support"
                     )
@@ -523,7 +523,7 @@ export default function PortfolioPage() {
 
         <section className="py-16">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-4">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4">
               Create Your Own Portfolio
             </h2>
             <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
@@ -533,7 +533,7 @@ export default function PortfolioPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/courses"
-                className="inline-flex items-center justify-center bg-[var(--navy-blue)] hover:bg-blue-900 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] hover:from-[var(--navy-blue)]/90 hover:to-[var(--light-blue)]/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Explore Our Courses
                 <svg
@@ -553,7 +553,7 @@ export default function PortfolioPage() {
               </Link>
               <Link
                 href="/contact-bridgen"
-                className="inline-flex items-center justify-center bg-[var(--red)] hover:bg-red-700 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[var(--green)] to-[var(--red)] hover:from-[var(--green)]/90 hover:to-[var(--red)]/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Contact Us
                 <svg

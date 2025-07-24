@@ -192,9 +192,9 @@ export default function CoursesPage() {
         {/* Hero Section */}
         <section className="relative py-20 md:py-32 overflow-hidden">
           {/* Background Elements */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"></div>
-          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-red-400/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--navy-blue)]"></div>
+          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-[var(--green)]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[var(--red)]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
@@ -203,11 +203,11 @@ export default function CoursesPage() {
                 Professional Training Programs
               </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
-                <span className="bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent">
                   Our Courses
                 </span>
               </h1>
-              <div className="w-32 h-1 bg-gradient-to-r from-green-500 to-blue-400 mx-auto mb-8 rounded-full"></div>
+              <div className="w-32 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-8 rounded-full"></div>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
                 Comprehensive design and technical training courses to boost
                 your career
@@ -223,7 +223,7 @@ export default function CoursesPage() {
               <div key={course.id} className="mb-24">
                 <div className="relative">
                   {/* Background Glow */}
-                  <div className="absolute -inset-8 bg-gradient-to-r from-blue-900/5 via-blue-400/5 to-red-500/5 rounded-3xl blur-2xl"></div>
+                  <div className="absolute -inset-8 bg-gradient-to-r from-[var(--navy-blue)]/5 via-[var(--light-blue)]/5 to-[var(--red)]/5 rounded-3xl blur-2xl"></div>
 
                   {/* Main Card */}
                   <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 overflow-hidden hover:shadow-3xl transition-all duration-500">
@@ -233,7 +233,7 @@ export default function CoursesPage() {
                         {/* Image Section */}
                         <div className="flex-shrink-0">
                           <div className="relative group">
-                            <div className="absolute -inset-4 bg-gradient-to-r from-blue-900 via-blue-400 to-red-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                            <div className="absolute -inset-4 bg-gradient-to-r from-[var(--navy-blue)] via-[var(--light-blue)] to-[var(--red)] rounded-2xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                             <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl">
                               <Image
                                 src={course.image}
@@ -250,13 +250,13 @@ export default function CoursesPage() {
                         <div className="flex-1 space-y-6">
                           <div>
                             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                              <span className="bg-gradient-to-r from-blue-900 to-pink-500 to-red-500 bg-clip-text text-transparent">
+                              <span className="bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent">
                                 {course.title}
                               </span>
                             </h2>
 
                             <div className="flex flex-wrap items-center gap-6 mb-4">
-                              <div className="flex items-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-blue-900 px-4 py-2 rounded-full text-sm font-medium">
+                              <div className="flex items-center gap-2 bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] text-white px-4 py-2 rounded-full text-sm font-medium">
                                 <svg
                                   className="w-4 h-4"
                                   fill="currentColor"
@@ -270,7 +270,7 @@ export default function CoursesPage() {
                                 </svg>
                                 {course.duration}
                               </div>
-                              <div className="flex items-center gap-2 bg-gradient-to-r from-red-500 to-pink-500 text-blue-900 px-4 py-2 rounded-full text-sm font-medium">
+                              <div className="flex items-center gap-2 bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] text-white px-4 py-2 rounded-full text-sm font-medium">
                                 <svg
                                   className="w-4 h-4"
                                   fill="currentColor"
@@ -299,17 +299,17 @@ export default function CoursesPage() {
                       {/* Course Content Grid */}
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div className="space-y-4">
-                          <h3 className="text-2xl font-bold text-blue-900">
+                          <h3 className="text-2xl font-bold text-[var(--navy-blue)]">
                             What You'll Learn
                           </h3>
                           <div className="space-y-3">
                             {course.topics.map((topic, index) => (
                               <div
                                 key={index}
-                                className="flex items-start p-3 bg-gradient-to-r from-green-500/5 to-emerald-500/5 rounded-xl border border-green-500/10"
+                                className="flex items-start p-3 bg-gradient-to-r from-[var(--green)]/5 to-[var(--light-blue)]/5 rounded-xl border border-[var(--green)]/10"
                               >
                                 <svg
-                                  className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-green-500"
+                                  className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-[var(--green)]"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                 >
@@ -326,17 +326,17 @@ export default function CoursesPage() {
                         </div>
 
                         <div className="space-y-4">
-                          <h3 className="text-2xl font-bold text-blue-900">
+                          <h3 className="text-2xl font-bold text-[var(--navy-blue)]">
                             Course Outcomes
                           </h3>
                           <div className="space-y-3">
                             {course.outcomes.map((outcome, index) => (
                               <div
                                 key={index}
-                                className="flex items-start p-3 bg-gradient-to-r from-red-500/5 to-pink-500/5 rounded-xl border border-red-500/10"
+                                className="flex items-start p-3 bg-gradient-to-r from-[var(--red)]/5 to-[var(--navy-blue)]/5 rounded-xl border border-[var(--red)]/10"
                               >
                                 <svg
-                                  className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-red-500"
+                                  className="w-5 h-5 mr-3 mt-1 flex-shrink-0 text-[var(--red)]"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                 >
@@ -355,10 +355,10 @@ export default function CoursesPage() {
 
                       {/* Career Options Section */}
                       <div className="space-y-4">
-                        <h3 className="text-2xl font-bold text-blue-900">
+                        <h3 className="text-2xl font-bold text-[var(--navy-blue)]">
                           Career Opportunities
                         </h3>
-                        <div className="bg-gradient-to-br from-blue-900/5 to-blue-400/5 p-6 rounded-2xl border border-blue-900/10">
+                        <div className="bg-gradient-to-br from-[var(--navy-blue)]/5 to-[var(--light-blue)]/5 p-6 rounded-2xl border border-[var(--navy-blue)]/10">
                           <div className="flex flex-wrap gap-3">
                             {course.careerOptions.map((career, idx) => (
                               <span
@@ -373,27 +373,27 @@ export default function CoursesPage() {
                       </div>
 
                       {/* Who Should Attend */}
-                      <div className="bg-gradient-to-br from-blue-400/5 to-cyan-500/5 p-6 rounded-2xl border border-blue-400/10">
-                        <h3 className="text-xl font-bold text-blue-900 mb-3">
+                      <div className="bg-gradient-to-br from-[var(--light-blue)]/5 to-[var(--green)]/5 p-6 rounded-2xl border border-[var(--light-blue)]/10">
+                        <h3 className="text-xl font-bold text-[var(--navy-blue)] mb-3">
                           Who Should Attend
                         </h3>
                         <p className="text-gray-700">{course.audience}</p>
                       </div>
 
                       {/* CTA Button */}
-                      <div className="text-center pt-8 pb-6 bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl border-2 border-red-200/50 mx-4">
-                        <h3 className="text-2xl font-bold text-blue-900 mb-4">
+                      <div className="text-center pt-8 pb-6 bg-gradient-to-r from-[var(--red)]/10 to-[var(--green)]/10 rounded-2xl border-2 border-[var(--red)]/20 mx-4">
+                        <h3 className="text-2xl font-bold text-[var(--navy-blue)] mb-4">
                           Ready to Get Started?
                         </h3>
                         <Link
                           href="/contact-bridgen#enroll"
-                          className="group inline-flex items-center justify-center bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-bold py-5 px-12 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 text-xl relative z-10 border-4 border-red-500/50 min-w-[200px]"
+                          className="group inline-flex items-center justify-center bg-gradient-to-r from-[var(--red)] to-[var(--green)] hover:from-[var(--red)]/90 hover:to-[var(--green)]/90 text-white font-bold py-5 px-12 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 text-xl relative z-10 border-4 border-[var(--red)]/50 min-w-[200px]"
                         >
-                          <span className="relative z-10 font-extrabold text-blue-900 drop-shadow-lg">
+                          <span className="relative z-10 font-extrabold text-white drop-shadow-lg">
                             Enroll Now
                           </span>
                           <svg
-                            className="w-7 h-7 ml-3 group-hover:translate-x-2 transition-transform duration-300 relative z-10 text-blue-900 drop-shadow-lg"
+                            className="w-7 h-7 ml-3 group-hover:translate-x-2 transition-transform duration-300 relative z-10 text-white drop-shadow-lg"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -406,7 +406,7 @@ export default function CoursesPage() {
                             />
                           </svg>
                           {/* Enhanced glow effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-pink-600 rounded-2xl blur-xl opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
+                          <div className="absolute inset-0 bg-gradient-to-r from-[var(--red)] to-[var(--green)] rounded-2xl blur-xl opacity-70 group-hover:opacity-90 transition-opacity duration-300"></div>
                         </Link>
                         <p className="text-gray-600 mt-4 text-sm">
                           Limited seats available - Enroll today!
@@ -421,10 +421,10 @@ export default function CoursesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--navy-blue)] relative overflow-hidden">
           {/* Background Elements */}
-          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-red-400/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-[var(--green)]/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[var(--red)]/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
 
           <div className="container mx-auto px-4 relative z-10 text-center">
             <div className="max-w-4xl mx-auto">
@@ -437,7 +437,7 @@ export default function CoursesPage() {
               </p>
               <Link
                 href="/contact-bridgen"
-                className="group inline-flex items-center justify-center bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-500/90 hover:to-emerald-500/90 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+                className="group inline-flex items-center justify-center bg-gradient-to-r from-[var(--green)] to-[var(--red)] hover:from-[var(--green)]/90 hover:to-[var(--red)]/90 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Contact Us
                 <svg

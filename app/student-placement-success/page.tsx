@@ -94,33 +94,33 @@ export default function PlacementsPage() {
         {/* Hero Section */}
         <section className="relative py-20 md:py-32 overflow-hidden">
           {/* Background Elements */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"></div>
-          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-green-400/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-red-400/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--navy-blue)]"></div>
+          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-[var(--green)]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[var(--red)]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
 
           {/* Floating Elements */}
-          <div className="absolute top-20 left-10 w-4 h-4 bg-green-400 rounded-full animate-bounce"></div>
+          <div className="absolute top-20 left-10 w-4 h-4 bg-[var(--green)] rounded-full animate-bounce"></div>
           <div
-            className="absolute top-40 right-20 w-3 h-3 bg-red-400 rounded-full animate-bounce"
+            className="absolute top-40 right-20 w-3 h-3 bg-[var(--red)] rounded-full animate-bounce"
             style={{ animationDelay: "0.5s" }}
           ></div>
           <div
-            className="absolute bottom-20 left-20 w-2 h-2 to-pink-500 rounded-full animate-bounce"
+            className="absolute bottom-20 left-20 w-2 h-2 bg-[var(--light-blue)] rounded-full animate-bounce"
             style={{ animationDelay: "1s" }}
           ></div>
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-6 py-2 rounded-full text-sm font-medium mb-6">
-                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                <span className="w-2 h-2 bg-[var(--green)] rounded-full animate-pulse"></span>
                 Student Success Stories
               </div>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white">
-                <span className="bg-gradient-to-r from-white to-pink-500  bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-white via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent">
                   Placement Success
                 </span>
               </h1>
-              <div className="w-32 h-1 bg-gradient-to-r from-green-500 to-blue-400 mx-auto mb-8 rounded-full"></div>
+              <div className="w-32 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-8 rounded-full"></div>
               <p className="text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
                 Our graduates' success is our greatest achievement. Discover how
                 Bridgen transforms passion into profession.
@@ -134,7 +134,7 @@ export default function PlacementsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-blue-900 to-pink-500 to-green-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent">
                   Placement Highlights
                 </span>
               </h2>
@@ -150,15 +150,15 @@ export default function PlacementsPage() {
               {placementStats.map((stat, index) => (
                 <div key={index} className="relative group">
                   {/* Background Glow */}
-                  <div className="absolute -inset-4 bg-gradient-to-r from-green-500/10 via-blue-500/10 to-red-500/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute -inset-4 bg-gradient-to-r from-[var(--green)]/10 via-[var(--light-blue)]/10 to-[var(--red)]/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                   {/* Main Card */}
                   <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8 text-center hover:shadow-2xl transition-all duration-500 transform hover:scale-105">
                     <div className="text-4xl mb-4">{stat.icon}</div>
-                    <div className="text-5xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                    <div className="text-5xl font-bold bg-gradient-to-r from-[var(--green)] to-[var(--navy-blue)] bg-clip-text text-transparent mb-4">
                       {stat.value}
                     </div>
-                    <h3 className="text-xl font-semibold text-blue-900 mb-2">
+                    <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
                       {stat.label}
                     </h3>
                     <p className="text-gray-600">{stat.description}</p>
@@ -170,10 +170,10 @@ export default function PlacementsPage() {
         </section>
 
         {/* Industry Partners Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--navy-blue)] relative overflow-hidden">
           {/* Background Elements */}
-          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-green-400/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-[var(--green)]/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[var(--red)]/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto">
@@ -206,7 +206,7 @@ export default function PlacementsPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center">
-                <span className="bg-gradient-to-r from-blue-900 to-pink-500 to-green-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent">
                   Success Stories
                 </span>
               </h2>
@@ -215,12 +215,12 @@ export default function PlacementsPage() {
                 {successStories.map((story, index) => (
                   <div key={index} className="relative group">
                     {/* Background Glow */}
-                    <div className="absolute -inset-8 bg-gradient-to-r from-green-500/5 via-blue-500/5 to-red-500/5 rounded-3xl blur-2xl"></div>
+                    <div className="absolute -inset-8 bg-gradient-to-r from-[var(--green)]/5 via-[var(--light-blue)]/5 to-[var(--red)]/5 rounded-3xl blur-2xl"></div>
 
                     {/* Main Card */}
                     <div className="relative bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20 overflow-hidden hover:shadow-3xl transition-all duration-500">
                       {/* Header Section */}
-                      <div className="bg-gradient-to-r from-blue-900 to-pink-500 to-green-600 text-white p-8">
+                      <div className="bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] text-white p-8">
                         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                           <div>
                             <h3 className="text-3xl font-bold mb-2">
@@ -250,11 +250,11 @@ export default function PlacementsPage() {
                           </div>
                         </div>
 
-                        <div className="bg-gradient-to-r from-green-50 to-blue-50 p-6 rounded-2xl border border-green-200/50">
+                        <div className="bg-gradient-to-r from-[var(--green)]/10 to-[var(--light-blue)]/10 p-6 rounded-2xl border border-[var(--green)]/20">
                           <div className="flex items-start">
                             <div className="text-2xl mr-4 mt-1">🏆</div>
                             <div>
-                              <p className="text-blue-900 font-semibold text-lg mb-2">
+                              <p className="text-[var(--navy-blue)] font-semibold text-lg mb-2">
                                 Achievement:
                               </p>
                               <p className="text-gray-700">
@@ -273,10 +273,10 @@ export default function PlacementsPage() {
         </section>
 
         {/* Placement Process Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--navy-blue)] relative overflow-hidden">
           {/* Background Elements */}
-          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-green-400/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-0 left-0 w-72 h-72 bg-gradient-to-br from-[var(--green)]/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-[var(--red)]/10 to-transparent rounded-full blur-3xl animate-pulse"></div>
 
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto">
@@ -320,7 +320,7 @@ export default function PlacementsPage() {
                       key={index}
                       className="flex flex-col lg:flex-row items-start group"
                     >
-                      <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold text-2xl mb-6 lg:mb-0 lg:mr-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <div className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-[var(--green)] to-[var(--navy-blue)] text-white font-bold text-2xl mb-6 lg:mb-0 lg:mr-8 shadow-lg group-hover:scale-110 transition-transform duration-300">
                         {item.step}
                       </div>
                       <div className="flex-1">
@@ -347,7 +347,7 @@ export default function PlacementsPage() {
           <div className="container mx-auto px-4 text-center">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                <span className="bg-gradient-to-r from-blue-900 to-pink-500 to-green-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent">
                   Begin Your Success Story
                 </span>
               </h2>
@@ -359,7 +359,7 @@ export default function PlacementsPage() {
               <div className="flex flex-col sm:flex-row justify-center gap-6">
                 <Link
                   href="/courses"
-                  className="group inline-flex items-center justify-center bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+                  className="group inline-flex items-center justify-center bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] hover:from-[var(--navy-blue)]/90 hover:to-[var(--light-blue)]/90 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
                 >
                   Explore Our Courses
                   <svg
@@ -378,7 +378,7 @@ export default function PlacementsPage() {
                 </Link>
                 <Link
                   href="/contact-bridgen"
-                  className="group inline-flex items-center justify-center bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 to-blue-700 font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+                  className="group inline-flex items-center justify-center bg-gradient-to-r from-[var(--green)] to-[var(--red)] hover:from-[var(--green)]/90 hover:to-[var(--red)]/90 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
                 >
                   Contact Us
                   <svg

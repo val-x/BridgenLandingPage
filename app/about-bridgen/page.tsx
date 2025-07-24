@@ -7,13 +7,13 @@ export default function AboutPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main>
-        <section className="py-12 bg-[var(--navy-blue)] text-white">
+        <section className="py-12 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--navy-blue)] text-white">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 🏛️ About Bridgen
               </h1>
-              <div className="w-20 h-1 bg-[var(--green)] mx-auto mb-6"></div>
+              <div className="w-20 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-6"></div>
               <p className="text-lg text-gray-300">Bridge to Next Generation</p>
               <p className="text-lg text-gray-300 mt-4">
                 Bridgen is a premier training institute in Kerala, empowering
@@ -37,11 +37,11 @@ export default function AboutPage() {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
-                <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-6">
+              <div className="bg-white rounded-lg shadow-lg p-8 mb-12 border border-[var(--navy-blue)]/10">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-6">
                   🕰️ Our History
                 </h2>
-                <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-4">
                   From DreamZone Calicut to Bridgen — A Legacy of Excellence
                 </h3>
                 <p className="text-lg text-gray-700 mb-6">
@@ -53,7 +53,7 @@ export default function AboutPage() {
                   CAD drafting, and 3D visualization.
                 </p>
 
-                <h4 className="text-lg font-semibold text-[var(--navy-blue)] mb-3">
+                <h4 className="text-lg font-semibold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-3">
                   During our 10-year tenure as DreamZone Calicut:
                 </h4>
                 <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -71,18 +71,18 @@ export default function AboutPage() {
                   </li>
                 </ul>
 
-                <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4">
                   ✨ A New Chapter: BRIDGEN
                 </h3>
                 <p className="text-lg text-gray-700 mb-4">
                   In 2024, we made a bold and empowering move — transitioning
                   into an independent brand:
                 </p>
-                <p className="text-xl font-bold text-[var(--red)] text-center mb-4">
+                <p className="text-xl font-bold bg-gradient-to-r from-[var(--red)] to-[var(--green)] bg-clip-text text-transparent text-center mb-4">
                   BRIDGEN – Bridge to Next Generation
                 </p>
 
-                <h4 className="text-lg font-semibold text-[var(--navy-blue)] mb-3">
+                <h4 className="text-lg font-semibold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-3">
                   This change allowed us to:
                 </h4>
                 <ul className="list-disc list-inside text-gray-700 mb-6 space-y-2">
@@ -104,7 +104,7 @@ export default function AboutPage() {
                   </li>
                 </ul>
 
-                <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-4">
+                <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] bg-clip-text text-transparent mb-4">
                   🧭 Our Commitment Remains the Same
                 </h3>
                 <p className="text-lg text-gray-700 mb-4">
@@ -122,14 +122,14 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
-                <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-6">
+              <div className="bg-white rounded-lg shadow-lg p-8 mb-12 border border-[var(--green)]/10">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-6">
                   🔑 What Makes Us Different?
                 </h2>
                 <div className="space-y-6">
                   <div className="flex">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="bg-[var(--green)] rounded-full p-2">
+                      <div className="bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] rounded-full p-2">
                         <svg
                           className="w-6 h-6 text-white"
                           fill="currentColor"
@@ -145,7 +145,7 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-2">
                         🎓 10+ Years of Experience
                       </h3>
                       <p className="text-gray-700">
@@ -156,7 +156,7 @@ export default function AboutPage() {
                   </div>
                   <div className="flex">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="bg-[var(--green)] rounded-full p-2">
+                      <div className="bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] rounded-full p-2">
                         <svg
                           className="w-6 h-6 text-white"
                           fill="currentColor"
@@ -172,7 +172,7 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] bg-clip-text text-transparent mb-2">
                         🌍 International Standards
                       </h3>
                       <p className="text-gray-700">
@@ -183,7 +183,7 @@ export default function AboutPage() {
                   </div>
                   <div className="flex">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="bg-[var(--green)] rounded-full p-2">
+                      <div className="bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] rounded-full p-2">
                         <svg
                           className="w-6 h-6 text-white"
                           fill="currentColor"
@@ -199,7 +199,7 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] bg-clip-text text-transparent mb-2">
                         👥 Small Batch, Big Impact
                       </h3>
                       <p className="text-gray-700">
@@ -210,7 +210,7 @@ export default function AboutPage() {
                   </div>
                   <div className="flex">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="bg-[var(--green)] rounded-full p-2">
+                      <div className="bg-gradient-to-r from-[var(--light-blue)] to-[var(--green)] rounded-full p-2">
                         <svg
                           className="w-6 h-6 text-white"
                           fill="currentColor"
@@ -226,7 +226,7 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--light-blue)] to-[var(--green)] bg-clip-text text-transparent mb-2">
                         🛠️ On-the-Job Training
                       </h3>
                       <p className="text-gray-700">
@@ -237,7 +237,7 @@ export default function AboutPage() {
                   </div>
                   <div className="flex">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="bg-[var(--green)] rounded-full p-2">
+                      <div className="bg-gradient-to-r from-[var(--navy-blue)] to-[var(--red)] rounded-full p-2">
                         <svg
                           className="w-6 h-6 text-white"
                           fill="currentColor"
@@ -253,7 +253,7 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--red)] bg-clip-text text-transparent mb-2">
                         🖥️ Advanced Software Training
                       </h3>
                       <p className="text-gray-700">
@@ -264,7 +264,7 @@ export default function AboutPage() {
                   </div>
                   <div className="flex">
                     <div className="flex-shrink-0 mr-4">
-                      <div className="bg-[var(--green)] rounded-full p-2">
+                      <div className="bg-gradient-to-r from-[var(--green)] to-[var(--red)] rounded-full p-2">
                         <svg
                           className="w-6 h-6 text-white"
                           fill="currentColor"
@@ -280,7 +280,7 @@ export default function AboutPage() {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-[var(--navy-blue)] mb-2">
+                      <h3 className="text-xl font-semibold bg-gradient-to-r from-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-2">
                         💼 100% Placement Focus
                       </h3>
                       <p className="text-gray-700">
@@ -293,8 +293,8 @@ export default function AboutPage() {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                <div className="bg-white rounded-lg shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-[var(--navy-blue)] mb-4">
+                <div className="bg-white rounded-lg shadow-lg p-8 border border-[var(--navy-blue)]/10">
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-4">
                     🌟 Our Vision
                   </h2>
                   <p className="text-gray-700 mb-4">
@@ -303,8 +303,8 @@ export default function AboutPage() {
                     a thriving profession.
                   </p>
                 </div>
-                <div className="bg-white rounded-lg shadow-lg p-8">
-                  <h2 className="text-2xl font-bold text-[var(--navy-blue)] mb-4">
+                <div className="bg-white rounded-lg shadow-lg p-8 border border-[var(--green)]/10">
+                  <h2 className="text-2xl font-bold bg-gradient-to-r from-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4">
                     📍 Our Campus
                   </h2>
                   <p className="text-gray-700 mb-2">
@@ -318,33 +318,33 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
-                <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-6">
+              <div className="bg-white rounded-lg shadow-lg p-8 mb-12 border border-[var(--red)]/10">
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-6">
                   📈 Legacy by Numbers (2015–2024)
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="text-center p-6 bg-gray-50 rounded-lg">
-                    <div className="text-3xl font-bold text-[var(--navy-blue)] mb-2">
+                  <div className="text-center p-6 bg-gradient-to-br from-[var(--navy-blue)]/5 to-[var(--green)]/5 rounded-lg border border-[var(--navy-blue)]/10">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-2">
                       1000+
                     </div>
                     <p className="text-gray-700">🎓 Students Trained</p>
                   </div>
-                  <div className="text-center p-6 bg-gray-50 rounded-lg">
-                    <div className="text-3xl font-bold text-[var(--green)] mb-2">
+                  <div className="text-center p-6 bg-gradient-to-br from-[var(--green)]/5 to-[var(--light-blue)]/5 rounded-lg border border-[var(--green)]/10">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] bg-clip-text text-transparent mb-2">
                       99%
                     </div>
                     <p className="text-gray-700">💼 Placement Success</p>
                   </div>
-                  <div className="text-center p-6 bg-gray-50 rounded-lg">
-                    <div className="text-3xl font-bold text-[var(--red)] mb-2">
+                  <div className="text-center p-6 bg-gradient-to-br from-[var(--red)]/5 to-[var(--navy-blue)]/5 rounded-lg border border-[var(--red)]/10">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-[var(--red)] to-[var(--navy-blue)] bg-clip-text text-transparent mb-2">
                       5+
                     </div>
                     <p className="text-gray-700">
                       🌍 Countries (UAE, Qatar, Oman, India)
                     </p>
                   </div>
-                  <div className="text-center p-6 bg-gray-50 rounded-lg">
-                    <div className="text-3xl font-bold text-[var(--light-blue)] mb-2">
+                  <div className="text-center p-6 bg-gradient-to-br from-[var(--light-blue)]/5 to-[var(--green)]/5 rounded-lg border border-[var(--light-blue)]/10">
+                    <div className="text-3xl font-bold bg-gradient-to-r from-[var(--light-blue)] to-[var(--green)] bg-clip-text text-transparent mb-2">
                       100+
                     </div>
                     <p className="text-gray-700">🛠️ Live Projects Completed</p>
@@ -355,7 +355,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-[var(--navy-blue)] text-white">
+        <section className="py-16 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold mb-4">✉️ Need design support?</h2>
             <p className="text-lg mb-6">
@@ -385,9 +385,9 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-gradient-to-br from-gray-50 via-white to-gray-100">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-[var(--navy-blue)] mb-4">
+            <h2 className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4">
               Ready to Start Your Creative Journey?
             </h2>
             <p className="text-lg text-gray-700 mb-8 max-w-3xl mx-auto">
@@ -397,7 +397,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Link
                 href="/courses"
-                className="inline-flex items-center justify-center bg-[var(--navy-blue)] hover:bg-blue-900 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] hover:from-[var(--navy-blue)]/90 hover:to-[var(--light-blue)]/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Explore Our Courses
                 <svg
@@ -417,7 +417,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/contact-bridgen"
-                className="inline-flex items-center justify-center bg-[var(--red)] hover:bg-red-700 text-white font-medium py-3 px-8 rounded-lg transition-colors"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-[var(--green)] to-[var(--red)] hover:from-[var(--green)]/90 hover:to-[var(--red)]/90 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
               >
                 Contact Us
                 <svg
