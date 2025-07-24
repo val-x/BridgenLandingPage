@@ -116,6 +116,11 @@ const SlideshowBackground = memo(function SlideshowBackground() {
 
   const currentImage = slideshowImages[currentImageIndex] || slideshowImages[0];
 
+  // Ensure currentImage is always defined
+  if (!currentImage) {
+    return null;
+  }
+
   return (
     <div className="absolute inset-0 overflow-hidden">
       <AnimatePresence mode="wait">
