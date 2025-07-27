@@ -32,18 +32,19 @@ type FormEventHandler = (event: React.FormEvent<HTMLFormElement>) => void;
 const COMPANY_INFO = {
   PHONE: "+91 9061002200",
   WHATSAPP_NUMBER: "919061002200",
-  EMAIL: "hello@bridgentraining.com",
+  EMAIL: "info@bridgentraining.com",
+  WEBSITE: "bridgentraining.com",
   ADDRESS: {
-    BUILDING: "Thayyil Arcade",
-    STREET: "V Panoli Road",
-    LANDMARK: "near Baby Memorial Hospital",
-    AREA: "Thiruthiyad",
+    BUILDING: "Bridgen – School of Skill Development",
+    STREET: "Mavoor Road",
+    LANDMARK: "Calicut",
+    AREA: "Calicut",
     CITY: "Kozhikode",
     STATE: "Kerala",
-    PINCODE: "673004",
+    PINCODE: "",
   },
   WORKING_HOURS: {
-    FULL: "Monday - Saturday: 9:00 AM - 6:00 PM",
+    FULL: "Monday - Saturday: 9:30 AM - 5:00 PM",
     WEEKEND: "Closed",
   },
 };
@@ -361,7 +362,7 @@ export default function ContactSection() {
 
 📧 Email: ${formData.email}
 📱 Phone: ${formData.phone}
-🎓 Course of Interest: ${courseName}
+📚 Course of Interest: ${courseName}
 💬 My Message: ${formData.message}
 
 I'm excited to start my success story with Bridgen Training!`;
@@ -594,14 +595,14 @@ I'm excited to start my success story with Bridgen Training!`;
                       Visit Us
                     </h4>
                     <p className="text-gray-600">
-                      {COMPANY_INFO.ADDRESS.BUILDING},{" "}
-                      {COMPANY_INFO.ADDRESS.STREET},
+                      {COMPANY_INFO.ADDRESS.BUILDING}
                       <br />
-                      {COMPANY_INFO.ADDRESS.LANDMARK},
+                      {COMPANY_INFO.ADDRESS.STREET},{" "}
+                      {COMPANY_INFO.ADDRESS.LANDMARK}
                       <br />
-                      {COMPANY_INFO.ADDRESS.AREA}, {COMPANY_INFO.ADDRESS.CITY},{" "}
-                      {COMPANY_INFO.ADDRESS.STATE}{" "}
-                      {COMPANY_INFO.ADDRESS.PINCODE}
+                      {COMPANY_INFO.ADDRESS.CITY}, {COMPANY_INFO.ADDRESS.STATE}
+                      {COMPANY_INFO.ADDRESS.PINCODE &&
+                        ` ${COMPANY_INFO.ADDRESS.PINCODE}`}
                     </p>
                   </div>
                 </div>
@@ -693,10 +694,10 @@ I'm excited to start my success story with Bridgen Training!`;
                   <div className="flex items-center mb-2 sm:mb-0">
                     <span className="mr-2">📞</span>
                     <a
-                      href={`tel:${COMPANY_INFO.WHATSAPP_NUMBER}`}
+                      href={`tel:${COMPANY_INFO.PHONE}`}
                       className="hover:text-[var(--green)] transition-colors"
                     >
-                      {COMPANY_INFO.WHATSAPP_NUMBER}
+                      {COMPANY_INFO.PHONE}
                     </a>
                   </div>
                   <span className="hidden sm:inline mx-2">|</span>
@@ -707,6 +708,18 @@ I'm excited to start my success story with Bridgen Training!`;
                       className="hover:text-[var(--green)] transition-colors break-all"
                     >
                       {COMPANY_INFO.EMAIL}
+                    </a>
+                  </div>
+                  <span className="hidden sm:inline mx-2">|</span>
+                  <div className="flex items-center">
+                    <span className="mr-2">🌐</span>
+                    <a
+                      href={`https://${COMPANY_INFO.WEBSITE}`}
+                      className="hover:text-[var(--green)] transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {COMPANY_INFO.WEBSITE}
                     </a>
                   </div>
                 </div>

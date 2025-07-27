@@ -4,7 +4,10 @@ import { Suspense } from "react";
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
+import WhyChooseBridgenSection from "./components/WhyChooseBridgenSection";
 import CoursesSection from "./components/CoursesSection";
+import WhoCanJoinSection from "./components/WhoCanJoinSection";
+import StudentSuccessStoriesSection from "./components/StudentSuccessStoriesSection";
 import Footer from "./components/Footer";
 import {
   OrganizationJsonLd,
@@ -15,6 +18,8 @@ import {
 // Import non-critical components directly
 import TestimonialsSection from "./components/TestimonialsSection";
 import ContactSection from "./components/ContactSection";
+import ScholarshipOfferSection from "./components/ScholarshipOfferSection";
+import StickyFooterCTA from "./components/StickyFooterCTA";
 
 // Static metadata for better SEO and performance
 export const metadata = {
@@ -47,8 +52,7 @@ export default function Home() {
     },
     {
       question: "Where is Bridgen located?",
-      answer:
-        "Bridgen is located at Thayyil Arcade, V Panoli Road, near Baby Memorial Hospital, Thiruthiyad, Kozhikode, Kerala 673004.",
+      answer: "Bridgen is located at Mavoor Road, Calicut, Kozhikode, Kerala.",
     },
     {
       question: "What are Bridgen's business hours?",
@@ -79,13 +83,18 @@ export default function Home() {
         {/* Critical sections loaded immediately */}
         <HeroSection />
         <AboutSection />
+        <WhyChooseBridgenSection />
         <CoursesSection />
+        <WhoCanJoinSection />
+        <StudentSuccessStoriesSection />
 
         {/* Non-critical sections */}
         <TestimonialsSection />
+        <ScholarshipOfferSection />
         <ContactSection />
       </main>
       <Footer />
+      <StickyFooterCTA />
     </div>
   );
 }
