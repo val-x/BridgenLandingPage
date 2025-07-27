@@ -38,7 +38,7 @@ export default function FloatingButtons() {
     
 📧 Email: ${formData.email}
 📱 Phone: ${formData.phone}
-🎓 Course of Interest: ${formData.course}
+📚 Course of Interest: ${formData.course}
 💬 My Message: ${formData.message}
 
 I'm excited to start my success story with Bridgen Training!`;

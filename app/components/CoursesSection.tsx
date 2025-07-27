@@ -8,94 +8,90 @@ import {
   Building,
   CheckCircle,
   ArrowRight,
+  Award,
+  Clock,
 } from "lucide-react";
 
 const courses = [
   {
-    id: "interior-architecture",
-    title: "Diploma in Interior Architecture",
-    duration: "Comprehensive Program",
+    id: "interior-design-diploma",
+    title: "Diploma in Interior Design",
+    duration: "6 or 12 months",
     icon: <Home className="w-12 h-12" />,
     image:
       "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=250&fit=crop&crop=center&auto=format&q=80",
     description:
-      "Bridge to Next Generation - Turning Passion into Profession. Our comprehensive diploma program covers design basics to advanced execution with 99% placement rate.",
+      "Comprehensive interior design diploma program with hands-on training and real project experience.",
     topics: [
-      "Design Basics & Principles",
-      "Space Planning & Design Concept",
-      "Design Development & Execution",
-      "Technical Services & Detailing",
-      "Software Training & Presentation",
+      "Design Fundamentals",
+      "Space Planning",
+      "Materials & Finishes",
+      "AutoCAD + SketchUp + Photoshop + V-Ray",
+      "On-site training and practical projects",
     ],
     audience:
-      "Ideal for aspiring interior designers, architects, and creative professionals looking for comprehensive training.",
+      "Perfect for aspiring interior designers looking for comprehensive training with government recognition.",
+    features: [
+      "Rutronix-authorised centre certificate",
+      "Real project training",
+      "On-site visits",
+    ],
   },
   {
     id: "autocad",
-    title: "AutoCAD Training",
+    title: "AutoCAD Drafting",
     duration: "1 Month",
     icon: <Layers3 className="w-12 h-12" />,
     image:
       "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&h=250&fit=crop&crop=center&auto=format&q=80",
     description:
-      "Master the fundamental and advanced tools of AutoCAD, the most widely used drafting software in the architectural and engineering industries.",
+      "Master AutoCAD for Civil, Interior, and Architectural drafting with industry-standard techniques.",
     topics: [
-      "Interface Navigation and Customization",
       "2D Drafting Techniques",
+      "Civil / Interior / Architecture",
       "Dimensioning and Annotation",
       "Plotting and Printing",
-      "Introduction to 3D Modeling",
+      "Industry Best Practices",
     ],
     audience:
       "Ideal for architects, interior designers, engineers, and professionals looking to enhance drafting skills.",
+    features: [
+      "Certificate from Rutronix-authorised centre",
+      "Industry-focused training",
+    ],
   },
   {
-    id: "3ds-max",
-    title: "3ds Max with V-Ray/Corona",
+    id: "3d-visualization",
+    title: "3D Visualization with SketchUp & V-Ray",
     duration: "2 Months",
     icon: <Sun className="w-12 h-12" />,
     image:
       "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=400&h=250&fit=crop&crop=center&auto=format&q=80",
     description:
-      "Create stunning visualizations and realistic renders using 3ds Max with V-Ray and Corona. Learn modeling, texturing, and advanced lighting techniques.",
+      "Create stunning 3D visualizations and realistic renders using SketchUp and V-Ray rendering.",
     topics: [
-      "3D Modeling Basics",
+      "SketchUp 3D Modeling",
+      "V-Ray Rendering",
       "Material and Texture Mapping",
-      "Lighting with V-Ray and Corona",
-      "Rendering Techniques",
-      "Animation and Walkthroughs",
+      "Lighting Techniques",
+      "Presentation Skills",
     ],
     audience:
       "Perfect for interior designers, architects, and visualization specialists.",
-  },
-  {
-    id: "sketchup",
-    title: "SketchUp with V-Ray",
-    duration: "1 Month",
-    icon: <Box className="w-12 h-12" />,
-    image:
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=400&h=250&fit=crop&crop=center&auto=format&q=80",
-    description:
-      "Learn to create quick and efficient 3D models using SketchUp and enhance them with V-Ray rendering. Perfect for speeding up your design process.",
-    topics: [
-      "SketchUp Interface and Navigation",
-      "Creating 3D Models and Layouts",
-      "V-Ray for Realistic Renderings",
-      "Exporting and Presentation Techniques",
-      "Efficient Workflow Practices",
+    features: [
+      "Certificate from Rutronix-authorised centre",
+      "Portfolio development",
     ],
-    audience:
-      "Ideal for interior designers, decorators, and anyone needing quick 3D visualization skills.",
   },
   {
     id: "photoshop",
-    title: "Photoshop for Designers",
+    title: "Photoshop for Presentations",
     duration: "1 Month",
     icon: <ImageIcon className="w-12 h-12" />,
     image:
       "https://images.unsplash.com/photo-1609921212029-bb5a28e60960?w=400&h=250&fit=crop&crop=center&auto=format&q=80",
     description:
-      "Master the art of creating presentation boards, editing images, and enhancing design visuals with Adobe Photoshop for portfolios and client presentations.",
+      "Master Photoshop for creating professional presentations and enhancing design visuals.",
     topics: [
       "Image Editing and Retouching",
       "Creating Mood Boards",
@@ -105,25 +101,31 @@ const courses = [
     ],
     audience:
       "Essential for interior designers, architects, and professionals who need to create professional presentations.",
+    features: [
+      "Certificate from Rutronix-authorised centre",
+      "Real project work",
+    ],
+  },
+];
+
+const softwarePackages = [
+  {
+    title: "AutoCAD Drafting",
+    description: "Civil / Interior / Architecture",
+    duration: "1 Month",
+    icon: <Layers3 className="w-8 h-8" />,
   },
   {
-    id: "revit",
-    title: "Revit Architecture",
-    duration: "3 Months",
-    icon: <Building className="w-12 h-12" />,
-    image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=250&fit=crop&crop=center&auto=format&q=80",
-    description:
-      "Learn Building Information Modeling (BIM) with Autodesk Revit. Create comprehensive building models and generate construction documentation.",
-    topics: [
-      "Introduction to BIM and Revit",
-      "Creating Architectural Models",
-      "Family Creation and Customization",
-      "Project Collaboration",
-      "Construction Documentation",
-    ],
-    audience:
-      "Ideal for architectural and engineering professionals looking to integrate BIM in their practice.",
+    title: "3D Visualization",
+    description: "SketchUp & V-Ray",
+    duration: "2 Months",
+    icon: <Sun className="w-8 h-8" />,
+  },
+  {
+    title: "Photoshop",
+    description: "For Presentations",
+    duration: "1 Month",
+    icon: <ImageIcon className="w-8 h-8" />,
   },
 ];
 
@@ -133,7 +135,7 @@ export default function CoursesSection() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] bg-clip-text text-transparent mb-4">
-            Our Professional Courses
+            Our Top Courses
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-gray-600">
@@ -143,7 +145,7 @@ export default function CoursesSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
           {courses.map((course, index) => (
             <div
               key={course.id}
@@ -196,6 +198,23 @@ export default function CoursesSection() {
                   </ul>
                 </div>
 
+                {/* Features */}
+                {course.features && (
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-2">
+                      {course.features.map((feature, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-flex items-center gap-1 bg-[var(--green)]/10 text-[var(--green)] text-xs px-2 py-1 rounded-full"
+                        >
+                          <Award className="w-3 h-3" />
+                          {feature}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* Audience */}
                 <div className="mb-6">
                   <p className="text-sm text-gray-500 italic">
@@ -214,6 +233,52 @@ export default function CoursesSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Software-Only Packages Section */}
+        <div className="bg-gradient-to-br from-[var(--navy-blue)]/5 to-[var(--green)]/5 rounded-2xl p-8 border-2 border-[var(--navy-blue)]/20 mb-12">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--green)] bg-clip-text text-transparent mb-4">
+              Software-Only Packages
+            </h3>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Focused training on specific software tools for professionals who
+              want to enhance their technical skills.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {softwarePackages.map((package_, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl p-6 shadow-lg border border-[var(--green)]/20 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] text-white p-2 rounded-lg">
+                    {package_.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-[var(--navy-blue)]">
+                      {package_.title}
+                    </h4>
+                    <p className="text-sm text-gray-600">
+                      {package_.description}
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Clock className="w-4 h-4" />
+                  <span>{package_.duration}</span>
+                </div>
+                <div className="mt-4">
+                  <span className="inline-flex items-center gap-1 bg-[var(--green)]/10 text-[var(--green)] text-xs px-2 py-1 rounded-full">
+                    <Award className="w-3 h-3" />
+                    Certificate from Rutronix-authorised centre
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* View All Courses CTA */}

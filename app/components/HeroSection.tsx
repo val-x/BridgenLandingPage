@@ -27,18 +27,18 @@ const TrustSignals = memo(function TrustSignals() {
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-6 sm:mb-8">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 mb-4 sm:mb-6 lg:mb-8">
       {trustSignals.map((signal, index) => (
         <motion.div
           key={signal.label}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.1 }}
-          className="group relative bg-white/40 sm:bg-white/20 backdrop-blur-md rounded-lg sm:rounded-xl p-3 sm:p-4 border-2 border-white/60 sm:border-white/30 hover:bg-white/50 sm:hover:bg-white/30 transition-all duration-300 shadow-xl"
+          className="group relative bg-white/40 sm:bg-white/20 backdrop-blur-md rounded-lg sm:rounded-xl p-2 sm:p-3 lg:p-4 border-2 border-white/60 sm:border-white/30 hover:bg-white/50 sm:hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--red)]/30 to-[var(--green)]/30 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="relative z-10">
-            <div className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[var(--red)] to-[var(--green)] bg-clip-text text-transparent drop-shadow-2xl">
+            <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-[var(--green)] drop-shadow-2xl">
               {signal.number}
             </div>
             <div className="text-xs sm:text-sm text-white font-bold leading-tight drop-shadow-2xl">
@@ -60,7 +60,7 @@ const TrustIndicators = memo(function TrustIndicators() {
   ];
 
   return (
-    <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-4 text-xs sm:text-sm text-white font-bold">
+    <div className="mt-4 sm:mt-6 lg:mt-8 flex flex-wrap items-center justify-center sm:justify-start gap-2 sm:gap-3 lg:gap-4 text-xs sm:text-sm text-white font-bold">
       {indicators.map((indicator, index) => (
         <motion.div
           key={indicator}
@@ -163,23 +163,6 @@ const SlideshowBackground = memo(function SlideshowBackground() {
         className="hidden sm:block absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-[var(--light-blue)]/20 to-transparent rounded-full blur-2xl animate-pulse"
         style={{ animationDelay: "2s" }}
       ></div>
-
-      {/* Slideshow indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
-        {slideshowImages.map((_, index) => (
-          <motion.button
-            key={index}
-            onClick={() => setCurrentImageIndex(index)}
-            className={`w-3 h-3 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
-              index === currentImageIndex
-                ? "bg-white scale-125"
-                : "bg-white/50 hover:bg-white/75"
-            }`}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9 }}
-          />
-        ))}
-      </div>
     </div>
   );
 });
@@ -213,7 +196,7 @@ export default function HeroSection() {
       ></div>
 
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24 relative z-10">
-        <div className="max-w-4xl lg:max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Logo and Tagline */}
           <motion.header
             initial={{ opacity: 0, y: -30 }}
@@ -243,7 +226,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-to-r from-[var(--light-blue)] to-[var(--green)] bg-clip-text text-transparent text-center sm:text-left drop-shadow-2xl"
+                className="text-lg sm:text-xl lg:text-2xl font-bold text-[var(--light-blue)] text-center sm:text-left drop-shadow-2xl"
               >
                 Bridge to Next Generation
               </motion.span>
@@ -261,11 +244,11 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold mb-6 sm:mb-8 leading-tight drop-shadow-2xl"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-4 sm:mb-6 lg:mb-8 leading-tight drop-shadow-2xl"
             >
-              Transform Your
-              <span className="block bg-gradient-to-r from-[var(--green)] via-[var(--light-blue)] to-[var(--red)] bg-clip-text text-transparent animate-pulse drop-shadow-2xl">
-                Creative Potential
+              Start Your Creative Career in
+              <span className="block text-[var(--green)] animate-pulse drop-shadow-2xl">
+                Interior Design & Software Today!
               </span>
             </motion.h1>
 
@@ -273,19 +256,36 @@ export default function HeroSection() {
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: 1, scaleX: 1 }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="w-24 sm:w-32 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto sm:mx-0 mb-6 sm:mb-8 rounded-full shadow-2xl"
+              className="w-20 sm:w-24 lg:w-32 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto sm:mx-0 mb-4 sm:mb-6 lg:mb-8 rounded-full shadow-2xl"
             ></motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white font-bold mb-8 sm:mb-10 max-w-3xl lg:max-w-4xl mx-auto sm:mx-0 leading-relaxed drop-shadow-2xl"
+              className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white font-bold mb-3 sm:mb-4 lg:mb-6 max-w-4xl lg:max-w-5xl mx-auto sm:mx-0 leading-relaxed drop-shadow-2xl"
             >
-              Master Interior Design, CAD, and 3D Visualization with expert-led
-              training. Join our community of successful graduates with a 99%
-              placement rate.
+              Bridgen – North Malabar's Most Trusted Institute for Design &
+              Drafting Courses
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="text-xs sm:text-sm md:text-base lg:text-lg text-white/90 font-medium mb-4 sm:mb-6 lg:mb-8 max-w-4xl lg:max-w-5xl mx-auto sm:mx-0 leading-relaxed drop-shadow-2xl"
+            >
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-4 mb-2 sm:mb-3">
+                <span className="text-[var(--green)] font-bold text-center sm:text-left">
+                  Authorised Training Centre of Kerala State Rutronix
+                </span>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-4">
+                <span>100% Placement Support</span>
+                <span className="hidden sm:inline">•</span>
+                <span>Online & Offline Classes</span>
+              </div>
+            </motion.div>
 
             {/* Trust Signals */}
             <TrustSignals />
@@ -295,15 +295,15 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8 sm:mb-10"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8 lg:mb-10"
             >
               <Link
                 href="/courses"
-                className="group relative inline-flex items-center justify-center bg-gradient-to-r from-[var(--red)] to-[var(--green)] hover:from-[var(--red)]/90 hover:to-[var(--green)]/90 text-white font-bold py-4 sm:py-5 px-6 sm:px-10 rounded-xl sm:rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:scale-105 text-base sm:text-lg"
+                className="group relative inline-flex items-center justify-center bg-gradient-to-r from-[var(--red)] to-[var(--green)] hover:from-[var(--red)]/90 hover:to-[var(--green)]/90 text-white font-bold py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-10 rounded-lg sm:rounded-xl lg:rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105 text-sm sm:text-base lg:text-lg"
               >
-                <span className="relative z-10">Explore Courses</span>
+                <span className="relative z-10">Download Course Brochure</span>
                 <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 relative z-10 group-hover:translate-x-2 transition-transform duration-300"
+                  className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ml-2 sm:ml-3 relative z-10 group-hover:translate-x-2 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -313,20 +313,20 @@ export default function HeroSection() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
                 {/* Enhanced glow effect - Hidden on mobile for performance */}
-                <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-[var(--red)] to-[var(--green)] rounded-xl sm:rounded-2xl blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
+                <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-[var(--red)] to-[var(--green)] rounded-lg sm:rounded-xl lg:rounded-2xl blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
               </Link>
 
               <Link
                 href="/contact-bridgen"
-                className="group relative inline-flex items-center justify-center bg-white/20 backdrop-blur-sm border-2 border-white hover:border-[var(--green)] hover:bg-white/30 text-white font-bold py-4 sm:py-5 px-6 sm:px-10 rounded-xl sm:rounded-2xl transition-all duration-300 text-base sm:text-lg shadow-xl hover:shadow-2xl"
+                className="group relative inline-flex items-center justify-center bg-white/20 backdrop-blur-sm border-2 border-white hover:border-[var(--green)] hover:bg-white/30 text-white font-bold py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-10 rounded-lg sm:rounded-xl lg:rounded-2xl transition-all duration-300 text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl"
               >
-                <span className="relative z-10">Contact Us</span>
+                <span className="relative z-10">Talk to a Counsellor</span>
                 <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 ml-2 sm:ml-3 relative z-10 group-hover:translate-x-2 transition-transform duration-300"
+                  className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ml-2 sm:ml-3 relative z-10 group-hover:translate-x-2 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -337,6 +337,29 @@ export default function HeroSection() {
                     strokeLinejoin="round"
                     strokeWidth={2}
                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+              </Link>
+
+              <Link
+                href="/contact-bridgen"
+                className="group relative inline-flex items-center justify-center bg-gradient-to-r from-[var(--light-blue)] to-[var(--navy-blue)] hover:from-[var(--light-blue)]/90 hover:to-[var(--navy-blue)]/90 text-white font-bold py-3 sm:py-4 lg:py-5 px-4 sm:px-6 lg:px-10 rounded-lg sm:rounded-xl lg:rounded-2xl transition-all duration-300 text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl"
+              >
+                <span className="relative z-10">
+                  Apply for Scholarship Admission
+                </span>
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ml-2 sm:ml-3 relative z-10 group-hover:translate-x-2 transition-transform duration-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
               </Link>
