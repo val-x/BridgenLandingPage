@@ -34,8 +34,7 @@ const TrustSignals = memo(function TrustSignals() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.1 }}
-          className="group relative bg-white/40 sm:bg-white/20 backdrop-blur-md rounded-lg sm:rounded-xl p-2 sm:p-3 lg:p-4 border-2 border-white/60 sm:border-white/30 hover:bg-white/50 sm:hover:bg-white/30 transition-all duration-300 shadow-lg hover:shadow-xl"
-        >
+          className="group relative bg-[var(--navy-blue)] sm:bg-[var(--navy-blue)] backdrop-blur-md rounded-lg sm:rounded-xl p-2 sm:p-3 lg:p-4 border-2 border-white/60 sm:border-white/30 hover:bg-[var(--navy-blue)]/50 sm:hover:bg-[var(--navy-blue)]/30 transition-all duration-300 shadow-lg hover:shadow-xl"        >
           <div className="absolute inset-0 bg-gradient-to-r from-[var(--red)]/30 to-[var(--green)]/30 rounded-lg sm:rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           <div className="relative z-10">
             <div className="text-sm sm:text-lg md:text-xl lg:text-2xl font-bold text-[var(--green)] drop-shadow-2xl">

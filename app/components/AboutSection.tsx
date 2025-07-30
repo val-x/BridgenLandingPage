@@ -4,6 +4,16 @@ import Image from "next/image";
 import { Suspense } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import {
+  Clock,
+  Award,
+  Globe,
+  Users,
+  TrendingUp,
+  Star,
+  CheckCircle,
+  Zap,
+} from "react-feather";
 
 // Lazy load the heavy Boxes component
 const BoxesBackground = dynamic(
@@ -16,84 +26,65 @@ const BoxesBackground = dynamic(
   }
 );
 
-// Server-side stats data
+// Modern stats data with brand consistency
 const aboutStats = [
   {
-    icon: (
-      <svg
-        className="w-8 h-8"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
-        <path d="M12 6v6l4 2" stroke="white" strokeWidth="2" fill="none" />
-        <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" fill="none" />
-      </svg>
-    ),
+    icon: Clock,
+    iconBg: "from-[var(--red)] via-red-400 to-pink-500",
+    bgPattern: "from-red-50 via-pink-50 to-red-100",
+    borderColor: "border-red-200/50",
+    shadowColor: "shadow-red-500/20",
+    glowColor: "shadow-red-400/30",
+    accentColor: "text-[var(--red)]",
     title: "10+ Years Experience",
     description:
       "Legacy of trusted training, evolved into an independent institute",
-    color: "var(--red)",
-    gradient: "from-red-500 to-pink-500",
+    highlight: "10+",
+    metric: "Years",
+    animation: "animate-pulse",
   },
   {
-    icon: (
-      <svg
-        className="w-8 h-8"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-      </svg>
-    ),
+    icon: Award,
+    iconBg: "from-emerald-500 via-green-400 to-teal-500",
+    bgPattern: "from-emerald-50 via-green-50 to-teal-100",
+    borderColor: "border-emerald-200/50",
+    shadowColor: "shadow-emerald-500/20",
+    glowColor: "shadow-emerald-400/30",
+    accentColor: "text-emerald-600",
     title: "99% Placement Record",
     description: "Career opportunities across India and the Middle East",
-    color: "var(--green)",
-    gradient: "from-green-500 to-emerald-500",
+    highlight: "99%",
+    metric: "Placed",
+    animation: "animate-bounce",
   },
   {
-    icon: (
-      <svg
-        className="w-8 h-8"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fillRule="evenodd"
-          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
+    icon: Globe,
+    iconBg: "from-[var(--light-blue)] via-blue-400 to-cyan-500",
+    bgPattern: "from-blue-50 via-cyan-50 to-sky-100",
+    borderColor: "border-blue-200/50",
+    shadowColor: "shadow-blue-500/20",
+    glowColor: "shadow-blue-400/30",
+    accentColor: "text-[var(--light-blue)]",
     title: "International Standards",
     description:
       "Curriculum aligned with Gulf and global industry expectations",
-    color: "var(--light-blue)",
-    gradient: "from-blue-500 to-cyan-500",
+    highlight: "Global",
+    metric: "Standard",
+    animation: "animate-spin",
   },
   {
-    icon: (
-      <svg
-        className="w-8 h-8"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fillRule="evenodd"
-          d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
-          clipRule="evenodd"
-        />
-        <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
-      </svg>
-    ),
+    icon: Users,
+    iconBg: "from-[var(--navy-blue)] via-indigo-500 to-purple-500",
+    bgPattern: "from-indigo-50 via-purple-50 to-blue-100",
+    borderColor: "border-indigo-200/50",
+    shadowColor: "shadow-indigo-500/20",
+    glowColor: "shadow-indigo-400/30",
+    accentColor: "text-[var(--navy-blue)]",
     title: "Small Batch Training",
     description: "Personalized attention through limited batch sizes",
-    color: "var(--navy-blue)",
-    gradient: "from-indigo-500 to-purple-500",
+    highlight: "Small",
+    metric: "Batches",
+    animation: "animate-pulse",
   },
 ];
 
@@ -176,55 +167,119 @@ export default function AboutSection() {
               </motion.p>
             </div>
 
-            {/* Stats Grid */}
+            {/* Modern Stats Grid */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
               viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12"
             >
-              {aboutStats.map((stat, index) => (
-                <motion.div
-                  key={stat.title}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{
-                    scale: 1.05,
-                    transition: { duration: 0.2 },
-                  }}
-                  className="group relative bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-                >
-                  {/* Gradient Background */}
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-                  ></div>
-
-                  {/* Icon */}
-                  <div className="relative z-10 mb-4">
-                    <div
-                      className={`w-12 h-12 rounded-xl bg-gradient-to-br ${stat.gradient} flex items-center justify-center text-white shadow-lg group-hover:shadow-xl transition-all duration-300`}
-                    >
-                      {stat.icon}
+              {aboutStats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <motion.div
+                    key={stat.title}
+                    initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
+                    whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.6 + index * 0.15,
+                      type: "spring",
+                      stiffness: 100,
+                    }}
+                    viewport={{ once: true }}
+                    whileHover={{
+                      scale: 1.08,
+                      rotateY: 5,
+                      transition: { duration: 0.3, type: "spring" },
+                    }}
+                    className={`group relative bg-gradient-to-br ${stat.bgPattern} p-8 rounded-3xl border-2 ${stat.borderColor} ${stat.shadowColor} shadow-xl hover:${stat.glowColor} hover:shadow-2xl transition-all duration-500 overflow-hidden backdrop-blur-sm`}
+                    style={{
+                      background: `linear-gradient(135deg, ${stat.bgPattern})`,
+                    }}
+                  >
+                    {/* Animated Background Pattern */}
+                    <div className="absolute inset-0 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,_rgba(120,_119,_198,_0.3)_0%,_transparent_50%)]"></div>
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,_rgba(255,_119,_198,_0.3)_0%,_transparent_50%)]"></div>
                     </div>
-                  </div>
 
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <h4 className="text-lg font-bold mb-2 text-gray-800 group-hover:text-[var(--navy-blue)] transition-colors duration-300">
-                      {stat.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {stat.description}
-                    </p>
-                  </div>
+                    {/* Floating Icon Container */}
+                    <div className="relative z-10 mb-6">
+                      <div className="flex items-center justify-between mb-4">
+                        <motion.div
+                          whileHover={{ rotate: 360, scale: 1.2 }}
+                          transition={{ duration: 0.6, type: "spring" }}
+                          className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${stat.iconBg} flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300`}
+                        >
+                          {/* Icon Glow Effect */}
+                          <div
+                            className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.iconBg} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300`}
+                          ></div>
 
-                  {/* Hover Effect */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[var(--light-blue)] to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-                </motion.div>
-              ))}
+                          <IconComponent
+                            size={28}
+                            className="text-white relative z-10 drop-shadow-lg"
+                            strokeWidth={2.5}
+                          />
+
+                          {/* Animated Ring */}
+                          <div className="absolute inset-0 rounded-2xl border-2 border-white/20 group-hover:border-white/40 transition-all duration-300"></div>
+                        </motion.div>
+
+                        {/* Highlight Metric */}
+                        <div className="text-right">
+                          <motion.div
+                            className={`text-3xl font-black ${stat.accentColor} mb-1 leading-none`}
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            transition={{
+                              duration: 0.5,
+                              delay: 0.8 + index * 0.1,
+                            }}
+                          >
+                            {stat.highlight}
+                          </motion.div>
+                          <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {stat.metric}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="relative z-10 space-y-3">
+                      <h4
+                        className={`text-xl font-bold ${stat.accentColor} group-hover:text-gray-800 transition-colors duration-300 leading-tight`}
+                      >
+                        {stat.title}
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed line-clamp-2 group-hover:text-gray-700 transition-colors duration-300">
+                        {stat.description}
+                      </p>
+                    </div>
+
+                    {/* Animated Border */}
+                    <div
+                      className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${stat.iconBg} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                    ></div>
+
+                    {/* Bottom Accent Line */}
+                    <div
+                      className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.iconBg} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 rounded-b-3xl`}
+                    ></div>
+
+                    {/* Corner Decorations */}
+                    <div
+                      className={`absolute top-4 right-4 w-2 h-2 rounded-full bg-gradient-to-r ${stat.iconBg} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}
+                    ></div>
+                    <div
+                      className={`absolute bottom-4 left-4 w-1 h-1 rounded-full bg-gradient-to-r ${stat.iconBg} opacity-20 group-hover:opacity-40 transition-opacity duration-300`}
+                    ></div>
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </motion.div>
 
