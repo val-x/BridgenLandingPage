@@ -106,6 +106,12 @@ export default function Header() {
                 Portfolio
               </Link>
               <Link
+                href="/freelance-cad-jobs"
+                className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+              >
+                Freelance
+              </Link>
+              <Link
                 href="/contact-bridgen"
                 className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
               >
@@ -214,6 +220,13 @@ export default function Header() {
                   className="block py-3 px-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg font-medium transition-colors duration-200"
                 >
                   Portfolio
+                </Link>
+                <Link
+                  href="/freelance-cad-jobs"
+                  onClick={handleMobileLinkClick}
+                  className="block py-3 px-4 text-gray-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg font-medium transition-colors duration-200"
+                >
+                  Freelance
                 </Link>
                 <Link
                   href="/contact-bridgen"
