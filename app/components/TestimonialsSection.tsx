@@ -21,7 +21,7 @@ export default function TestimonialsSection() {
     <section className="py-16 md:py-24 bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)] text-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 drop-shadow-2xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-2xl">
             Student Success Stories
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-6 shadow-lg"></div>
@@ -54,14 +54,26 @@ export default function TestimonialsSection() {
                   )}
                 </div>
                 <div>
-                  <h4 className="font-bold bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] bg-clip-text text-transparent drop-shadow-2xl">
+                  <h4
+                    className="font-bold text-[var(--light-blue)] drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
+                    style={{
+                      textShadow:
+                        "2px 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(76,201,240,0.2)",
+                    }}
+                  >
                     {review.name}
                   </h4>
                   <p className="text-sm text-white font-medium drop-shadow-lg">
                     {review.course}
                   </p>
                   {review.current_position && (
-                    <p className="text-sm text-[var(--green)] font-bold drop-shadow-lg">
+                    <p
+                      className="text-sm text-[var(--red-light)] font-bold drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+                      style={{
+                        textShadow:
+                          "2px 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(247,127,138,0.6)",
+                      }}
+                    >
                       {review.current_position}
                     </p>
                   )}
@@ -75,7 +87,7 @@ export default function TestimonialsSection() {
                   {review.skills_learned.map((skill, skillIndex) => (
                     <span
                       key={skillIndex}
-                      className="bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] text-white text-xs px-3 py-1 rounded font-bold shadow-lg"
+                      className="bg-[var(--light-blue)] text-white text-xs px-3 py-1 rounded font-bold shadow-lg"
                     >
                       {skill}
                     </span>
@@ -87,7 +99,7 @@ export default function TestimonialsSection() {
                   {review.highlights.map((highlight, highlightIndex) => (
                     <span
                       key={highlightIndex}
-                      className="bg-gradient-to-r from-[var(--green)] to-[var(--red)] text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg"
+                      className="bg-[var(--green)] text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg"
                     >
                       {highlight}
                     </span>
@@ -101,7 +113,13 @@ export default function TestimonialsSection() {
         {/* Success Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] bg-clip-text text-transparent mb-2 drop-shadow-2xl">
+            <div
+              className="text-3xl font-bold text-[var(--light-blue)] mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
+              style={{
+                textShadow:
+                  "2px 2px 4px rgba(0,0,0,0.8), 0 0 12px rgba(76,201,240,0.2)",
+              }}
+            >
               99%
             </div>
             <div className="text-white font-medium drop-shadow-lg">
@@ -109,7 +127,13 @@ export default function TestimonialsSection() {
             </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-[var(--red)] to-[var(--green)] bg-clip-text text-transparent mb-2 drop-shadow-2xl">
+            <div
+              className="text-3xl font-bold text-[var(--red-light)] mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+              style={{
+                textShadow:
+                  "2px 2px 4px rgba(0,0,0,0.8), 0 0 12px rgba(247,127,138,0.8)",
+              }}
+            >
               500+
             </div>
             <div className="text-white font-medium drop-shadow-lg">
@@ -117,7 +141,13 @@ export default function TestimonialsSection() {
             </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-[var(--light-blue)] to-[var(--navy-blue)] bg-clip-text text-transparent mb-2 drop-shadow-2xl">
+            <div
+              className="text-3xl font-bold text-[var(--green)] mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+              style={{
+                textShadow:
+                  "2px 2px 4px rgba(0,0,0,0.8), 0 0 12px rgba(42,157,143,0.8)",
+              }}
+            >
               10+
             </div>
             <div className="text-white font-medium drop-shadow-lg">
@@ -125,7 +155,13 @@ export default function TestimonialsSection() {
             </div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold bg-gradient-to-r from-[var(--navy-blue)] to-[var(--red)] bg-clip-text text-transparent mb-2 drop-shadow-2xl">
+            <div
+              className="text-3xl font-bold text-[var(--red)] mb-2 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+              style={{
+                textShadow:
+                  "2px 2px 4px rgba(0,0,0,0.8), 0 0 12px rgba(230,57,70,0.8)",
+              }}
+            >
               50+
             </div>
             <div className="text-white font-medium drop-shadow-lg">
