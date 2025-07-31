@@ -45,20 +45,20 @@ export default function FreelanceCTASection() {
   };
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 relative overflow-hidden bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-br from-[var(--navy-blue)] via-[var(--green)] to-[var(--red)]">
       {/* Background Elements */}
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] bg-center"></div>
       </div>
-      <div className="hidden sm:block absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-[var(--green)]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+      <div className="hidden sm:block absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-[var(--green)]/30 to-transparent rounded-full blur-3xl animate-pulse"></div>
       <div
-        className="hidden sm:block absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-[var(--light-blue)]/15 to-transparent rounded-full blur-3xl animate-pulse"
+        className="hidden sm:block absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-[var(--light-blue)]/20 to-transparent rounded-full blur-3xl animate-pulse"
         style={{ animationDelay: "1s" }}
       ></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          className="max-w-6xl mx-auto bg-white/20 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border-2 border-white/30"
+          className="max-w-6xl mx-auto bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border-2 border-white/60"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -66,10 +66,10 @@ export default function FreelanceCTASection() {
         >
           <div className="grid grid-cols-1 xl:grid-cols-2">
             <div className="p-6 sm:p-8 md:p-12 lg:p-16">
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--navy-blue)] mb-4 sm:mb-6">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--navy-blue)] mb-4 sm:mb-6 drop-shadow-sm">
                 📞 Get a Quote
               </h2>
-              <p className="text-base sm:text-lg text-[var(--navy-blue)] mb-6 sm:mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg text-[var(--navy-blue)] mb-6 sm:mb-8 leading-relaxed font-medium">
                 Whether you need quick 2D drawings, full 3D visualization, or a
                 complete interior design solution, we are ready to support your
                 workflow. Submit your files and requirements for a customized
@@ -79,9 +79,9 @@ export default function FreelanceCTASection() {
               <div className="space-y-4 sm:space-y-6 mb-6 sm:mb-8">
                 {contactInfo.map((info, index) => (
                   <div key={index} className="flex items-start sm:items-center">
-                    <div className="mr-3 sm:mr-4 bg-[var(--navy-blue)] bg-opacity-10 p-2 sm:p-3 rounded-full flex-shrink-0 mt-1 sm:mt-0">
+                    <div className="mr-3 sm:mr-4 bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] p-2 sm:p-3 rounded-full flex-shrink-0 mt-1 sm:mt-0 shadow-lg">
                       <svg
-                        className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--navy-blue)]"
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-white"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -96,7 +96,7 @@ export default function FreelanceCTASection() {
                       </svg>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="text-xs sm:text-sm font-medium text-[var(--navy-blue)] opacity-80 mb-1">
+                      <div className="text-xs sm:text-sm font-bold text-[var(--green)] mb-1">
                         {info.title}
                       </div>
                       <div className="font-semibold text-sm sm:text-base text-[var(--navy-blue)] break-words">
@@ -222,7 +222,7 @@ export default function FreelanceCTASection() {
       </div>
 
       {/* Portfolio Highlights Section */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-16 lg:mt-20 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mt-16 md:mt-24 relative z-10">
         <motion.div
           className="text-center mb-12 sm:mb-16"
           initial="hidden"
@@ -230,20 +230,20 @@ export default function FreelanceCTASection() {
           viewport={{ once: true }}
           variants={fadeIn}
         >
-          <div className="inline-block bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] text-white text-sm sm:text-base lg:text-lg font-bold mb-3 sm:mb-4 px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-2xl border-2 border-white/30 backdrop-blur-md">
+          <div className="inline-block bg-gradient-to-r from-[var(--green)] to-[var(--light-blue)] text-white text-sm sm:text-base lg:text-lg font-bold my-6 sm:my-6 px-6 sm:px-8 py-3 sm:py-4 rounded-full shadow-2xl border-2 border-white/60 backdrop-blur-md">
             📁 Portfolio Highlights
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--navy-blue)] mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6 drop-shadow-2xl">
             Our Work Speaks for Itself
           </h2>
-          <p className="text-base sm:text-lg text-[var(--navy-blue)] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-lg">
             Explore some of our best works – from detailed architectural
             drawings to stunning 3D visualizations that bring designs to life.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-12 sm:mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -283,7 +283,7 @@ export default function FreelanceCTASection() {
           ].map((item, index) => (
             <motion.div
               key={index}
-              className="group relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 transform hover:scale-105 rounded-xl sm:rounded-2xl h-48 sm:h-56 lg:h-64"
+              className="group relative overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 transform hover:scale-105 rounded-xl lg:rounded-2xl h-64 sm:h-72 lg:h-80 border-2 border-white/30 shadow-lg"
               variants={fadeIn}
             >
               <Image
@@ -292,14 +292,16 @@ export default function FreelanceCTASection() {
                 fill
                 className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
                 quality={85}
+                priority
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy-blue)]/80 via-transparent to-transparent"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-[var(--navy-blue)]/20 to-[var(--green)]/20 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 z-10">
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-1 sm:mb-2 drop-shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy-blue)]/80 to-transparent z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--green)]/10 to-[var(--red)]/10 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 z-20">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 drop-shadow-2xl">
                   {item.title}
                 </h3>
-                <p className="text-white/90 text-xs sm:text-sm font-medium drop-shadow-lg">
+                <p className="text-white/90 text-sm sm:text-base font-medium drop-shadow-lg leading-relaxed">
                   {item.subtitle}
                 </p>
               </div>
@@ -316,7 +318,7 @@ export default function FreelanceCTASection() {
         >
           <Link
             href="/student-projects-portfolio"
-            className="group relative inline-flex items-center justify-center bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] hover:from-[var(--navy-blue)]/90 hover:to-[var(--light-blue)]/90 text-white font-bold py-2.5 px-6 sm:py-3 sm:px-8 text-sm sm:text-base rounded-lg sm:rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
+            className="group relative inline-flex items-center justify-center bg-white/20 backdrop-blur-sm border-2 border-white hover:border-[var(--green)] hover:bg-white/30 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 text-sm sm:text-base rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105"
           >
             <span className="relative z-10">View Full Portfolio</span>
             <svg
@@ -333,7 +335,6 @@ export default function FreelanceCTASection() {
                 d="M14 5l7 7m0 0l-7 7m7-7H3"
               />
             </svg>
-            <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-[var(--navy-blue)] to-[var(--light-blue)] rounded-lg sm:rounded-xl blur-xl opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
           </Link>
         </motion.div>
       </div>

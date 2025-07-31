@@ -35,11 +35,12 @@ export default function FreelanceHeroSection() {
           src="/images/portfolio/sreeLakshmi/living-hall.jpg"
           alt="Professional interior design showcase"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center filter blur-md"
           quality={85}
           priority
         />
-        <div className="absolute inset-0 bg-[var(--navy-blue)]/90"></div>
+        <div className="absolute inset-0 bg-[var(--navy-blue)]/95"></div>
+        <div className="absolute inset-0 bg-[var(--grey)]/50"></div>
       </div>
 
       {/* Enhanced Background Pattern */}
@@ -89,9 +90,21 @@ export default function FreelanceHeroSection() {
             Professional Design Services
           </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-2xl">
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-2xl"
+            style={{
+              textShadow:
+                "2px 2px 4px rgba(0,51,102,0.9), 0 0 8px rgba(0,51,102,0.6)",
+            }}
+          >
             Project Works – 2D & 3D Design Services
-            <span className="text-[var(--green)] block md:inline animate-pulse drop-shadow-2xl">
+            <span
+              className="text-[var(--green)] block md:inline animate-pulse drop-shadow-2xl"
+              style={{
+                textShadow:
+                  "2px 2px 4px rgba(0,51,102,0.9), 0 0 8px rgba(42,157,143,0.4)",
+              }}
+            >
               {" "}
               Local & International Outsourcing
             </span>
@@ -104,7 +117,13 @@ export default function FreelanceHeroSection() {
             className="w-24 h-1 bg-gradient-to-r from-[var(--red)] to-[var(--green)] mx-auto mb-8 rounded-full shadow-2xl"
           ></motion.div>
 
-          <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-2xl font-medium">
+          <p
+            className="text-xl text-white mb-10 max-w-3xl mx-auto leading-relaxed drop-shadow-2xl font-medium"
+            style={{
+              textShadow:
+                "2px 2px 4px rgba(0,51,102,0.8), 0 0 6px rgba(0,51,102,0.6)",
+            }}
+          >
             Your one-stop destination for professional 2D drafting, 3D
             visualization, and interior design outsourcing. With over a decade
             of industry experience, we deliver quality-driven CAD drawings, 3D
