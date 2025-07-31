@@ -253,22 +253,23 @@ export default function FreelanceCTASection() {
             {
               title: "Residential Design",
               subtitle: "2D Floor Plans & 3D Renders",
-              image: "/images/portfolio/aiswarya/bedroom.jpg",
+              image: "/images/portfolio/aswathy2025/2-2.jpg",
             },
             {
               title: "Commercial Spaces",
               subtitle: "Office Layouts & Visualizations",
-              image: "/images/portfolio/sreeLakshmi/cafe.jpg",
+              image: "/images/portfolio/aswathy2025/coffe-shope-223.jpg",
             },
             {
               title: "Hospitality Projects",
               subtitle: "Hotel & Restaurant Designs",
-              image: "/images/portfolio/sreeLakshmi/resort.jpg",
+              image:
+                "/images/portfolio/aswathy2025/resort-camara-1-jpg-123124.jpg",
             },
             {
               title: "Bathroom Design",
               subtitle: "Technical Documentation",
-              image: "/images/portfolio/sreeLakshmi/bathroom.jpg",
+              image: "/images/portfolio/aswathy2025/toilet-final-124.jpg",
             },
             {
               title: "Interior Renderings",
@@ -278,7 +279,7 @@ export default function FreelanceCTASection() {
             {
               title: "Kitchen Design",
               subtitle: "Modern Kitchen Solutions",
-              image: "/images/portfolio/aswathy2025/kiyhchen-camar-3.jpg",
+              image: "/images/portfolio/aswathy2025/new-kithchen-camara-2.jpg",
             },
           ].map((item, index) => (
             <motion.div
@@ -291,9 +292,17 @@ export default function FreelanceCTASection() {
                 alt={item.title}
                 fill
                 className="object-cover object-center group-hover:scale-110 transition-transform duration-500"
-                quality={85}
-                priority
+                quality={90}
+                priority={true}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="eager"
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "100%",
+                  position: "absolute",
+                  inset: 0,
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy-blue)]/80 to-transparent z-10"></div>
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--green)]/10 to-[var(--red)]/10 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10"></div>
